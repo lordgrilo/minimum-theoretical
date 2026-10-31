@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Minimum Theoretical · NPLab</title>
+<title>Minimum Theoretical</title>
 <meta name="description" content="The shared theory every NPLab member can explain, use and criticise.">
-<meta property="og:title" content="Minimum Theoretical · NPLab">
+<meta property="og:title" content="Minimum Theoretical">
 <meta property="og:description" content="The shared theory every NPLab member can explain, use and criticise.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&family=Vollkorn:ital@0;1&display=swap">
 <style>
-/* Layout: the lab site's chrome (white sticky navbar, dot-grid ground, thin tracked uppercase
+/* Layout: a standalone page (white sticky header, plain ground, thin tracked uppercase
    Helvetica) around a reading column with a sticky contents rail. Light only, like the lab site. */
 :root {
   --clr-red: #ff2850; --clr-mixred: #841f37;
@@ -33,14 +33,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
 body {
   margin: 0; color: var(--clr-highlight1); font-family: var(--f-text); font-weight: 300; font-size: 16px; line-height: 1.7;
   background: var(--clr-background-deep);
-  background-image: radial-gradient(var(--clr-background) 1.1px, transparent 0);
   background-size: 11px 11px; background-position: -19px -19px;
 }
 a { color: var(--clr-foreground-deep); text-decoration-color: var(--clr-lowlight2); text-underline-offset: 3px; transition: color 300ms var(--ease); }
 a:hover { color: var(--clr-mixred); text-decoration-color: var(--clr-mixred); }
 :focus-visible { outline: 2px solid var(--clr-mixred); outline-offset: 3px; }
 
-/* navbar, as on nplresearch.github.io */
+/* header */
 .navbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: var(--card); border-bottom: 1px solid var(--clr-lowlight1); }
 .drawer { max-width: 1280px; margin: 0 auto; padding-inline: 16px; height: 3.5rem; display: flex; align-items: center; gap: 1rem; overflow-x: auto; }
 .nav-home { font-family: var(--f-head); font-weight: 800; font-size: .875rem; text-transform: uppercase; letter-spacing: .15rem; text-decoration: none; white-space: nowrap; }
@@ -131,15 +130,14 @@ footer.foot { border-top: 1px solid var(--clr-lowlight1); padding-top: 1.25rem; 
 </style>
 </head>
 <body>
-<nav class="navbar" aria-label="NPLab">
+<nav class="navbar" aria-label="Minimum Theoretical">
   <div class="drawer">
-    <a class="nav-home" href="https://nplresearch.github.io/">NPLab</a>
+    <a class="nav-home" href="./">Minimum Theoretical</a>
     <div class="items">
-      <a class="nav-item" href="https://nplresearch.github.io/#/projects">Projects</a>
-      <a class="nav-item" href="https://nplresearch.github.io/#/people">People</a>
-      <a class="nav-item" href="https://nplresearch.github.io/#/publications">Publications</a>
-      <a class="nav-item" href="https://nplresearch.github.io/#/manual">Lab Manual</a>
-      <a class="nav-item current" href="./" aria-current="page">Minimum Theoretical</a>
+      <a class="nav-item" href="#tier-1">The route</a>
+      <a class="nav-item" href="#atlas">Atlas</a>
+      <a class="nav-item" href="quest/">Quest mode</a>
+      <a class="nav-item" href="https://github.com/lordgrilo/minimum-theoretical">GitHub</a>
     </div>
   </div>
 </nav>
@@ -437,7 +435,7 @@ footer.foot { border-top: 1px solid var(--clr-lowlight1); padding-top: 1.25rem; 
 </section>
     <footer class="foot">
       <p>Built 2026-10-31 from the reading-list master. The full atlas and these pages as plain markdown live on <a href="https://github.com/lordgrilo/minimum-theoretical">GitHub</a>.</p>
-      <p><a href="quest/">Quest mode</a> · <a href="https://nplresearch.github.io/">NPLab home</a></p>
+      <p><a href="quest/">Quest mode</a> · A curriculum of <a href="https://nplresearch.github.io/">NPLab</a>, Network Science Institute.</p>
     </footer>
   </main>
 </div>
