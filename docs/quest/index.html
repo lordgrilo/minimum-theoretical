@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Minimum Theoretical Quest Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,600;1,400&family=Pixelify+Sans:wght@400;600&family=Press+Start+2P&family=VT323&display=swap">
+<style>
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+/* Layout: a 16-bit codex page. Parchment by day, a candlelit library by night.
+   One column of "panels"; character sheet and skill tree sit side by side on wide screens. */
+:root {
+  --paper: #EEDFBF;        /* parchment ground */
+  --paper-2: #E5D2A9;      /* raised parchment for panels */
+  --plate: #E9D6AE;        /* sprite plates */
+  --ink: #3B1B2A;          /* plum-brown ink */
+  --ink-soft: #6B4752;
+  --accent: #8E2B3C;       /* crimson ink, from the art's title lettering */
+  --mana: #127F8A;         /* the cyan orb, darkened to read on parchment */
+  --mana-glow: #5FE3EE;
+  --gold: #9A6A12;         /* XP */
+  --frame: #5A2E3A;        /* pixel frames */
+  --rule: #CDB78C;
+  --dialog-bg: #2A1420;
+  --dialog-fg: #F3E6CC;
+  --on-image: #F6EAD0;
+  --on-image-shadow: #2A1420;
+  --sprite-line: #2A1420;
+  --fog: #B9A27F;
+  --f-display: "Press Start 2P", "Courier New", monospace;
+  --f-pixel: "Pixelify Sans", "Trebuchet MS", system-ui, sans-serif;
+  --f-body: "Alegreya", Georgia, "Times New Roman", serif;
+  --f-num: "VT323", "Courier New", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #1C1117; --paper-2: #28181F; --plate: #3E2A33; --ink: #EBDCC0; --ink-soft: #BCA58F;
+    --accent: #E37285; --mana: #5FE3EE; --gold: #E5B656; --frame: #B98E6A; --rule: #4A3340;
+    --dialog-bg: #120A0F; --sprite-line: #0E070B; --fog: #5A4550; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #1C1117; --paper-2: #28181F; --plate: #3E2A33; --ink: #EBDCC0; --ink-soft: #BCA58F;
+  --accent: #E37285; --mana: #5FE3EE; --gold: #E5B656; --frame: #B98E6A; --rule: #4A3340;
+  --dialog-bg: #120A0F; --sprite-line: #0E070B; --fog: #5A4550; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.55; margin: 0; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 16px; padding-block: 0 48px; display: grid; gap: 28px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+h2 { font-family: var(--f-pixel); font-weight: 600; font-size: 22px; letter-spacing: .02em; }
+h3 { font-family: var(--f-pixel); font-weight: 600; font-size: 17px; }
+p { margin: 0; }
+.label { font-family: var(--f-pixel); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.num { font-family: var(--f-num); font-size: 22px; line-height: 1; font-variant-numeric: tabular-nums; }
+.muted { color: var(--ink-soft); }
+button, input, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--mana); outline-offset: 3px; }
+
+/* Pixel frame: stepped corners via four hard shadows */
+.px { background: var(--paper-2); box-shadow: 0 -4px 0 0 var(--frame), 0 4px 0 0 var(--frame), -4px 0 0 0 var(--frame), 4px 0 0 0 var(--frame); margin: 4px; }
+.panel { padding: 20px; display: grid; gap: 16px; min-width: 0; }
+.panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+/* Status bar */
+.status { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 3px solid var(--frame); }
+.status-inner { max-width: 1080px; margin: 0 auto; padding-inline: 16px; padding-block: 10px; display: flex; gap: 10px 18px; align-items: center; flex-wrap: wrap; }
+.brand { font-family: var(--f-pixel); font-weight: 600; font-size: 15px; }
+.chip { font-family: var(--f-pixel); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border: 2px solid var(--frame); }
+.xpbox { margin-left: auto; display: flex; align-items: center; gap: 10px; min-width: 0; }
+.lv { font-family: var(--f-display); font-size: 11px; color: var(--accent); }
+.bar { width: clamp(110px, 22vw, 220px); height: 14px; border: 2px solid var(--frame); background: var(--paper-2); position: relative; overflow: hidden; }
+.bar > i { position: absolute; inset: 0 auto 0 0; width: 0; background: repeating-linear-gradient(90deg, var(--gold) 0 6px, transparent 6px 8px); transition: width .6s steps(12); }
+
+/* Hero */
+.hero { position: relative; margin-top: 20px; }
+.hero-art { position: relative; aspect-ratio: 21 / 9; overflow: hidden; }
+.hero-art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; display: block; }
+.hero-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(42,20,32,.82)); }
+.hero-title { position: absolute; left: 20px; right: 20px; bottom: 18px; z-index: 1; display: grid; gap: 10px; color: var(--on-image); }
+.hero-title .eyebrow { font-family: var(--f-pixel); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+.hero-title h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(13px, 2.6vw, 28px); line-height: 1.4; text-shadow: 3px 3px 0 var(--on-image-shadow); }
+
+/* JRPG dialogue box */
+.dialog { background: var(--dialog-bg); color: var(--dialog-fg); box-shadow: 0 -4px 0 0 var(--frame), 0 4px 0 0 var(--frame), -4px 0 0 0 var(--frame), 4px 0 0 0 var(--frame); margin: 4px; padding: 16px 18px; display: grid; grid-template-columns: 72px 1fr; gap: 16px; align-items: start; }
+.dialog .face { width: 72px; height: 72px; overflow: hidden; position: relative; border: 3px solid var(--dialog-fg); }
+.dialog .face img { position: absolute; height: 180%; left: -140%; top: 0; max-width: none; }
+.sect { display: grid; gap: 16px; min-width: 0; }
+.speaker { font-family: var(--f-pixel); font-weight: 600; font-size: 14px; letter-spacing: .06em; color: var(--mana-glow); }
+.line { min-height: 3.2em; font-size: 18px; }
+.next { justify-self: end; background: none; border: 2px solid var(--dialog-fg); color: var(--dialog-fg); font-family: var(--f-pixel); font-size: 13px; padding: 4px 10px; cursor: pointer; }
+.next .caret { display: inline-block; animation: blink 1s steps(2) infinite; }
+
+/* Two-up grid */
+.duo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr); gap: 20px; align-items: start; }
+@media (max-width: 820px) { .duo { grid-template-columns: minmax(0, 1fr); } }
+
+/* Character sheet */
+.who { display: grid; grid-template-columns: 112px 1fr; gap: 14px; align-items: center; }
+.portrait { width: 112px; aspect-ratio: 1; overflow: hidden; position: relative; border: 3px solid var(--frame); }
+.portrait img { position: absolute; height: 118%; left: 50%; top: 0; transform: translateX(-50%); max-width: none; }
+.who input { width: 100%; background: transparent; border: none; border-bottom: 2px dashed var(--frame); font-family: var(--f-pixel); font-size: 18px; padding: 2px 0; }
+.stats { display: grid; gap: 8px; }
+.stat { display: grid; grid-template-columns: 44px 1fr auto; gap: 10px; align-items: center; }
+.stat abbr { font-family: var(--f-num); font-size: 22px; text-decoration: none; color: var(--accent); }
+.stat .name { font-size: 15px; min-width: 0; }
+.pips { display: flex; gap: 4px; }
+.pip { width: 16px; height: 16px; border: 2px solid var(--frame); background: transparent; padding: 0; cursor: pointer; }
+.pip.on { background: var(--mana); }
+.repair { border-top: 2px dashed var(--rule); padding-top: 12px; display: grid; gap: 8px; }
+.repair li { font-size: 15px; }
+.repair ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+
+/* Skill tree */
+.tree svg { width: 100%; height: auto; display: block; }
+.tree .edge { stroke: var(--rule); stroke-width: 3; stroke-dasharray: 2 6; stroke-linecap: square; }
+.tree .edge.done { stroke: var(--ink); stroke-dasharray: none; }
+.tree .tri { fill: var(--mana); fill-opacity: .28; }
+.tree .hole { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 5 4; }
+.tree .holemark { font-family: var(--f-pixel); font-size: 13px; fill: var(--accent); text-anchor: middle; }
+.tree .v { fill: var(--paper); stroke: var(--frame); stroke-width: 3; }
+.tree .v.done { fill: var(--mana); }
+.tree .v.next { stroke: var(--accent); }
+.tree .ring { fill: none; stroke: var(--accent); stroke-width: 2; animation: pulse 1.6s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+.tree .vlabel { font-family: var(--f-pixel); font-size: 13px; fill: var(--ink); text-anchor: middle; }
+.tree .vid { font-family: var(--f-num); font-size: 15px; fill: var(--ink); text-anchor: middle; dominant-baseline: central; }
+.tree .fogged { opacity: .32; filter: url(#blur); }
+.tree .horizon { fill: var(--mana); fill-opacity: .06; stroke: var(--mana); stroke-width: 2; stroke-dasharray: 3 5; }
+.tree .hzlabel { font-family: var(--f-pixel); font-size: 12px; fill: var(--mana); }
+.readout { display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: baseline; }
+.btnrow { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { font-family: var(--f-pixel); font-size: 14px; padding: 6px 12px; background: var(--paper); border: 2px solid var(--frame); cursor: pointer; }
+.btn:hover { background: var(--plate); }
+.btn[aria-pressed="true"] { background: var(--frame); color: var(--paper); }
+
+/* Quest */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.check { display: grid; grid-template-columns: 24px 1fr auto; gap: 12px; align-items: start; cursor: pointer; }
+.check input { appearance: none; width: 22px; height: 22px; margin: 2px 0 0; border: 3px solid var(--frame); background: var(--paper); cursor: pointer; display: grid; place-content: center; }
+.check input::after { content: ""; width: 10px; height: 10px; background: var(--mana); transform: scale(0); transition: transform .15s steps(2); }
+.check input:checked::after { transform: scale(1); }
+.check input:checked + span { color: var(--ink-soft); text-decoration: line-through; text-decoration-color: var(--accent); }
+.xp { font-family: var(--f-num); font-size: 19px; color: var(--gold); white-space: nowrap; }
+.reward { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; border-top: 2px dashed var(--rule); padding-top: 14px; }
+.savept { background: var(--plate); padding: 12px 14px; }
+
+/* Inventory */
+.slots { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.slot { width: 22px; height: 22px; border: 2px solid var(--frame); }
+.slot.full { background: var(--accent); }
+.slot.ghost { border-style: dashed; opacity: .5; }
+.items { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 18px; }
+.item { padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.item .top { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.type { font-family: var(--f-pixel); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; padding: 2px 7px; color: var(--paper); background: var(--ink-soft); }
+.type.scroll { background: var(--ink-soft); }
+.type.codex { background: var(--mana); }
+.type.tome { background: var(--accent); }
+.stage { font-family: var(--f-pixel); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+.cite { font-size: 16px; }
+.cite em { font-style: italic; }
+.attuned { font-size: 14px; color: var(--ink-soft); }
+.item.locked { opacity: .6; }
+
+/* Bestiary */
+.beasts { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 18px; }
+.beast { padding: 16px; display: grid; gap: 12px; align-content: start; min-width: 0; position: relative; }
+.plate { background: var(--plate); display: grid; place-items: center; padding: 14px; border: 3px solid var(--frame); position: relative; overflow: hidden; }
+.plate svg { width: 112px; height: 112px; shape-rendering: crispEdges; animation: bob 2.4s steps(4) infinite; }
+.plate .eye { animation: blinkeye 4s steps(1) infinite; }
+.plate .lid { animation: chomp 1.8s steps(1) infinite; }
+.plate .drip { animation: drip 1.6s steps(6) infinite; }
+.beast dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 15px; }
+.beast dt { font-family: var(--f-pixel); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); padding-top: 3px; }
+.beast dd { margin: 0; min-width: 0; }
+.danger { color: var(--accent); font-family: var(--f-num); font-size: 20px; letter-spacing: .1em; }
+.stamp { position: absolute; inset: auto 0 auto 0; top: 42%; text-align: center; font-family: var(--f-display); font-size: 14px; color: var(--accent); transform: rotate(-8deg); pointer-events: none; }
+.beast.slain .plate svg { filter: grayscale(1); opacity: .45; animation: none; }
+
+/* Oracle */
+.oracle textarea { width: 100%; min-height: 110px; resize: vertical; background: var(--paper); border: 3px solid var(--frame); padding: 10px 12px; font-size: 16px; }
+.riddle { font-size: 20px; font-style: italic; max-width: 60ch; }
+
+/* Road ahead */
+.road { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 820px) { .road { grid-template-columns: minmax(0, 1fr); } }
+.stagecard { display: grid; align-content: start; min-width: 0; }
+.stagecard .art { aspect-ratio: 2.4 / 1; overflow: hidden; position: relative; }
+.stagecard .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.stagecard .art.paths img { object-position: 50% 8%; }
+.stagecard .art.frontier img { object-position: 50% 28%; }
+.stagecard .art.here { display: grid; place-items: center; background: var(--plate); }
+.stagecard .art.here span { font-family: var(--f-display); font-size: 12px; color: var(--accent); animation: blink 1.2s steps(2) infinite; }
+.stagecard .body { padding: 14px 16px 16px; display: grid; gap: 8px; }
+.classes { margin: 0; padding-left: 18px; font-size: 15px; display: grid; gap: 2px; }
+.lock { font-family: var(--f-pixel); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+
+footer { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; border-top: 3px solid var(--frame); padding-top: 16px; font-size: 15px; }
+
+/* Level-up overlay */
+.levelup { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; background: rgba(18,10,15,.72); padding-inline: 16px; }
+.levelup canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.levelup .card { position: relative; background: var(--dialog-bg); color: var(--dialog-fg); padding: 26px 24px; max-width: 520px; display: grid; gap: 14px; text-align: center; box-shadow: 0 -4px 0 0 var(--mana-glow), 0 4px 0 0 var(--mana-glow), -4px 0 0 0 var(--mana-glow), 4px 0 0 0 var(--mana-glow); }
+.levelup .big { font-family: var(--f-display); font-size: clamp(18px, 5vw, 28px); color: var(--mana-glow); text-shadow: 3px 3px 0 #000; }
+
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes pulse { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.7); opacity: 0; } }
+@keyframes blinkeye { 0%, 92% { opacity: 1; } 93%, 97% { opacity: 0; } }
+@keyframes chomp { 0%, 60% { transform: translateY(0); } 61%, 80% { transform: translateY(-1px); } }
+@keyframes drip { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(3px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ---- v2: multi-competency template ---- */
+.compnav { overflow-x: auto; margin-top: 16px; }
+.compnav ol { list-style: none; margin: 0; padding: 4px; display: flex; gap: 10px; min-width: max-content; }
+.compnav a { display: grid; gap: 2px; padding: 8px 12px; text-decoration: none; color: var(--ink); background: var(--paper-2); border: 2px solid var(--frame); min-width: 112px; }
+.compnav a:hover { background: var(--plate); }
+.compnav a[aria-current="page"] { background: var(--frame); color: var(--paper); }
+.compnav .cid { font-family: var(--f-num); font-size: 20px; line-height: 1; }
+.compnav .cname { font-family: var(--f-pixel); font-size: 13px; }
+.compnav .cstate { font-family: var(--f-pixel); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; opacity: .8; }
+.brief { display: grid; gap: 10px; border-bottom: 2px dashed var(--rule); padding-bottom: 14px; }
+.brief p { max-width: 68ch; }
+.fognote { background: var(--plate); padding: 8px 12px; font-size: 15px; }
+.watch { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.decided { font-family: var(--f-pixel); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--mana); border: 2px solid var(--mana); padding: 1px 6px; }
+.lore { display: grid; gap: 8px; }
+.lore ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 15px; }
+.tree .vg { cursor: pointer; }
+.tree .vg:focus { outline: none; }
+.tree .vg:focus-visible .v { stroke: var(--mana); stroke-width: 5; }
+.compnav .actsep { font-family: var(--f-display); font-size: 10px; color: var(--accent); display: grid; place-items: center; padding: 0 2px; white-space: nowrap; }
+.stagecard .art.novice img { object-position: 50% 22%; }
+.herebadge { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; font-family: var(--f-display); font-size: 11px; color: var(--on-image); text-shadow: 2px 2px 0 var(--on-image-shadow); animation: blink 1.2s steps(2) infinite; }
+.stagecard h3 a { color: inherit; text-decoration: none; }
+.stagecard h3 a:hover { text-decoration: underline; text-decoration-color: var(--accent); }
+.pathgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 18px; }
+.pathcard { padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.pathcard.chosen { box-shadow: 0 -4px 0 0 var(--mana), 0 4px 0 0 var(--mana), -4px 0 0 0 var(--mana), 4px 0 0 0 var(--mana); }
+.cls { font-family: var(--f-display); font-size: 11px; line-height: 1.6; color: var(--accent); }
+.pathcard ul, .region ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; font-size: 15px; }
+.region.spec { opacity: .85; }
+.tree .cur { fill: none; stroke: var(--accent); stroke-width: 3; animation: pulse 1.6s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+</style>
+</head>
+<body>
+<div class="status">
+  <div class="status-inner">
+    <span class="brand">NPLab · Minimum Theoretical</span>
+    <span class="chip" id="tierchip">Tier 1 · The Common Language</span>
+    <span class="chip" id="weekchip"></span>
+    <div class="xpbox">
+      <span class="lv" id="lv">LV 1</span>
+      <div class="bar" aria-hidden="true"><i id="xpbar"></i></div>
+      <span class="num" id="xptext"></span>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <nav class="compnav" aria-label="Competencies"><ol id="compnav"></ol></nav>
+
+  <section class="hero" style="margin-top:0">
+    <div class="hero-art px">
+      <img id="hero-img" src="" alt="">
+      <div class="hero-title">
+        <span class="eyebrow" id="hero-eyebrow"></span>
+        <h1 id="hero-title"></h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="dialog" aria-label="The Archivist speaks">
+    <div class="face"><img src="art/archivist.webp" alt=""></div>
+    <div class="sect" style="gap:8px">
+      <span class="speaker">The Archivist</span>
+      <p class="line" id="line" aria-live="polite"></p>
+      <button class="next" id="next" type="button">Next <span class="caret">▼</span></button>
+    </div>
+  </section>
+
+  <div class="duo">
+    <section class="px panel" aria-labelledby="sheet-h">
+      <div class="panel-head"><h2 id="sheet-h">Character sheet</h2><span class="label">Tier 0 diagnostic</span></div>
+      <div class="who">
+        <div class="portrait"><img src="art/novice.webp" alt="Pixel-art novice reading a glowing book"></div>
+        <div class="sect" style="gap:6px">
+          <label class="label" for="name">Name</label>
+          <input id="name" type="text" placeholder="Your name" autocomplete="off">
+          <p id="rank">Novice of the Common Language</p>
+          <p class="muted" style="font-size:15px" id="classline">Class: unchosen. You pick your path in month 4.</p>
+        </div>
+      </div>
+      <p class="label">Entry stats · click a pip to rate yourself (example values shown)</p>
+      <div class="stats" id="stats"></div>
+      <div class="repair" id="repair"></div>
+    </section>
+
+    <section class="px panel tree" aria-labelledby="tree-h">
+      <div class="panel-head"><h2 id="tree-h">Skill tree</h2><span class="label">Click a competency to travel</span></div>
+      <svg id="tree" viewBox="0 0 600 370" role="group" aria-label="Skill tree of eight competencies drawn as a simplicial complex"></svg>
+      <div class="readout">
+        <span class="num" id="delta"></span>
+        <span class="num" id="betti"></span>
+      </div>
+      <p class="muted" id="holehint" style="font-size:15px" hidden></p>
+      <p class="muted" style="font-size:15px">Vertices are competencies, mastered when their foundation readings, quest and save point are done. An edge lights up between two mastered neighbours. A triangle fills only once you have also read the synthesis items of all three, so the foundation builds the skeleton and synthesis fills it in. The fog is your semantic horizon, r* = −β log Δ, drawn as a union of balls around what you know. The layout is illustrative.</p>
+      <div class="btnrow">
+        <button class="btn" id="demo" type="button" aria-pressed="false">Preview month 6</button>
+        <button class="btn" id="fill" type="button" hidden>Fill the hole</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="view-comp" class="sect" style="gap:28px">
+  <section class="px panel" aria-labelledby="quest-h">
+    <div class="panel-head"><h2 id="quest-h"></h2><span class="label" id="quest-xp"></span></div>
+    <p class="fognote" id="fognote" hidden>This competency is beyond your semantic horizon. You can read ahead; XP counts all the same.</p>
+    <div class="brief">
+      <span class="label" id="comp-title"></span>
+      <p id="comp-summary" class="muted" style="font-size:16px"></p>
+      <p><b>Exit evidence.</b> <span id="comp-exit"></span></p>
+    </div>
+    <p id="quest-task" style="max-width:65ch"></p>
+    <ul class="steps" id="steps"></ul>
+    <div class="reward">
+      <span class="label">Reward</span><span id="quest-reward"></span>
+      <span class="label">Watch for</span><ul class="watch" id="quest-watch"></ul>
+    </div>
+    <label class="check savept" for="checkpoint">
+      <input type="checkbox" id="checkpoint">
+      <span><b>Save point.</b> Present your work at a Thursday lab meeting.</span>
+      <span class="xp">+200 XP</span>
+    </label>
+  </section>
+
+  <section class="sect" aria-labelledby="inv-h">
+    <div class="panel-head">
+      <h2 id="inv-h">Inventory</h2>
+      <div class="slots" id="slots" title="Miller (1956): you can hold seven items, plus or minus two"></div>
+    </div>
+    <div class="items" id="items"></div>
+    <div class="lore px panel" id="lore" hidden></div>
+  </section>
+
+  <section class="sect" aria-labelledby="beast-h">
+    <div class="panel-head"><h2 id="beast-h">Bestiary</h2><span class="label">Each one falls to a reading in your inventory</span></div>
+    <div class="beasts" id="beasts"></div>
+  </section>
+
+  <section class="px panel oracle" aria-labelledby="oracle-h">
+    <div class="panel-head"><h2 id="oracle-h">The Oracle's riddle</h2><span class="label">Last quest step</span></div>
+    <p class="riddle" id="riddle"></p>
+    <label class="label" for="oracle">Your answer</label>
+    <textarea id="oracle" placeholder="The structure would be uninteresting if…"></textarea>
+    <p class="muted" style="font-size:14px">Saved in this browser only. Nobody else sees it.</p>
+  </section>
+
+  </div>
+
+  <section id="view-paths" class="sect" style="gap:20px" hidden>
+    <div class="panel-head"><h2>Act II · Choose your path</h2><span class="label">Tier 2 · Research Streams · draft</span></div>
+    <p class="fognote" id="paths-note"></p>
+    <div class="pathgrid" id="paths"></div>
+  </section>
+
+  <section id="view-frontier" class="sect" style="gap:20px" hidden>
+    <div class="panel-head"><h2>Act III · The Frontier</h2><span class="label">Tier 3 · optional</span></div>
+    <article class="px panel"><div class="panel-head"><h3>The final boss</h3><span class="label">Months 9–12 · capstone</span></div><p id="boss"></p></article>
+    <div class="pathgrid" id="regions"></div>
+  </section>
+
+  <section class="sect" aria-labelledby="road-h">
+    <div class="panel-head"><h2 id="road-h">The road ahead</h2><span class="label">Year one</span></div>
+    <div class="road">
+      <article class="stagecard px">
+        <div class="art novice"><img src="art/novice.webp" alt="Pixel-art novice reading a glowing book"><span class="herebadge" data-act="1">YOU ARE HERE</span></div>
+        <div class="body">
+          <span class="label">Tier 1 · weeks 1–12</span>
+          <h3><a href="#c1">Act I · The Common Language</a></h3>
+          <p style="font-size:15px" id="road-progress">Eight competencies, one checkpoint each. Everyone, every project.</p>
+        </div>
+      </article>
+      <article class="stagecard px">
+        <div class="art paths"><img src="art/paths.webp" alt="Three pixel-art portraits under a parchment frame"><span class="herebadge" data-act="2" hidden>YOU ARE HERE</span></div>
+        <div class="body">
+          <span class="label">Tier 2 · from month 4</span>
+          <h3><a href="#paths">Act II · Choose your path</a></h3>
+          <ul class="classes">
+            <li>Simplex Weaver · higher-order networks</li>
+            <li>Scaffold Seer · brain and clinical</li>
+            <li>Horizon Mage · semanticity and machine intelligence</li>
+            <li>Envoy · social, animal or collective AI (Contagion Bard, Coda Speaker, Swarm Caller)</li>
+            <li>Scale Shifter · renormalization and criticality</li>
+          </ul>
+          <span class="lock">Browse any time; choose after Tier 1</span>
+        </div>
+      </article>
+      <article class="stagecard px">
+        <div class="art frontier"><img src="art/frontier.webp" alt="Three pixel-art figures in a starfield, one holding a glowing orb"><span class="herebadge" data-act="3" hidden>YOU ARE HERE</span></div>
+        <div class="body">
+          <span class="label">Tier 3 · months 9–12 and beyond</span>
+          <h3><a href="#frontier">Act III · The Frontier</a></h3>
+          <p style="font-size:15px">Take one NPLab claim from its assumptions to a falsifier, then try to kill it. Fought at lab meeting.</p>
+          <span class="lock">Optional, except the final boss</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <p class="muted" id="foot"></p>
+    <div class="btnrow"><a class="btn" href="../" style="text-decoration:none">Plain version</a>
+<button class="btn" id="reset" type="button">Reset my progress</button></div>
+  </footer>
+</main>
+
+<div class="levelup" id="levelup" hidden>
+  <canvas id="fx"></canvas>
+  <div class="card" role="dialog" aria-modal="true" aria-labelledby="lu-big">
+    <span class="big" id="lu-big">LEVEL UP</span>
+    <p id="lutext"></p>
+    <button class="next" id="luclose" type="button" style="justify-self:center">Continue <span class="caret">▼</span></button>
+  </div>
+</div>
+<script>
+(() => {
+"use strict";
+const DATA = {"built": "2026-10-31", "decided": "2026-10-07", "order": ["C1", "C2", "C3", "C4", "C6", "C5", "C7", "C8"], "site": {"name": "Minimum Theoretical", "tagline": "The shared theory every NPLab member can explain, use and criticise.", "intro": "NPLab works across brains, animals, social systems and artificial agents with one toolkit: network science, higher-order networks and topology, with information theory as the common measure. This is the smallest body of theory that lets us read each other's work, ask useful questions, criticise results and move between projects. The name is a deliberate echo of Landau's Theoretical Minimum.", "standard": ["explain the central construction or argument;", "use it in a toy or project-relevant setting;", "identify its assumptions and common failure modes;", "distinguish descriptive structure from inference and mechanism;", "connect it to at least one NPLab research programme;", "state what evidence would weaken or falsify the associated claim."], "how": "Weeks 1–12 cover eight competencies. Each has foundation readings, one exercise and a checkpoint: you present your work at a Thursday lab meeting. Deepening and synthesis readings run alongside your project until the end of the first year. The provisional load is 8–10 hours a week; the first cohort will measure it.", "status": "Draft curriculum. Readings and exercises will change after the first pilot.", "repo": "https://github.com/lordgrilo/minimum-theoretical", "pages": "https://lordgrilo.github.io/minimum-theoretical/", "lab": "https://nplresearch.github.io/", "plain_steps": {"Answer the Oracle's riddle below, in writing.": "Write down your answer to the falsification question."}}, "tiers": [{"id": "T0", "label": "Tier 0", "title": "Before you start", "when": "Before week 1", "blurb": "Rate yourself on five survival skills. If one is rusty, its first-pass route repairs it before the common route begins."}, {"id": "T1", "label": "Tier 1", "title": "The Common Language", "when": "Weeks 1–12, then deepening in months 4–8", "blurb": "Eight competencies that every member shares, whatever their project. Each has foundation readings, one exercise and a lab-meeting checkpoint; deepening and synthesis readings follow during the year."}, {"id": "T2", "label": "Tier 2", "title": "Research Streams", "when": "Months 4–8", "blurb": "Go deep in one stream and stay literate in the others: one orientation reading per stream you do not follow. Streams are where your project lives."}, {"id": "T3", "label": "Tier 3", "title": "The Frontier", "when": "Ongoing", "blurb": "What the lab is building rather than using. Nothing here is required; it is where our open questions live."}], "schedule": {"version": "0.1", "date": "2026-10-09"}, "atlas": {"title": "The Atlas", "blurb": "The full reading list, organised by topic and tier. Use it as a reference: it is deliberately larger than any route through it.", "counts": {"tier0": {"sections": 5, "entries": 21}, "tier1": {"sections": 11, "entries": 69}, "tier2": {"sections": 10, "entries": 104}, "tier3": {"sections": 6, "entries": 36}}}, "competencies": [{"id": "C1", "slug": "c1-models-nulls-and-scientific-claims", "title": "Models, nulls, and scientific claims", "short": "Models & nulls", "weeks": "Week 1", "summary": "Specify variables, scales, assumptions, observables, and a null or comparison model. Separate description, prediction, parameter inference, mechanism, and intervention. Identify leakage and circularity.", "exit": "design a matched null and state what result would weaken the claim.", "hero": {"src": "art/archivist.webp", "pos": "50% 18%", "alt": "Pixel-art scholar holding an open book that projects network diagrams"}, "dialog": ["Welcome to the Common Language. Before you learn any of our tools, you learn how they lie to you.", "Every structure you will ever find was also findable in noise. So the first question is never what you found.", "The first question is: compared to what? Bring me two nulls that disagree, and tell me which one you believe.", "Clear this and the fog lifts on three new competencies. Your skill tree is below."], "quest": {"title": "Two nulls enter", "task": "Design and defend two competing null models for one lab result, and show which apparent effect each one destroys.", "steps": ["Pick one result: yours, or a lab result you can rerun.", "State the claim in one sentence. Then write the dullest process that could have produced the same data.", "Build two null models and list the constraints each one preserves.", "Run both, and tabulate which apparent effects each null destroys.", "Map leakage and forks: what entered model selection, and how many analysis paths you tried.", "Answer the Oracle's riddle below, in writing."], "reward": "A two-page null-model dossier plus executable comparison of two null ensembles on a live or synthetic result.", "watch": ["Choosing a null that preserves the wrong constraints, or allowing preprocessing and leakage to answer the question in advance."], "oracle": "What result would show that the reported structure is compatible with an uninteresting data-generating process?"}, "readings": [{"key": "fosdick2018_nulls", "type": "codex", "stage": "Foundation", "xp": 150, "cite": "Fosdick, Larremore, Nishimura &amp; Ugander (2018), <em>Configuring random graph models with fixed degree sequences.<\/em> SIAM Review.", "short": "Fosdick, Larremore, Nishimura &amp; Ugander (2018)", "note": "How to sample network null models correctly — the reference for graph nulls.", "beats": ["The Null-Model Mimic"]}, {"key": "gelman_loken2013", "type": "scroll", "stage": "Foundation", "xp": 100, "cite": "Gelman &amp; Loken (2013), <em>The garden of forking paths.<\/em> (working paper / American Scientist).", "short": "Gelman &amp; Loken (2013)", "note": "Researcher degrees of freedom and the multiple-comparisons trap in exploratory work.", "beats": ["The Forking-Path Hydra"]}, {"key": "kapoor_narayanan2023", "type": "scroll", "stage": "Foundation", "xp": 100, "cite": "Kapoor &amp; Narayanan (2023), <em>Leakage and the reproducibility crisis in machine-learning-based science.<\/em> Patterns.", "short": "Kapoor &amp; Narayanan (2023)", "note": "Data leakage — the dominant failure mode in ML-for-science.", "beats": ["The Leakage Wraith"]}, {"key": "gelman2013_bda", "type": "tome", "stage": "Deepening", "xp": 250, "cite": "Gelman, Carlin, Stern, Dunson, Vehtari &amp; Rubin (2013), <em>Bayesian Data Analysis<\/em> (3rd ed.). CRC.", "short": "Gelman, Carlin, Stern, Dunson, Vehtari &amp; Rubin (2013)", "note": "The practical reference. Hierarchical models, MCMC, model checking.", "route": "Chapters 1, 5–7, and 10–11", "beats": []}, {"key": "jaynes2003", "type": "tome", "stage": "Deepening", "xp": 250, "cite": "Jaynes (2003), <em>Probability Theory: The Logic of Science.<\/em> Cambridge.", "short": "Jaynes (2003)", "note": "Philosophical foundation for Bayesian reasoning. Ch. 1–4, 11.", "route": "Chapters 1–4 and 11", "beats": []}], "classItems": [{"cite": "Marek et al. (2022), <em>Reproducible brain-wide association studies require thousands of individuals.<\/em> Nature.", "track": "brain track"}], "lore": [], "monsters": [{"id": "mimic", "name": "The Null-Model Mimic", "danger": 3, "habitat": "Any result reported as significant against “random”.", "lure": "A chest full of significance. Open it and you find a null that kept the wrong constraints, so your choice of null put the result there.", "weakness": "Say which graph space you sample (simple or multi-edge, with or without self-loops, stub- or vertex-labelled), then sample it correctly.", "weapon": "Fosdick, Larremore, Nishimura &amp; Ugander (2018)", "weaponKey": "fosdick2018_nulls"}, {"id": "wraith", "name": "The Leakage Wraith", "danger": 4, "habitat": "Pipelines that preprocess or select features before the train–test split.", "lure": "A beautiful test score. The pipeline saw the answer before the test began.", "weakness": "Split first. Fit every preprocessing and selection step inside the training fold. Run the leakage taxonomy as a checklist before you believe the score.", "weapon": "Kapoor &amp; Narayanan (2023)", "weaponKey": "kapoor_narayanan2023"}, {"id": "hydra", "name": "The Forking-Path Hydra", "danger": 3, "habitat": "Exploratory analyses written up as if they had been planned.", "lure": "One clean p-value. Every choice you could have made differently grew another head; you only met the one that bit.", "weakness": "Write down the forks before you look, report how many you walked, and keep exploratory structure labelled as exploratory.", "weapon": "Gelman &amp; Loken (2013)", "weaponKey": "gelman_loken2013"}]}, {"id": "C2", "slug": "c2-graph-structure-operators-and-spectra", "title": "Graph structure, operators, and spectra", "short": "Graphs & spectra", "weeks": "Weeks 2–3", "summary": "Move between adjacency, incidence, Laplacian, random-walk, and spectral views. Explain which structural or dynamical question each representation answers.", "exit": "derive or compute a Laplacian-based quantity on a small network and interpret it without overclaiming.", "hero": {"src": "art/c2-graphs.webp", "pos": "50% 10%", "alt": "Three armoured pixel-art figures, the middle one carrying a glowing network on its chest"}, "dialog": ["A network is a matrix that has forgotten it is a matrix. Your job is to remind it.", "Adjacency, incidence, Laplacian, random walk: four views of one object, and each answers a different question.", "A partition you can draw is a description. A partition that beats another generative model is an inference.", "Bring me both, and tell me which one you are claiming."], "quest": {"title": "The spectral and the generative", "task": "Describe one network three ways (descriptive, spectral and generative) and decide which account the data actually support.", "steps": ["Pick a network you know, and write down the structural question you are asking of it.", "Move between the adjacency, Laplacian and random-walk views, and say which question each one answers.", "Compute one Laplacian quantity (spectral gap, Fiedler vector or a diffusion time) and interpret it without overclaiming.", "Find a partition descriptively, then fit a generative model and compare the two by description length.", "Answer the Oracle's riddle below, in writing."], "reward": "A model-comparison report contrasting descriptive, spectral, and generative accounts of one network.", "watch": ["Treating a detected partition or higher-order reconstruction as evidence without comparing lower-order and latent-variable explanations."], "oracle": "Which alternative generative model explains the same observations with equal or lower description length?"}, "readings": [{"key": "latora2017", "type": "tome", "stage": "Foundation", "xp": 200, "cite": "Latora, Nicosia &amp; Russo (2017), <em>Complex Networks: Principles, Methods and Applications.<\/em> Cambridge.", "short": "Latora, Nicosia &amp; Russo (2017)", "note": "Best modern textbook. Priority: Ch. 1–6, 10.", "route": "Chapter route pending an edition check", "beats": []}, {"key": "spielman2019_sagt", "type": "tome", "stage": "Foundation", "xp": 200, "cite": "Spielman (2025), <em>Spectral and Algebraic Graph Theory<\/em> (incomplete online draft dated 2 April 2025). https://www.cs.yale.edu/homes/spielman/sagt/", "short": "Spielman (2025)", "note": "Laplacians, effective resistance, spectral clustering — the bridge to networks and renormalization.", "route": "Chapter route pending an edition check", "beats": []}, {"key": "peixoto2023_descvinf", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Peixoto (2023), <em>Descriptive vs. inferential community detection in networks.<\/em> Cambridge Elements.", "short": "Peixoto (2023)", "note": "The principled network-inference position statement.", "beats": ["The Community Mirage"]}, {"key": "molloy_reed1995", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Molloy &amp; Reed (1995), <em>A critical point for random graphs with a given degree sequence.<\/em> Random Structures &amp; Algorithms.", "short": "Molloy &amp; Reed (1995)", "note": "The Molloy–Reed criterion for the giant component.", "beats": []}, {"key": "callaway2000", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Callaway, Newman, Strogatz &amp; Watts (2000), <em>Network robustness and fragility: percolation on random graphs.<\/em> PRL.", "short": "Callaway, Newman, Strogatz &amp; Watts (2000)", "note": "Robustness as percolation.", "beats": []}, {"key": "albert_jeong_barabasi2000", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Albert, Jeong &amp; Barabási (2000), <em>Error and attack tolerance of complex networks.<\/em> Nature.", "short": "Albert, Jeong &amp; Barabási (2000)", "note": "Landmark robustness paper.", "beats": []}, {"key": "buldyrev2010", "type": "scroll", "stage": "Synthesis", "xp": 150, "cite": "Buldyrev, Parshani, Paul, Stanley &amp; Havlin (2010), <em>Catastrophic cascade of failures in interdependent networks.<\/em> Nature.", "short": "Buldyrev, Parshani, Paul, Stanley &amp; Havlin (2010)", "note": "Landmark interdependent-networks paper.", "beats": []}], "classItems": [], "lore": [{"cite": "Barabási &amp; Albert (1999), <em>Emergence of scaling in random networks.<\/em> Science.", "note": "Preferential attachment and scale-free networks."}, {"cite": "Newman (2003), <em>The structure and function of complex networks.<\/em> SIAM Review.", "note": "The survey that defined the field."}, {"cite": "Watts &amp; Strogatz (1998), <em>Collective dynamics of 'small-world' networks.<\/em> Nature.", "note": "The small-world model. Short and elegant."}], "monsters": [{"id": "mirage", "name": "The Community Mirage", "danger": 3, "habitat": "Modularity tables, and any network drawn with a force layout.", "lure": "Clear communities, beautifully coloured. Descriptive methods find communities even in random graphs.", "weakness": "Fit a generative model, compare it against alternatives by description length, and accept a partition only if it beats them.", "weapon": "Peixoto (2023)", "weaponKey": "peixoto2023_descvinf"}]}, {"id": "C3", "slug": "c3-higher-order-representations", "title": "Higher-order representations", "short": "Higher-order", "weeks": "Week 4", "summary": "Distinguish hypergraphs, simplicial complexes, temporal/multilayer structures, and multivariate random variables. Higher order must be justified against a pairwise or latent-variable alternative.", "exit": "encode the same toy system in two representations and show what information changes.", "hero": {"src": "art/c3-higher-order.webp", "pos": "50% 20%", "alt": "Three hooded pixel-art figures holding glowing cyan devices"}, "dialog": ["Three people in one photo do not make a three-body interaction.", "Hypergraph, simplicial complex, multivariate variable: the moment you pick one, you have already said something about the world.", "So justify it. Show me the pairwise or latent model that fails before you reach for the higher-order one.", "If nothing fails, the triangle was decoration."], "quest": {"title": "Three representations", "task": "Represent one dataset as a graph, a hypergraph and a simplicial complex, and separate what follows from the data from what follows from the representation.", "steps": ["Pick a dataset of group observations: co-authorship, co-sponsorship, co-firing.", "Encode it as a graph, a hypergraph and a simplicial complex.", "Write a claim ledger with three columns: measured, encoded and inferred.", "Fit a pairwise or latent-variable model and check whether it reproduces the higher-order signature.", "Answer the Oracle's riddle below, in writing."], "reward": "Three representations of the same dataset with a claim ledger separating measured, encoded, and inferred structure.", "watch": ["Inferring a genuine higher-order mechanism merely because observations arrive in groups or admit a higher-order encoding."], "oracle": "Can an explicitly fitted pairwise or latent-variable model reproduce the alleged higher-order signature?"}, "readings": [{"key": "battiston2020", "type": "codex", "stage": "Foundation", "xp": 150, "cite": "Battiston, Cencetti, Iacopini, Latora, Lucas, Patania, Young &amp; Petri (2020), <em>Networks beyond pairwise interactions: structure and dynamics.<\/em> Physics Reports.", "short": "Battiston, Cencetti, Iacopini, Latora, Lucas, Patania, Young &amp; Petri (2020)", "note": "The manifesto. Defines the field.", "beats": []}, {"key": "torres2021", "type": "codex", "stage": "Foundation", "xp": 150, "cite": "Torres, Blevins, Bassett &amp; Eliassi-Rad (2021), <em>The why, how, and when of representations for complex systems.<\/em> SIAM Review.", "short": "Torres, Blevins, Bassett &amp; Eliassi-Rad (2021)", "note": "When and why different representations are appropriate.", "beats": ["The Group-Photo Golem"]}, {"key": "bianconi2021", "type": "tome", "stage": "Deepening", "xp": 250, "cite": "Bianconi (2021), <em>Higher-Order Networks: An Introduction to Simplicial Complexes.<\/em> Cambridge.", "short": "Bianconi (2021)", "note": "First dedicated textbook. Algebraic topology, Hodge theory, higher-order dynamics. Essential for higher-order network theory.", "route": "Chapters 1–3 and 6–8, plus Appendix B (Hodge decomposition)", "beats": []}, {"key": "bick2023", "type": "codex", "stage": "Deepening", "xp": 200, "cite": "Bick, Gross, Harrington &amp; Schaub (2023), <em>What are higher-order networks?<\/em> SIAM Review.", "short": "Bick, Gross, Harrington &amp; Schaub (2023)", "note": "When higher-order representations are justified vs. modelling choices.", "beats": []}, {"key": "young2021_hypergraph", "type": "scroll", "stage": "Synthesis", "xp": 150, "cite": "Young, Petri &amp; Peixoto (2021), <em>Hypergraph reconstruction from network data.<\/em> Communications Physics.", "short": "Young, Petri &amp; Peixoto (2021)", "note": "Bayesian framework for inferring higher-order structure.", "beats": []}], "classItems": [], "lore": [], "monsters": [{"id": "golem", "name": "The Group-Photo Golem", "danger": 4, "habitat": "Any dataset that arrives in groups.", "lure": "Your data came in groups, so the interactions must be higher-order. It looks massive, and it is made of pairs.", "weakness": "Fit the pairwise and latent-variable alternatives explicitly. Claim higher order only for the signature they cannot reproduce.", "weapon": "Torres, Blevins, Bassett &amp; Eliassi-Rad (2021)", "weaponKey": "torres2021"}]}, {"id": "C4", "slug": "c4-dynamics-stochasticity-and-emergence", "title": "Dynamics, stochasticity, and emergence", "short": "Dynamics", "weeks": "Weeks 5–6", "summary": "Reason about fixed points, stability, bifurcations, diffusion, contagion, synchronisation, fluctuations, phase transitions, and finite-size effects.", "exit": "analyse one dynamical model and distinguish a mathematical transition from an empirical universality claim.", "hero": {"src": "art/c4-dynamics.webp", "pos": "50% 30%", "alt": "Three pixel-art mages conjuring orbs of fire and light"}, "dialog": ["Things change. The question is whether they change smoothly, suddenly, or only in your finite sample.", "Fixed points, bifurcations, contagion, synchronisation: learn to see the mechanism under the curve.", "A straight line on log–log paper has fooled better physicists than us. Two decades is not universality.", "Find the finite-size test that would make your transition disappear, then run it."], "quest": {"title": "Three transitions", "task": "Simulate a bifurcation, a pairwise complex contagion and a higher-order contagion transition, and tell their mechanisms apart.", "steps": ["Simulate a saddle-node or Hopf bifurcation and identify its order parameter.", "Simulate a pairwise complex contagion and a simplicial (higher-order) contagion.", "For each, name the mechanism, the order parameter and the finite-size effects.", "Run the finite-size or heterogeneity test that could make each transition disappear.", "Answer the Oracle's riddle below, in writing."], "reward": "A simulation study comparing three transition mechanisms, including finite-size and alternative-model checks.", "watch": ["Treating abrupt change, scaling, or a power law as sufficient evidence of universality or criticality."], "oracle": "Which finite-size, heterogeneity, or model-selection test would make the claimed transition disappear?"}, "readings": [{"key": "strogatz2015", "type": "tome", "stage": "Foundation", "xp": 200, "cite": "Strogatz (2015), <em>Nonlinear Dynamics and Chaos<\/em> (2nd ed.). Westview Press (verify publisher of record).", "short": "Strogatz (2015)", "note": "Best introductory text. Ch. 1–8.", "route": "Chapters 1–8", "beats": []}, {"key": "barrat2008", "type": "tome", "stage": "Foundation", "xp": 200, "cite": "Barrat, Barthélemy &amp; Vespignani (2008), <em>Dynamical Processes on Complex Networks.<\/em> Cambridge.", "short": "Barrat, Barthélemy &amp; Vespignani (2008)", "note": "Essential companion to Newman. Ch. 7 (synchronization), 9 (epidemics), 10 (social dynamics).", "route": "Chapters 4–7 and 9: dynamical processes, phase transitions, resilience and robustness, synchronization, epidemic spreading; plus the appendix on the generating-functions formalism (pp. 303–305)", "beats": []}, {"key": "pastorsatorras2001", "type": "scroll", "stage": "Foundation", "xp": 100, "cite": "Pastor-Satorras &amp; Vespignani (2001), <em>Epidemic spreading in scale-free networks.<\/em> PRL.", "short": "Pastor-Satorras &amp; Vespignani (2001)", "note": "Absence of an epidemic threshold in scale-free networks.", "beats": []}, {"key": "sethna2006", "type": "tome", "stage": "Deepening", "xp": 250, "cite": "Sethna (2006), <em>Statistical Mechanics: Entropy, Order Parameters, and Complexity.<\/em> Oxford.", "short": "Sethna (2006)", "note": "Best modern stat-mech for complex systems. Freely available. Ch. 2, 7, 8, 12.", "route": "Chapters 2, 7, 8, and 12", "beats": ["The Power-Law Siren"]}, {"key": "centola_macy2007", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Centola &amp; Macy (2007), <em>Complex contagion and the weakness of long ties.<\/em> American Journal of Sociology.", "short": "Centola &amp; Macy (2007)", "note": "Simple vs complex contagion.", "beats": []}, {"key": "iacopini2019", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Iacopini, Petri, Barrat &amp; Latora (2019), <em>Simplicial models of social contagion.<\/em> Nature Communications.", "short": "Iacopini, Petri, Barrat &amp; Latora (2019)", "note": "Group interactions create bistability and discontinuous transitions. Founding paper.", "beats": []}, {"key": "newman2002_epidemic", "type": "codex", "stage": "Deepening", "xp": 200, "cite": "Newman (2002), <em>Spread of epidemic disease on networks.<\/em> Physical Review E.", "short": "Newman (2002)", "note": "Maps SIR epidemics onto bond percolation.", "beats": []}, {"key": "arenas2008", "type": "codex", "stage": "Deepening", "xp": 200, "cite": "Arenas, Díaz-Guilera, Kurths, Moreno &amp; Zhou (2008), <em>Synchronization in complex networks.<\/em> Physics Reports.", "short": "Arenas, Díaz-Guilera, Kurths, Moreno &amp; Zhou (2008)", "note": "Comprehensive synchronization review.", "beats": []}], "classItems": [], "lore": [{"cite": "Kuramoto (1984), <em>Chemical Oscillations, Waves, and Turbulence.<\/em> Springer.", "note": "The synchronization reference."}], "monsters": [{"id": "siren", "name": "The Power-Law Siren", "danger": 4, "habitat": "Log–log plots, avalanche statistics, anything called critical.", "lure": "A straight line across two decades, singing “universality”. Abrupt change and scaling are not enough on their own.", "weakness": "Compare against alternative distributions, check finite-size scaling, and name the order parameter and the mechanism before using the word critical.", "weapon": "Sethna (2006)", "weaponKey": "sethna2006"}]}, {"id": "C6", "slug": "c6-topology-and-persistent-structure", "title": "Topology and persistent structure", "short": "Topology", "weeks": "Week 7", "summary": "Understand filtrations, homology, persistence, stability, and the relationship between topological summaries and the data-generating process.", "exit": "produce and stress-test a persistence summary against a noise or surrogate baseline.", "hero": {"src": "art/c6-topology.webp", "pos": "50% 15%", "alt": "Three armoured pixel-art giants against a star map, one holding a swirling orb"}, "dialog": ["Holes, loops and voids: shape that survives when you blur your eyes.", "A persistence diagram is a summary, not a discovery. Stability is a theorem about the summary, not about your data.", "Compute it, perturb it, and race it against a surrogate. If the surrogate has the same loops, so does noise.", "Working level, for everyone. This is part of how the lab speaks."], "quest": {"title": "Beat the surrogate", "task": "Compute persistence under controlled perturbations, and separate stability from significance and from domain meaning.", "steps": ["Compute a persistence diagram on a point cloud or network you know.", "Perturb the metric, the filtration and the sampling, and tabulate what changes.", "Build a surrogate or null model, and compute its diagram.", "Decide which features beat the surrogate, and write a one-page limits statement.", "Answer the Oracle's riddle below, in writing."], "reward": "A persistence analysis under metric, filtration, sampling, and null-model perturbations, with a one-page limits statement.", "watch": ["Equating mathematical stability with significance, mechanism, uniqueness, or biological relevance."], "oracle": "Does the topological conclusion survive plausible filtration, metric, sampling, and null-model alternatives?"}, "readings": [{"key": "carlsson2009", "type": "scroll", "stage": "Foundation", "xp": 100, "cite": "Carlsson (2009), <em>Topology and Data.<\/em> Bulletin of the AMS.", "short": "Carlsson (2009)", "note": "Launched TDA as a field. Start here for intuition.", "beats": ["The Persistence Phantom"]}, {"key": "cohensteiner2007_stability", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Cohen-Steiner, Edelsbrunner &amp; Harer (2007), <em>Stability of persistence diagrams.<\/em> Discrete &amp; Computational Geometry.", "short": "Cohen-Steiner, Edelsbrunner &amp; Harer (2007)", "note": "Persistence diagrams are stable under perturbation (bottleneck distance). The theorem that makes TDA trustworthy.", "beats": []}, {"key": "edelsbrunner_harer2010", "type": "tome", "stage": "Deepening", "xp": 250, "cite": "Edelsbrunner &amp; Harer (2010), <em>Computational Topology: An Introduction.<\/em> AMS.", "short": "Edelsbrunner &amp; Harer (2010)", "note": "The textbook. Ch. 1–4 (simplicial complexes) and Ch. 7 (persistence).", "route": "Chapters 1–4 and 7", "beats": []}], "classItems": [{"cite": "Petri, Expert, Turkheimer, Carhart-Harris, Nutt, Hellyer &amp; Vaccarino (2014), <em>Homological scaffolds of brain functional networks.<\/em> J. R. Soc. Interface.", "track": "capstone case"}], "lore": [], "monsters": [{"id": "phantom", "name": "The Persistence Phantom", "danger": 3, "habitat": "Long bars in a barcode, presented without a null.", "lure": "A long, stable bar. Stability is guaranteed by the theorem; significance is not, and neither is meaning.", "weakness": "Race every feature against a surrogate built from the same sampling, and vary the filtration and metric before you interpret it.", "weapon": "Carlsson (2009)", "weaponKey": "carlsson2009"}]}, {"id": "C5", "slug": "c5-information-dependence-and-compression", "title": "Information, dependence, and compression", "short": "Information", "weeks": "Weeks 8–9", "summary": "Use entropy, mutual and conditional information, rate–distortion, and the information bottleneck. Distinguish interaction order from statistical dependence, and redundancy/synergy measures from mechanisms.", "exit": "compute an information quantity in a toy system and state the estimator and decomposition ambiguities.", "hero": {"src": "art/frontier.webp", "pos": "50% 30%", "alt": "Three pixel-art figures in a starfield, the middle one holding a glowing cyan orb"}, "dialog": ["Here is our common measure: entropy, mutual information, and the cost of compression.", "Every compression chooses what to keep. Change the distortion and you change what counts as meaning.", "When three variables share more than any two of them do, measure it. But do not worship the sign.", "Everyone here computes O-information and a PID on systems where we know the answer. Then we compare decompositions."], "quest": {"title": "Known answers", "task": "Measure compression, redundancy and synergy on systems whose mechanisms you built yourself, and find where the measures disagree.", "steps": ["Derive or compute a toy rate–distortion curve.", "Change the distortion or the relevance variable, and say how the conclusion changes.", "Build XOR, COPY and common-drive systems whose mechanisms you know.", "Compute O-information and at least two redundancy measures on each, and mark where they disagree.", "Vary sample size and estimator, then write a one-paragraph non-uniqueness statement.", "Answer the Oracle's riddle below, in writing."], "reward": "A synthetic benchmark with known mechanisms, sample-size curves, estimator comparison, and a non-uniqueness statement.", "watch": ["Treating the sign or magnitude of O-information or a PID atom as a unique physical mechanism.", "Treating a convenient metric, distortion, or compression objective as if it were the system's intrinsic semantics."], "oracle": "Can sampling bias, common drive, discretization, or another decomposition generate the same signature?"}, "readings": [{"key": "cover_thomas2006", "type": "tome", "stage": "Foundation", "xp": 200, "cite": "Cover &amp; Thomas (2006), <em>Elements of Information Theory.<\/em> Wiley.", "short": "Cover &amp; Thomas (2006)", "note": "THE textbook. Priority: Ch. 2 (entropy), 4 (MI), 10 (rate-distortion).", "route": "Chapters 2, 4, and 10", "beats": []}, {"key": "watanabe1960_totalcorr", "type": "scroll", "stage": "Foundation", "xp": 100, "cite": "Watanabe (1960), <em>Information theoretical analysis of multivariate correlation.<\/em> IBM Journal of Research and Development.", "short": "Watanabe (1960)", "note": "Introduces total correlation (multi-information) — the conceptual root of multivariate dependency measures.", "beats": []}, {"key": "rosas2019_oinfo", "type": "codex", "stage": "Foundation", "xp": 150, "cite": "Rosas, Mediano, Gastpar &amp; Jensen (2019), <em>Quantifying high-order interdependencies via multivariate extensions of the mutual information.<\/em> Physical Review E.", "short": "Rosas, Mediano, Gastpar &amp; Jensen (2019)", "note": "Introduced the O-information (signed synergy/redundancy).", "decided": "2026-10-07", "beats": ["The Synergy Slime"]}, {"key": "tishby2000_ib", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Tishby, Pereira &amp; Bialek (2000), <em>The Information Bottleneck Method.<\/em> Proc. Allerton Conference on Communication, Control and Computing (verify year). arXiv:physics/0004057.", "short": "Tishby, Pereira &amp; Bialek (2000)", "note": "Compression–relevance tradeoff. Theoretical ancestor of the semanticity programme.", "beats": ["The Metric Doppelgänger"]}, {"key": "zaslavsky2018_color", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Zaslavsky, Kemp, Regier &amp; Tishby (2018), <em>Efficient compression in color naming across languages.<\/em> PNAS.", "short": "Zaslavsky, Kemp, Regier &amp; Tishby (2018)", "note": "IB explains cross-linguistic color-naming universals. Beautiful empirical validation.", "beats": []}, {"key": "timme_lapish2018", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Timme &amp; Lapish (2018), <em>A tutorial for information theory in neuroscience.<\/em> eNeuro.", "short": "Timme &amp; Lapish (2018)", "note": "Practical guide to applying IT measures to neural data.", "decided": "2026-10-07", "beats": []}, {"key": "williams_beer2010_pid", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Williams &amp; Beer (2010), <em>Nonnegative decomposition of multivariate information.<\/em> arXiv:1004.2515.", "short": "Williams &amp; Beer (2010)", "note": "Foundational Partial Information Decomposition (PID).", "decided": "2026-10-07", "beats": []}], "classItems": [], "lore": [], "monsters": [{"id": "doppel", "name": "The Metric Doppelgänger", "danger": 3, "habitat": "Compression objectives, embedding distances, loss functions.", "lure": "It wears the face of meaning. It is a convenient metric that you chose, not the system's own semantics.", "weakness": "Swap the distortion or the relevance variable and check whether the conclusion survives the swap.", "weapon": "Tishby, Pereira &amp; Bialek (2000)", "weaponKey": "tishby2000_ib"}, {"id": "slime", "name": "The Synergy Slime", "danger": 4, "habitat": "Negative O-information, and PID atoms reported to three decimals.", "lure": "A clean sign that says synergy. It changes shape with your estimator, your binning and your sample size.", "weakness": "Benchmark on systems with a known mechanism, compare two or more redundancy measures, and report sample-size curves.", "weapon": "Rosas, Mediano, Gastpar &amp; Jensen (2019)", "weaponKey": "rosas2019_oinfo"}]}, {"id": "C7", "slug": "c7-temporal-and-observational-inference", "title": "Temporal and observational inference", "short": "Temporal & causal", "weeks": "Weeks 10–11", "summary": "Model sequences, hidden states, nonstationarity, and directed prediction. Understand why temporal order or predictive improvement alone does not prove a causal mechanism.", "exit": "compare two temporal models and identify an observation or intervention that would discriminate them.", "hero": {"src": "art/c7-temporal.webp", "pos": "50% 55%", "alt": "Three pixel-art figures in profile: a skull with headphones, a hooded figure, a bearded man with a circuit-board backpack"}, "dialog": ["Time gives you order. It does not give you cause.", "Predicting one signal from the past of another is a skill. Calling it causation is a claim.", "Learn what a DAG licenses, what an adjustment buys you, and which intervention would settle the question.", "Then go looking for the hidden variable that could have driven both."], "quest": {"title": "Dependence is not a cause", "task": "On synthetic data with a hidden confounder, show what extra assumptions or interventions would turn dependence into a causal claim.", "steps": ["Generate a nonstationary sequential system with a hidden confounder.", "Draw the DAG, and use d-separation and backdoor adjustment to say what is identifiable.", "Fit a latent-state model (an HMM or state-space model) and run a surrogate-data test.", "Run Granger or transfer-entropy discovery, and show where it points the wrong way.", "Name the intervention that would settle the question.", "Answer the Oracle's riddle below, in writing."], "reward": "A checked probabilistic model plus a causal-claim ledger listing assumptions, identifiable effects, and non-identifiable alternatives.", "watch": ["Treating posterior concentration, predictive success, Granger predictability, transfer entropy, or a fitted arrow as a causal mechanism.", "Forcing stationarity, selecting hidden states post hoc, or interpreting directed predictability as an identified mechanism."], "oracle": "Which model misfit, latent confounder, intervention, or invariance failure would reverse the interpretation?"}, "readings": [{"key": "shumway_stoffer2017", "type": "tome", "stage": "Foundation", "xp": 200, "cite": "Shumway &amp; Stoffer (2017), <em>Time Series Analysis and Its Applications<\/em> (4th ed.). Springer.", "short": "Shumway &amp; Stoffer (2017)", "note": "AR / state-space models and spectral analysis. The standard.", "route": "Chapters 1–4 and 6", "beats": ["The Hidden-State Poltergeist"]}, {"key": "pearl2016_primer", "type": "scroll", "stage": "Foundation", "xp": 100, "cite": "Pearl, Glymour &amp; Jewell (2016), <em>Causal Inference in Statistics: A Primer.<\/em> Wiley.", "short": "Pearl, Glymour &amp; Jewell (2016)", "note": "The accessible entry point.", "decided": "2026-10-07", "beats": ["The Granger Grifter"]}, {"key": "pearl2009_causality", "type": "tome", "stage": "Deepening", "xp": 250, "cite": "Pearl (2009), <em>Causality: Models, Reasoning, and Inference<\/em> (2nd ed.). Cambridge.", "short": "Pearl (2009)", "note": "Causal graphs and do-calculus; the reference.", "route": "Chapters 1 and 3, Sections 6.1–6.2, and Chapter 7", "beats": []}, {"key": "schreiber_schmitz2000_surr", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Schreiber &amp; Schmitz (2000), <em>Surrogate time series.<\/em> Physica D.", "short": "Schreiber &amp; Schmitz (2000)", "note": "Surrogate-data null tests for nonlinearity and coupling.", "beats": []}, {"key": "barnett2009_gcte", "type": "codex", "stage": "Deepening", "xp": 200, "cite": "Barnett, Barrett &amp; Seth (2009), <em>Granger causality and transfer entropy are equivalent for Gaussian variables.<\/em> Physical Review Letters.", "short": "Barnett, Barrett &amp; Seth (2009)", "note": "The caveat to keep in mind when reading directed-information results.", "beats": []}, {"key": "runge2019_causal", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Runge et al. (2019), <em>Detecting and quantifying causal associations in large nonlinear time series datasets.<\/em> Science Advances.", "short": "Runge et al. (2019)", "note": "Causal discovery in time series (PCMCI) — relevant to fMRI and codas.", "beats": []}], "classItems": [{"cite": "Rabiner (1989), <em>A tutorial on hidden Markov models and selected applications in speech recognition.<\/em> Proceedings of the IEEE.", "track": "CETI/sequence work"}], "lore": [], "monsters": [{"id": "grifter", "name": "The Granger Grifter", "danger": 4, "habitat": "Directed networks inferred from time series.", "lure": "An arrow, freshly painted. Predictive improvement became a causal mechanism somewhere between the figure and the abstract.", "weakness": "Write the causal model. State which effects are identifiable, which confounders could reverse the arrow, and which intervention would decide it.", "weapon": "Pearl, Glymour &amp; Jewell (2016)", "weaponKey": "pearl2016_primer"}, {"id": "poltergeist", "name": "The Hidden-State Poltergeist", "danger": 3, "habitat": "Latent-state models fitted to nonstationary data.", "lure": "Hidden states that explain everything, chosen after you saw the data.", "weakness": "Test for changepoints and nonstationarity, fix the number of states before fitting, and compare against surrogates.", "weapon": "Shumway &amp; Stoffer (2017)", "weaponKey": "shumway_stoffer2017"}]}, {"id": "C8", "slug": "c8-representation-coarse-graining-and-preserved-quant", "title": "Representation, coarse-graining, and preserved quantities", "short": "Coarse-graining", "weeks": "Week 12", "summary": "Explain dimensional reduction, optimal transport, coarse-graining, and renormalisation in terms of what is preserved, distorted, or made identifiable. Connect these choices to limits on generalisation and information processing.", "exit": "define a reduction map and test whether its claimed invariant is actually preserved.", "hero": {"src": "art/c8-coarse.webp", "pos": "50% 62%", "alt": "Five sepia pixel-art figures of different sizes, linked by circuit diagrams"}, "dialog": ["Every map throws away the territory. The question is what it keeps.", "Renormalization, transport, dimensional reduction: each promises to preserve something. Name it before you look.", "A representation that decodes a variable has not necessarily used it.", "Choose your invariant first, then test whether it survives. This is where the semantic horizon lives."], "quest": {"title": "Name the invariant", "task": "Coarse-grain one network two ways and test whether the quantity you promised to preserve actually survives.", "steps": ["Pick a network and write down, before anything else, the quantity a good reduction should preserve.", "Coarse-grain it with two schemes, for example Laplacian renormalization and a spectral or community-based reduction.", "Compare how each preserves diffusion, prediction and higher-order structure.", "Compare two representations of one system with RSA, and test whether the geometry predicts an independent task limit.", "Answer the Oracle's riddle below, in writing."], "reward": "A two-scheme coarse-graining comparison with preregistered preservation criteria and a failure analysis.", "watch": ["Selecting the preserved quantity after observing which coarse-graining looks most successful.", "Equating decodability, geometric alignment, or compression with causal use, compositionality, or semantics."], "oracle": "Which dynamical or inferential observable fails under the proposed scale transformation?"}, "readings": [{"key": "villegas2023_lrg", "type": "scroll", "stage": "Foundation", "xp": 100, "cite": "Villegas, Gili, Mulder, Caldarelli &amp; Bianconi (2023), <em>Laplacian renormalization group for heterogeneous networks.<\/em> Nature Physics.", "short": "Villegas, Gili, Mulder, Caldarelli &amp; Bianconi (2023)", "note": "Diffusion-based spectral coarse-graining. The key recent paper.", "beats": ["The Post-Hoc Shapeshifter"]}, {"key": "wilson1975_rg", "type": "codex", "stage": "Foundation", "xp": 150, "cite": "Wilson (1975), <em>The renormalization group: critical phenomena and the Kondo problem.<\/em> Reviews of Modern Physics.", "short": "Wilson (1975)", "note": "The foundational RG paper. (Also Tier 3: Renormalization.)", "beats": []}, {"key": "kriegeskorte2008_rsa", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Kriegeskorte, Mur &amp; Bandettini (2008), <em>Representational similarity analysis.<\/em> Frontiers in Systems Neuroscience.", "short": "Kriegeskorte, Mur &amp; Bandettini (2008)", "note": "The method for comparing representations across brains and models via dissimilarity matrices.", "beats": ["The Probe Puppet"]}, {"key": "peyre_cuturi2019", "type": "tome", "stage": "Deepening", "xp": 250, "cite": "Peyré &amp; Cuturi (2019), <em>Computational Optimal Transport.<\/em> Foundations and Trends in ML.", "short": "Peyré &amp; Cuturi (2019)", "note": "The practical OT reference: algorithms, Sinkhorn, applications. Start here.", "route": "Chapters 1–4, 8, and Sections 10.2 and 10.6", "beats": []}, {"key": "murphy2024_duality", "type": "scroll", "stage": "Deepening", "xp": 150, "cite": "Murphy, Thibeault, Allard &amp; Desrosiers (2024), <em>Duality between predictability and reconstructability in complex systems.<\/em> Nature Communications.", "short": "Murphy, Thibeault, Allard &amp; Desrosiers (2024)", "note": "Coarse-graining trades reconstructability for predictability — a causal-emergence signature.", "beats": []}], "classItems": [{"cite": "Barlow (1961), <em>Possible principles underlying the transformation of sensory messages.<\/em> In Sensory Communication (MIT Press).", "track": "semanticity/brain"}, {"cite": "Nurisso, Fernando, Deshpande, …, Cohen &amp; Petri (2025), <em>Bound by Semanticity.<\/em> ICLR 2026.", "track": "capstone case"}, {"cite": "Dayan &amp; Abbott (2001), <em>Theoretical Neuroscience.<\/em> MIT Press.", "track": "brain track"}, {"cite": "Nurisso, Morandini, Lucas, Vaccarino, Gili &amp; Petri (2025), <em>Higher-order Laplacian renormalization.<\/em> Nature Physics.", "track": "multiscale track"}], "lore": [], "monsters": [{"id": "shifter", "name": "The Post-Hoc Shapeshifter", "danger": 3, "habitat": "Any reduction that is judged by how good it looks afterwards.", "lure": "Whatever you measure, it turns out to have preserved exactly that.", "weakness": "Preregister the preserved quantity, then report the observables that fail under the transformation.", "weapon": "Villegas, Gili, Mulder, Caldarelli &amp; Bianconi (2023)", "weaponKey": "villegas2023_lrg"}, {"id": "puppet", "name": "The Probe Puppet", "danger": 3, "habitat": "Linear probes, decoders and representational geometry.", "lure": "The variable is decodable, so the network must use it. The strings are yours.", "weakness": "Pair every decoding result with an intervention or an independent behavioural limit, and set a competing explanation against it.", "weapon": "Kriegeskorte, Mur &amp; Bandettini (2008)", "weaponKey": "kriegeskorte2008_rsa"}]}], "streams": [{"id": "higher_order_theory", "slug": "higher-order-networks", "title": "Higher-order network theory, dynamics, and reconstruction", "name": "Higher-order networks", "cls": "Simplex Weaver", "competency": "Build, analyse, and infer higher-order network models, and show in each case whether a pairwise or latent-variable alternative would suffice.", "orientation": {"key": "battiston2021", "cite": "Battiston et al. (2021), <em>The physics of higher-order interactions in complex systems.<\/em> Nature Physics.", "short": "Battiston et al. (2021)", "note": "Perspective piece."}, "readings": [{"key": "lim2020_hodge", "cite": "Lim (2020), <em>Hodge Laplacians on graphs.<\/em> SIAM Review.", "short": "Lim (2020)", "note": "Hodge decomposition on simplicial complexes — generalizing the graph Laplacian.", "reason": "Hodge Laplacians are the operators under every argument we make about flows and dynamics on complexes. Learn them here, properly, once."}, {"key": "schaub2020_randomwalks", "cite": "Schaub, Benson, Horn, Lippner &amp; Jadbabaie (2020), <em>Random walks on simplicial complexes and the normalized Hodge 1-Laplacian.<\/em> SIAM Review.", "short": "Schaub, Benson, Horn, Lippner &amp; Jadbabaie (2020)", "note": "How random walks generalize to higher-order structures.", "reason": "Diffusion on complexes is the baseline that any claim about higher-order spreading or renormalisation departs from."}, {"key": "peel2022_inference", "cite": "Peel, Peixoto &amp; De Domenico (2022), <em>Statistical inference links data and theory in network science.<\/em> Nature Communications.", "short": "Peel, Peixoto &amp; De Domenico (2022)", "note": "The shift from descriptive to inferential network science.", "reason": "The inferential standard your reconstructions will be judged by."}, {"key": "pscvm2015", "cite": "Pastor-Satorras, Castellano, Van Mieghem &amp; Vespignani (2015), <em>Epidemic processes in complex networks.<\/em> Reviews of Modern Physics.", "short": "Pastor-Satorras, Castellano, Van Mieghem &amp; Vespignani (2015)", "note": "Definitive review of two decades of epidemic spreading.", "reason": "The full review behind the Tier 1 epidemic-threshold readings. A higher-order contagion transition only means something against this pairwise theory."}, {"key": "skardal_arenas2019", "cite": "Skardal &amp; Arenas (2019), <em>Abrupt desynchronization and extensive multistability in globally coupled oscillator simplexes.<\/em> PRL.", "short": "Skardal &amp; Arenas (2019)", "note": "Higher-order coupling creates explosive synchronization.", "reason": "Coupling order alone produces abrupt synchronisation. Read it beside Iacopini et al. 2019 and Arenas et al. 2008 from Tier 1."}, {"key": "preti2024_nullmodels", "cite": "Preti, De Francisci Morales, Iacopini &amp; Petri (2024), <em>Higher-order null models as a lens for social systems.<\/em> Physical Review X.", "short": "Preti, De Francisci Morales, Iacopini &amp; Petri (2024)", "note": "Higher-order null models; US Congress cosponsorship as primary case.", "reason": "Higher-order null models: how to ask whether a group effect is real. Read it against a pairwise null that preserves degree and group-size heterogeneity."}, {"key": "petri_barrat2018", "cite": "Petri &amp; Barrat (2018), <em>Simplicial activity driven model.<\/em> Physical Review Letters.", "short": "Petri &amp; Barrat (2018)", "note": "Temporal higher-order network model.", "reason": "The minimal generative model for temporal group interactions; you will use it as a benchmark. Read it against a pairwise activity-driven model with heterogeneous activity."}], "shared": [], "branches": [], "case": [{"key": "mancastroppa2023", "cite": "Mancastroppa, Iacopini, Petri &amp; Barrat (2023), <em>Hyper-cores promote localization and efficient seeding in higher-order processes.<\/em> Nature Communications.", "short": "Mancastroppa, Iacopini, Petri &amp; Barrat (2023)", "note": "Core decomposition for higher-order spreading."}, {"key": "lucas2023", "cite": "Lucas, Iacopini, Robiglio, Barrat &amp; Petri (2023), <em>Simplicially driven simple contagion.<\/em> Physical Review Research.", "short": "Lucas, Iacopini, Robiglio, Barrat &amp; Petri (2023)", "note": "Even simple contagion changes on simplicial complexes."}, {"key": "nurisso2024_simplicialkuramoto", "cite": "Nurisso, Vaccarino &amp; Petri (2024), <em>A unified framework for simplicial Kuramoto models.<\/em> Chaos.", "short": "Nurisso, Vaccarino &amp; Petri (2024)", "note": "NPLab unification of simplicial Kuramoto."}], "method": [], "builds_on": {"competencies": ["C2", "C3", "C4", "C1", "C7"], "assumes": ["Bianconi (2021)", "Bick, Gross, Harrington &amp; Schaub (2023)", "Peixoto (2023)", "Sethna (2006)", "Centola &amp; Macy (2007)", "Iacopini, Petri, Barrat &amp; Latora (2019)", "Newman (2002)", "Arenas, Díaz-Guilera, Kurths, Moreno &amp; Zhou (2008)"], "rereads": [{"key": "young2021_hypergraph", "cite": "Young, Petri &amp; Peixoto (2021), <em>Hypergraph reconstruction from network data.<\/em> Communications Physics.", "short": "Young, Petri &amp; Peixoto (2021)", "note": "Bayesian framework for inferring higher-order structure.", "why": "Go back to it at depth: the stream exercise starts from its reconstruction framework."}]}, "hours": {"reading": 60, "exercise": 35}, "exercise": "Reconstruct and simulate one synthetic higher-order system from a deliberately lossy observation, comparing at least three model orders.", "expected_output": "A notebook and a two-page memo. It fits three model orders, compares them by description length or held-out likelihood, and states which order the data identify and which they cannot.", "failure_mode": "Treating a convenient higher-order encoding, dynamical fit, or reconstruction as evidence that the generating mechanism is genuinely higher order.", "falsification_prompt": "Can a pairwise model with matched degree, activity, and community structure, or a latent-variable model, reproduce the higher-order signature at equal description length?", "watch": "Treating a convenient higher-order encoding, dynamical fit, or reconstruction as evidence that the generating mechanism is genuinely higher order."}, {"id": "brain_clinical_multivariate", "slug": "brain-and-clinical-neuroscience", "title": "Brain, clinical, and multivariate neuroscience", "name": "Brain and clinical neuroscience", "cls": "Scaffold Seer", "competency": "Connect neural measurement and preprocessing to network, topological, and multivariate-information claims, with reproducibility and confound checks.", "orientation": {"key": "bassett_sporns2017", "cite": "Bassett &amp; Sporns (2017), <em>Network neuroscience.<\/em> Nature Neuroscience.", "short": "Bassett &amp; Sporns (2017)", "note": "Established the field."}, "readings": [{"key": "dayan_abbott2001", "cite": "Dayan &amp; Abbott (2001), <em>Theoretical Neuroscience.<\/em> MIT Press.", "short": "Dayan &amp; Abbott (2001)", "note": "Gold-standard computational neuroscience text. Ch. 1–4: neural coding, information in spike trains, population codes.", "route": "Chapters 1–4", "reason": "Encoding and decoding models come before any claim about information in neural data."}, {"key": "power2012_motion", "cite": "Power, Barnes, Snyder, Schlaggar &amp; Petersen (2012), <em>Spurious but systematic correlations in functional connectivity MRI networks arise from subject motion.<\/em> NeuroImage.", "short": "Power, Barnes, Snyder, Schlaggar &amp; Petersen (2012)", "note": "The motion confound every fMRI-network claim must address.", "reason": "Motion is the confound every fMRI network result must survive first."}, {"key": "marek2022_bwas", "cite": "Marek et al. (2022), <em>Reproducible brain-wide association studies require thousands of individuals.<\/em> Nature.", "short": "Marek et al. (2022)", "note": "Sample-size and reproducibility reality check for brain–behaviour studies.", "reason": "The sample-size and reproducibility bar for any brain–behaviour claim."}, {"key": "marquand2016_normative", "cite": "Marquand, Rezek, Buitelaar &amp; Beckmann (2016), <em>Understanding heterogeneity in clinical cohorts using normative models.<\/em> Biological Psychiatry.", "short": "Marquand, Rezek, Buitelaar &amp; Beckmann (2016)", "note": "Normative modelling: individual deviation, not group means.", "reason": "It moves the question from group means to individual deviation, which is what clinical work needs."}, {"key": "varley2023_synergistic", "cite": "Varley, Pope, Faskowitz &amp; Sporns (2023), <em>Multivariate information theory uncovers synergistic subsystems of the human cerebral cortex.<\/em> Communications Biology 6:451", "short": "Varley, Pope, Faskowitz &amp; Sporns (2023)", "note": "O-information identifies widespread synergistic subsystems in resting-state fMRI.", "reason": "O-information on real cortex, by another group: the Tier 1 measure in use, with every analysis choice visible."}, {"key": "luppi2024_iid", "cite": "Luppi, Mediano, Rosas et al. (2024), <em>A synergistic workspace for human consciousness revealed by Integrated Information Decomposition.<\/em> eLife 12:RP88173", "short": "Luppi, Mediano, Rosas et al. (2024)", "note": "Synergistic 'workspace' (gateways + broadcasters) supporting consciousness; reconciles GNWT and IIT.", "reason": "The strongest current claim linking synergy to consciousness. Read it to find where it could fail."}, {"key": "santoro2023_hos", "cite": "Santoro, Battiston, Petri &amp; Amico (2023), <em>Higher-order organization of multivariate time series.<\/em> Nature Physics.", "short": "Santoro, Battiston, Petri &amp; Amico (2023)", "note": "Higher-order connectomics methodology.", "reason": "The method under our brain higher-order pipelines. Read it against co-fluctuation statistics that reduce to pairwise structure."}, {"key": "petri2014_scaffolds_tda", "cite": "Petri, Expert, Turkheimer, Carhart-Harris, Nutt, Hellyer &amp; Vaccarino (2014), <em>Homological scaffolds of brain functional networks.<\/em> J. R. Soc. Interface.", "short": "Petri, Expert, Turkheimer, Carhart-Harris, Nutt, Hellyer &amp; Vaccarino (2014)", "note": "Introduced homological scaffolds. Foundational NPLab paper.", "reason": "Homological scaffolds, the topology method in several of our brain projects. Read it against the possibility that scaffold edges simply track weighted strength."}], "shared": [], "branches": [], "case": [{"key": "santoro2024_hoc", "cite": "Santoro, Battiston, Lucas, Petri &amp; Amico (2024), <em>Higher-order connectomics of human brain function.<\/em> Nature Communications.", "short": "Santoro, Battiston, Lucas, Petri &amp; Amico (2024)", "note": "Triplet interactions enhance task decoding and brain fingerprinting beyond pairwise."}, {"key": "combrisson2025", "cite": "Combrisson, Allegra, Basanisi, Ince, Giordano, Bastin, Petri &amp; Brovelli (2025), <em>Higher-order and distributed synergistic functional interactions encode information gain in goal-directed learning.<\/em> Nature Communications.", "short": "Combrisson, Allegra, Basanisi, Ince, Giordano, Bastin, Petri &amp; Brovelli (2025)", "note": "Synergy encodes information gain in learning."}, {"key": "mirjebreili2025_epilepsy", "cite": "Mirjebreili, Martinez de Aguirre Ibarreta, Marinazzo &amp; Chauvière (2025), <em>High-order information analysis of epileptogenesis in the pilocarpine rat model of temporal lobe epilepsy.<\/em> eNeuro 12(5)", "short": "Mirjebreili, Martinez de Aguirre Ibarreta, Marinazzo &amp; Chauvière (2025)", "note": "O-information / synergy multiplets track epileptogenesis. Anchor for our epilepsy work. NB: rat TLE model, not human iEEG."}, {"key": "li2023_schizophrenia", "cite": "Li, Calhoun, Ballem, Iraji, Yu &amp; Malo (2023), <em>Aberrant high-order dependencies in schizophrenia resting-state fMRI networks.<\/em> arXiv:2310.17445 (NeurIPS 2023 workshop)", "short": "Li, Calhoun, Ballem, Iraji, Yu &amp; Malo (2023)", "note": "O-information / S-information on schizophrenia rs-fMRI. Anchor for our schizophrenia work. NB: workshop/preprint."}, {"key": "lord2016", "cite": "Lord, Expert, Fernandes, Petri et al. (2016), <em>Insights into brain architectures from the homological scaffolds of functional connectivity networks.<\/em> Frontiers in Systems Neuroscience.", "short": "Lord, Expert, Fernandes, Petri et al. (2016)", "note": "Mesoscopic brain organization via scaffolds."}, {"key": "billings2021", "cite": "Billings, Saggar, Keilholz, Petri &amp; Mantzaris (2021), <em>Simplicial and topological descriptions of human brain dynamics.<\/em> Network Neuroscience.", "short": "Billings, Saggar, Keilholz, Petri &amp; Mantzaris (2021)", "note": "Topological description of brain dynamics."}], "method": [], "builds_on": {"competencies": ["C1", "C5", "C6", "C7", "C3"], "assumes": ["Williams &amp; Beer (2010)", "Timme &amp; Lapish (2018)", "Edelsbrunner &amp; Harer (2010)", "Cohen-Steiner, Edelsbrunner &amp; Harer (2007)", "Schreiber &amp; Schmitz (2000)", "Kriegeskorte, Mur &amp; Bandettini (2008)"], "rereads": []}, "hours": {"reading": 75, "exercise": 40}, "exercise": "Reanalyse one public neural dataset with a pairwise and a higher-order pipeline, including motion or measurement confounds, resampling uncertainty, and an external-validity statement.", "expected_output": "A reanalysis report with pairwise and higher-order results side by side, a confound table, bootstrap intervals, a within-subject stability check, and an external-validity paragraph.", "failure_mode": "Confusing a high-dimensional biomarker, decoding result, or group difference with a stable individual-level mechanism.", "falsification_prompt": "Does the effect survive motion controls, a matched surrogate, a pairwise baseline, and an out-of-sample cohort, and is it stable within individuals?", "watch": "Confusing a high-dimensional biomarker, decoding result, or group difference with a stable individual-level mechanism."}, {"id": "semanticity_representations_ai", "slug": "cognition-semanticity-and-neuroai", "title": "Cognition, semanticity, and NeuroAI", "name": "Cognition, semanticity and NeuroAI", "cls": "Horizon Mage", "competency": "Relate learning objectives, cognitive control, and representational geometry in brains and machines to behavioural generalisation, and say what separates an interpretation from a mechanism.", "orientation": {"key": "sims2016", "cite": "Sims (2016), <em>Rate–distortion theory and human perception.<\/em> Cognition.", "short": "Sims (2016)", "note": "Rate-distortion applied to cognitive-limits."}, "readings": [{"key": "shepard1987", "cite": "Shepard (1987), <em>Toward a universal law of generalization for psychological science.<\/em> Science.", "short": "Shepard (1987)", "note": "Exponential decay of generalization across species and modalities. The seed of the semanticity programme.", "reason": "The empirical law our framework claims to derive. Know the original evidence and how far it reaches."}, {"key": "barlow1961_efficient", "cite": "Barlow (1961), <em>Possible principles underlying the transformation of sensory messages.<\/em> In Sensory Communication (MIT Press).", "short": "Barlow (1961)", "note": "The efficient-coding hypothesis: sensory systems minimise redundancy. Foundational for the whole representational-limits programme.", "reason": "Efficient coding: the baseline account any semantic-horizon explanation has to beat."}, {"key": "jakob_gershman2023", "cite": "Jakob &amp; Gershman (2023), <em>Rate-distortion theory of neural coding and its implications for working memory.<\/em> eLife.", "short": "Jakob &amp; Gershman (2023)", "note": "Rate-distortion applied to neural coding.", "reason": "The closest rate–distortion account of working-memory limits from outside the lab: our direct competitor."}, {"key": "mccoy2019_tpr", "cite": "McCoy, Linzen, Dunbar &amp; Smolensky (2019), <em>RNNs implicitly implement tensor-product representations.<\/em> ICLR.", "short": "McCoy, Linzen, Dunbar &amp; Smolensky (2019)", "note": "Trained RNNs learn TPR-like compositional encodings — bridge to classical theory.", "reason": "Compositional, tensor-product encodings: the main alternative to semantic compression."}, {"key": "elhage2022_superposition", "cite": "Elhage, Hume, Olsson et al. (2022), <em>Toy models of superposition.<\/em> Anthropic / Transformer Circuits.", "short": "Elhage, Hume, Olsson et al. (2022)", "note": "Polysemanticity via feature compression; phase transitions in representation geometry.", "reason": "Superposition explains capacity limits without any semantics. It is the counter-explanation you have to rule out."}, {"key": "belkin2019_biasvariance", "cite": "Belkin, Hsu, Ma &amp; Mandal (2019), <em>Reconciling modern machine-learning practice and the classical bias–variance trade-off.<\/em> PNAS.", "short": "Belkin, Hsu, Ma &amp; Mandal (2019)", "note": "Brought double descent to the mainstream.", "reason": "The generic account of double descent, which a semantic account has to outperform."}, {"key": "schrimpf2021_neural_arch", "cite": "Schrimpf, Blank, Tuckute, Kauf, Hosseini, Kanwisher, Tenenbaum &amp; Fedorenko (2021), <em>The neural architecture of language: integrative modeling converges on predictive processing.<\/em> PNAS 118(45):e2105646118.", "short": "Schrimpf, Blank, Tuckute, Kauf, Hosseini, Kanwisher, Tenenbaum &amp; Fedorenko (2021)", "note": "LLM representations predict human language-network activity — the brain–LLM alignment anchor (seeds our brain–LLM alignment work).", "reason": "The evidential bar for claims that a model's representations match the brain's."}, {"key": "miller_cohen2001", "cite": "Miller &amp; Cohen (2001), <em>An integrative theory of prefrontal cortex function.<\/em> Annual Review of Neuroscience.", "short": "Miller &amp; Cohen (2001)", "note": "PFC implements control via maintained task representations.", "reason": "Cognitive control as maintained task representation: the theory our parallel-processing and Miller's-law work builds on, and the one our capacity results have to square with."}, {"key": "sadeh_clopath2025_neuroai", "cite": "Sadeh &amp; Clopath (2025), <em>The emergence of NeuroAI: bridging neuroscience and artificial intelligence.<\/em> Nature Reviews Neuroscience.", "short": "Sadeh &amp; Clopath (2025)", "note": "Directly relevant to the lab's NeuroAI stream.", "reason": "A two-page map of NeuroAI as a field. Read it for orientation, not method."}, {"key": "bound_by_semanticity", "cite": "Nurisso, Fernando, Deshpande, …, Cohen &amp; Petri (2025), <em>Bound by Semanticity.<\/em> ICLR 2026.", "short": "Nurisso, Fernando, Deshpande, …, Cohen &amp; Petri (2025)", "note": "The lab's flagship: the generalization–identification tradeoff, a Pareto frontier, a 1/n capacity collapse, and Shepard's law derived from first principles; tested on VLMs and CNNs.", "reason": "Our central claim. The stream exercise exists to test it, so read it adversarially."}], "shared": [], "branches": [], "case": [{"key": "savietto2026_vlm", "cite": "Savietto, Campbell, Panisson, Nurisso, Petri, Cohen &amp; Perotti (2026), <em>The geometry of representational failures in vision-language models.<\/em> ICML 2026 (accepted). arXiv:2602.07025.", "short": "Savietto, Campbell, Panisson, Nurisso, Petri, Cohen &amp; Perotti (2026)", "note": "Empirical companion — vision-language models fail exactly where the semanticity framework predicts."}, {"key": "curse_of_generalization", "cite": "Frankland, Marjieh, Nurisso et al. (2025), <em>Curse of Generalization.<\/em> Psychological Review (submitted).", "short": "Frankland, Marjieh, Nurisso et al. (2025)", "note": "Compositional vs semantic compression in cognition."}, {"key": "petri2021_topolimits", "cite": "Petri, Musslick, Dey, Özcimder, Turner, Ahmed, Willke &amp; Cohen (2021), <em>Topological limits to the parallel processing capability of network architectures.<\/em> Nature Physics.", "short": "Petri, Musslick, Dey, Özcimder, Turner, Ahmed, Willke &amp; Cohen (2021)", "note": "Shared representations impose hard topological limits on multitasking. The lab's conviction that structure constrains computation."}, {"key": "musslick2016", "cite": "Musslick, Dey, Özcimder, Paber, Petri et al. (2016), <em>Multitasking capability versus learning efficiency in neural network architectures.<\/em> CogSci.", "short": "Musslick, Dey, Özcimder, Paber, Petri et al. (2016)", "note": "Empirical companion to the Nature Physics topological-limits paper."}, {"key": "petri_musslick_cohen2024", "cite": "Petri, Musslick &amp; Cohen (2024), <em>An information-theoretic approach to reward rate optimization in controlled and automatic processing.<\/em> eLife.", "short": "Petri, Musslick &amp; Cohen (2024)", "note": "IT formalization of cognitive control."}, {"key": "shenhav2013", "cite": "Shenhav, Botvinick &amp; Cohen (2013), <em>The expected value of control.<\/em> Neuron.", "short": "Shenhav, Botvinick &amp; Cohen (2013)", "note": "Cost-benefit optimization of cognitive effort."}, {"key": "greff2020_binding", "cite": "Greff, van Steenkiste &amp; Schmidhuber (2020), <em>On the binding problem in artificial neural networks.<\/em> arXiv:2012.05208.", "short": "Greff, van Steenkiste &amp; Schmidhuber (2020)", "note": "Unifying framing of dynamic binding as a core limitation of neural representations."}, {"key": "clopath2010", "cite": "Clopath, Büsing, Vasilaki &amp; Gerstner (2010), <em>Connectivity reflects coding: a model of voltage-based STDP with homeostasis.<\/em> Nature Neuroscience.", "short": "Clopath, Büsing, Vasilaki &amp; Gerstner (2010)", "note": "Voltage-based STDP rule."}, {"key": "nakkiran2021_doubledescent", "cite": "Nakkiran et al. (2021), <em>Deep double descent.<\/em> JMLR / ICLR.", "short": "Nakkiran et al. (2021)", "note": "Non-monotonic generalization curves — a semanticity prediction."}, {"key": "goldstein2022_shared", "cite": "Goldstein, Zada, Buchnik, …, Hasson (2022), <em>Shared computational principles for language processing in humans and deep language models.<\/em> Nature Neuroscience 25(3):369–380.", "short": "Goldstein, Zada, Buchnik, …, Hasson (2022)", "note": "Next-word prediction and contextual embeddings shared by brains and LLMs."}], "method": [{"key": "murphy2022_pml", "cite": "Murphy (2022), <em>Probabilistic Machine Learning: An Introduction.<\/em> MIT Press.", "short": "Murphy (2022)", "note": "Best single choice for a mathematical audience. Free online."}], "builds_on": {"competencies": ["C5", "C8", "C1", "C4"], "assumes": ["Tishby, Pereira &amp; Bialek (2000)", "Zaslavsky, Kemp, Regier &amp; Tishby (2018)", "Kriegeskorte, Mur &amp; Bandettini (2008)", "Peyré &amp; Cuturi (2019)", "Sethna (2006)"], "rereads": []}, "hours": {"reading": 75, "exercise": 40}, "exercise": "Design a representation-level benchmark that separates a semantic-horizon prediction from data scale, optimisation, architecture, and ordinary capacity controls.", "expected_output": "A preregistered benchmark specification and a pilot run with at least two non-semantic control conditions and a stated decision rule.", "failure_mode": "Promoting geometric alignment, sparse features, information compression, a scaling curve, or a shared brain–model signature into a semantic or cognitive explanation without a discriminating intervention.", "falsification_prompt": "Which change in data scale, capacity, or architecture would produce the same generalisation curve with no semantic-horizon mechanism, and does the predicted signature survive when that change is controlled?", "watch": "Promoting geometric alignment, sparse features, information compression, a scaling curve, or a shared brain–model signature into a semantic or cognitive explanation without a discriminating intervention."}, {"id": "social_collective_communication", "slug": "social-collective-and-animal-communication", "title": "Social, collective, and animal communication", "name": "Social, collective and animal communication", "cls": "Envoy", "competency": "Model coordination and communication across agents while respecting the different evidential standards of social experiments, field behaviour, and synthetic agents.", "orientation": {"key": "baronchelli2006_naming", "cite": "Baronchelli, Felici, Loreto, Caglioti &amp; Steels (2006), <em>Sharp transition towards shared vocabularies in multi-agent systems.<\/em> J. Stat. Mech.", "short": "Baronchelli, Felici, Loreto, Caglioti &amp; Steels (2006)", "note": "The naming game."}, "readings": [], "shared": [{"key": "baronchelli2006_naming", "cite": "Baronchelli, Felici, Loreto, Caglioti &amp; Steels (2006), <em>Sharp transition towards shared vocabularies in multi-agent systems.<\/em> J. Stat. Mech.", "short": "Baronchelli, Felici, Loreto, Caglioti &amp; Steels (2006)", "note": "The naming game.", "reason": "Convention formation without central control is common to human groups, animal cultures, and agent populations."}, {"key": "kirby2008", "cite": "Kirby, Cornish &amp; Smith (2008), <em>Cumulative cultural evolution in the laboratory.<\/em> PNAS.", "short": "Kirby, Cornish &amp; Smith (2008)", "note": "Experimental iterated learning; structure from transmission.", "reason": "Structure emerging from transmission is the bridge between animal culture, human language, and populations of LLMs."}, {"key": "townsend2018", "cite": "Townsend et al. (2018), <em>Compositionality in animals and humans.<\/em> PLoS Biology.", "short": "Townsend et al. (2018)", "note": "Comprehensive compositionality review across taxa.", "reason": "It sets the evidential standard for claiming compositionality in any communicating system."}], "branches": [{"id": "social_coordination", "title": "Social coordination", "cls": "Contagion Bard", "readings": [{"key": "granovetter1973", "cite": "Granovetter (1973), <em>The strength of weak ties.<\/em> American Journal of Sociology.", "short": "Granovetter (1973)", "note": "Why network structure matters for social dynamics.", "reason": "Tie strength and structure shape what can spread; this is the starting point for any social contagion claim."}, {"key": "nowak_may1992", "cite": "Nowak &amp; May (1992), <em>Evolutionary games and spatial chaos.<\/em> Nature.", "short": "Nowak &amp; May (1992)", "note": "Mandatory for evolutionary game theory on networks.", "reason": "Spatial structure changes cooperation; this is the minimal evolutionary-game result on networks."}, {"key": "alvarezrodriguez2021", "cite": "Alvarez-Rodriguez, Battiston, de Arruda, Moreno, Perc &amp; Latora (2021), <em>Evolutionary dynamics of higher-order interactions in social dilemmas.<\/em> Nature Human Behaviour.", "short": "Alvarez-Rodriguez, Battiston, de Arruda, Moreno, Perc &amp; Latora (2021)", "note": "Higher-order game theory.", "reason": "Group interactions change social dilemmas: the higher-order game theory our coordination claims rest on."}, {"key": "preti2024_nullmodels", "cite": "Preti, De Francisci Morales, Iacopini &amp; Petri (2024), <em>Higher-order null models as a lens for social systems.<\/em> Physical Review X.", "short": "Preti, De Francisci Morales, Iacopini &amp; Petri (2024)", "note": "Higher-order null models; US Congress cosponsorship as primary case.", "reason": "The higher-order null for social data. Read it against a pairwise null that preserves activity."}], "hours": 45, "exercise": "Test one coordination claim, for example a group-size effect, against pairwise and higher-order nulls on a real social network.", "expected_output": "A null-model comparison table and a memo stating which effect survives which null.", "failure_mode": "Reading coordination or cooperation off structure without a null that preserves activity and group-size heterogeneity.", "falsification_prompt": "Does a null preserving group sizes and activity reproduce the effect?"}, {"id": "animal_communication", "title": "Animal communication", "cls": "Coda Speaker", "readings": [{"key": "rendell_whitehead2001", "cite": "Rendell &amp; Whitehead (2001), <em>Culture in whales and dolphins.<\/em> Behavioral and Brain Sciences.", "short": "Rendell &amp; Whitehead (2001)", "note": "Cultural transmission of vocal repertoires.", "reason": "It is the case for vocal culture in cetaceans, and the claim the field still argues over."}, {"key": "kershenbaum2016", "cite": "Kershenbaum et al. (2016), <em>Acoustic sequences in non-human animals: a tutorial review and prospectus.<\/em> Biological Reviews.", "short": "Kershenbaum et al. (2016)", "note": "The 40+-author framework for sequence analysis.", "reason": "The shared framework for analysing animal acoustic sequences."}, {"key": "sharma2024", "cite": "Sharma, Gero, Payne, Gruber, Rus, Torralba &amp; Andreas (2024), <em>Contextual and combinatorial structure in sperm whale vocalisations.<\/em> Nature Communications 15, 3617.", "short": "Sharma, Gero, Payne, Gruber, Rus, Torralba &amp; Andreas (2024)", "note": "Codas have productive combinatorial structure (the 'phonetic alphabet').", "reason": "A claim of combinatorial structure in sperm whale codas. Read it in order to test it."}, {"key": "rabiner1989_hmm", "cite": "Rabiner (1989), <em>A tutorial on hidden Markov models and selected applications in speech recognition.<\/em> Proceedings of the IEEE.", "short": "Rabiner (1989)", "note": "HMMs for sequences — directly relevant to coda structure.", "reason": "Hidden Markov models, the standard tool for coda and dive sequences."}], "hours": 60, "exercise": "Fit a sequence model to coda or other vocal sequences, and test a claimed combinatorial structure against shuffles that preserve unit frequencies and individual or clan identity.", "expected_output": "A model comparison and surrogate-test report stating which structure survives which shuffle.", "failure_mode": "Treating combinatorial or Zipf-like statistics as evidence of meaning, or ignoring individual and clan identity as a confound.", "falsification_prompt": "Do order-preserving and identity-preserving shuffles reproduce the combinatorial signal?"}, {"id": "collective_ai", "title": "Collective AI", "cls": "Swarm Caller", "readings": [{"key": "galton1907_voxpopuli", "cite": "Galton (1907), <em>Vox populi.<\/em> Nature.", "short": "Galton (1907)", "note": "The historical anchor for the wisdom of crowds — aggregated estimates beat individuals.", "reason": "The original aggregation result, whose independence assumption LLM ensembles violate."}, {"key": "lorenz2011_crowds", "cite": "Lorenz, Rauhut, Schweitzer &amp; Helbing (2011), <em>How social influence can undermine the wisdom of crowd effect.<\/em> PNAS 108, 9020–9025.", "short": "Lorenz, Rauhut, Schweitzer &amp; Helbing (2011)", "note": "Social influence erodes the diversity that crowd wisdom needs: the independence assumption that ensembles of LLM agents break.", "reason": "Shows experimentally how social influence destroys crowd wisdom: the failure mode of agent ensembles that share priors."}, {"key": "du2023_multiagent_debate", "cite": "Du, Li, Torralba, Tenenbaum &amp; Mordatch (2023), <em>Improving factuality and reasoning in language models through multiagent debate.<\/em> arXiv:2305.14325 (ICML 2024).", "short": "Du, Li, Torralba, Tenenbaum &amp; Mordatch (2023)", "note": "Multiple LLM agents debate to converge on better answers — collective reasoning across synthetic agents.", "reason": "A collective-reasoning gain claim among LLM agents, read so that we can test it."}, {"key": "park2023_generative_agents", "cite": "Park, O'Brien, Cai, Morris, Liang &amp; Bernstein (2023), <em>Generative agents: interactive simulacra of human behavior.<\/em> UIST '23. arXiv:2304.03442.", "short": "Park, O&#x27;Brien, Cai, Morris, Liang &amp; Bernstein (2023)", "note": "Societies of LLM agents reproduce emergent social behaviour — an across-agent testbed.", "reason": "The agent-society testbed whose emergent behaviour we have to separate from shared priors."}], "hours": 45, "exercise": "Run a wisdom-of-crowds or debate experiment with LLM agents, varying model diversity and communication topology, against an independent-sampling baseline.", "expected_output": "An experiment log and an error decomposition (bias, variance, error correlation) stating what is collective and what is shared prior.", "failure_mode": "Calling agreement among LLM agents collective intelligence when it reflects shared training priors or prompt leakage.", "falsification_prompt": "Does an ensemble of independent samples from the same model match the collective gain?"}], "case": [{"key": "gero2016", "cite": "Gero, Whitehead &amp; Rendell (2016), <em>Individual, unit and vocal clan level identity cues in sperm whale codas.<\/em> Royal Society Open Science.", "short": "Gero, Whitehead &amp; Rendell (2016)", "note": "Hierarchical social identity in coda patterns."}, {"key": "andreas2022", "cite": "Andreas, Beguš, Bronstein, Diamant, Delaney et al. (2022), <em>Toward understanding the communication in sperm whales.<\/em> iScience.", "short": "Andreas, Beguš, Bronstein, Diamant, Delaney et al. (2022)", "note": "CETI collaboration overview."}, {"key": "youngblood2025_efficiency", "cite": "Youngblood (2025), <em>Language-like efficiency in whale communication.<\/em> Science Advances 11:eads6014", "short": "Youngblood (2025)", "note": "Menzerath's and Zipf's laws across cetacean species."}, {"key": "begus2026_vowels", "cite": "Beguš, Dąbkowski, Sprouse, Gruber &amp; Gero (2026), <em>The phonology of sperm whale coda vowels.<\/em> Proceedings of the Royal Society B 293:20252994", "short": "Beguš, Dąbkowski, Sprouse, Gruber &amp; Gero (2026)", "note": "Vowel/diphthong-like patterns with phonological parallels to human language."}, {"key": "santos_pacheco2005", "cite": "Santos &amp; Pacheco (2005), <em>Scale-free networks provide a unifying framework for the emergence of cooperation.<\/em> PRL.", "short": "Santos &amp; Pacheco (2005)", "note": "Topology and cooperation."}, {"key": "szabo_fath2007", "cite": "Szabó &amp; Fáth (2007), <em>Evolutionary games on graphs.<\/em> Physics Reports.", "short": "Szabó &amp; Fáth (2007)", "note": "Comprehensive evolutionary-game review."}], "method": [], "builds_on": {"competencies": ["C4", "C1", "C7", "C5", "C3"], "assumes": ["Centola &amp; Macy (2007)", "Iacopini, Petri, Barrat &amp; Latora (2019)", "Barnett, Barrett &amp; Seth (2009)", "Runge et al. (2019)", "Zaslavsky, Kemp, Regier &amp; Tishby (2018)"], "rereads": []}, "hours": {"reading": null, "exercise": 35}, "exercise": "Fit the same coordination hypothesis to one human or animal case and one synthetic-agent case, then document which observables and nulls fail to transfer.", "expected_output": "A cross-case memo: one hypothesis, two systems, a table of observables and nulls marked as transferring or failing.", "failure_mode": "Assuming that common aggregate patterns imply common cognition, semantics, agency, or mechanism across biological and artificial groups.", "falsification_prompt": "Does the same aggregate pattern arise from a null with no coordination: independent agents, shared input, or shared priors?", "watch": "Assuming that common aggregate patterns imply common cognition, semantics, agency, or mechanism across biological and artificial groups."}, {"id": "multiscale_criticality", "slug": "renormalization-and-criticality", "title": "Renormalization, criticality, and multiscale systems", "name": "Renormalization and criticality", "cls": "Scale Shifter", "competency": "Choose and test scale transformations, diagnose genuine critical behaviour, and quantify the trade-off between preserved dynamics, prediction, and reconstruction.", "orientation": {"key": "gabrielli2025_review", "cite": "Gabrielli, Garlaschelli, Patil &amp; Serrano (2025), <em>Network renormalization.<\/em> Nature Reviews Physics 7, 203–219", "short": "Gabrielli, Garlaschelli, Patil &amp; Serrano (2025)", "note": "Comprehensive review of geometric, Laplacian and spectral RG on networks."}, "readings": [{"key": "garciaperez2018_geomrg", "cite": "García-Pérez, Boguñá &amp; Serrano (2018), <em>Multiscale unfolding of real networks by geometric renormalization.<\/em> Nature Physics.", "short": "García-Pérez, Boguñá &amp; Serrano (2018)", "note": "Geometric (hidden-metric) approach to network RG.", "reason": "Geometric renormalisation is the second scheme set against Laplacian RG."}, {"key": "kochjanusz_ringel2018", "cite": "Koch-Janusz &amp; Ringel (2018), <em>Mutual information, neural networks and the renormalization group.<\/em> Nature Physics.", "short": "Koch-Janusz &amp; Ringel (2018)", "note": "Information-theoretic / ML-driven RG.", "reason": "Coarse-graining derived from mutual information: where information theory (C5) meets coarse-graining (C8)."}, {"key": "bradde_bialek2017", "cite": "Bradde &amp; Bialek (2017), <em>PCA meets RG.<\/em> Journal of Statistical Physics.", "short": "Bradde &amp; Bialek (2017)", "note": "PCA and renormalization as the same idea.", "reason": "It shows PCA and RG as one idea on neural data, the bridge to empirical multiscale work."}, {"key": "nurisso2025_holrg", "cite": "Nurisso, Morandini, Lucas, Vaccarino, Gili &amp; Petri (2025), <em>Higher-order Laplacian renormalization.<\/em> Nature Physics.", "short": "Nurisso, Morandini, Lucas, Vaccarino, Gili &amp; Petri (2025)", "note": "Cross-order Laplacians; order-specific scale invariance.", "reason": "The only higher-order renormalisation scheme we have. Read it against heterogeneity in simplicial density, which could fake order-specific invariance."}, {"key": "bak_tang_wiesenfeld1987", "cite": "Bak, Tang &amp; Wiesenfeld (1987), <em>Self-organized criticality: an explanation of 1/f noise.<\/em> Physical Review Letters.", "short": "Bak, Tang &amp; Wiesenfeld (1987)", "note": "Foundational SOC theory; avalanches and power laws.", "reason": "Self-organised criticality is the origin of the avalanche framing we test."}, {"key": "harris1963_branching", "cite": "Harris (1963), <em>The Theory of Branching Processes.<\/em> Springer.", "short": "Harris (1963)", "note": "Classical theory: Galton–Watson processes, critical/super/subcritical regimes, extinction. Branching processes are the substrate for avalanches and criticality.", "reason": "Branching-process theory defines the subcritical, critical, and supercritical regimes.", "route": "Chapter route pending an edition check"}, {"key": "beggs_plenz2003", "cite": "Beggs &amp; Plenz (2003), <em>Neuronal avalanches in neocortical circuits.<\/em> Journal of Neuroscience.", "short": "Beggs &amp; Plenz (2003)", "note": "Empirical critical avalanche dynamics in neural tissue.", "reason": "The empirical neuronal-avalanche claim, which the exercise's criticality test interrogates."}, {"key": "clauset2009_powerlaw", "cite": "Clauset, Shalizi &amp; Newman (2009), <em>Power-law distributions in empirical data.<\/em> SIAM Review 51, 661–703.", "short": "Clauset, Shalizi &amp; Newman (2009)", "note": "How to test a power law instead of eyeballing one: maximum-likelihood fits, goodness of fit, and comparison against heavy-tailed alternatives. The check every criticality claim has to pass.", "reason": "The statistical test the stream's failure mode demands: a power law has to beat heavy-tailed alternatives before anyone says critical."}], "shared": [], "branches": [], "case": [{"key": "harmonic_morphisms2026", "cite": "Guadagnuolo, Nurisso, Galluzzi, Allard &amp; Petri (2026), <em>Harmonic morphisms and dynamical invariants in network renormalization.<\/em> arXiv:2604.08386 (under review, PRX).", "short": "Guadagnuolo, Nurisso, Galluzzi, Allard &amp; Petri (2026)", "note": "Discrete harmonic morphisms as the minimal criterion for preserving random-walk dynamics under coarse-graining."}, {"key": "lucas2026_branching", "cite": "Lucas, Bisot, Petri, Declerck &amp; Carletti (2026), <em>Minimal branching and fusion morphogenesis approaches biological multi-objective optimality.<\/em> arXiv:2601.03877", "short": "Lucas, Bisot, Petri, Declerck &amp; Carletti (2026)", "note": "Substrate-agnostic branching morphospace (fungal/vascular networks). A lab paper — Petri co-author."}, {"key": "muller2025_criticality", "cite": "Müller, Miron, Holtkamp &amp; Meisel (2025), <em>Critical dynamics predicts cognitive performance and provides a common framework for heterogeneous mechanisms impacting cognition.<\/em> PNAS 122:e2417117122", "short": "Müller, Miron, Holtkamp &amp; Meisel (2025)", "note": "Proximity to criticality predicts cognition (intracranial EEG)."}, {"key": "reitz_bianconi2020", "cite": "Reitz &amp; Bianconi (2020), <em>The higher-order spectrum of simplicial complexes: a renormalization group approach.<\/em> J. Phys. A.", "short": "Reitz &amp; Bianconi (2020)", "note": "Higher-order spectral RG."}], "method": [], "builds_on": {"competencies": ["C8", "C4", "C5", "C2"], "assumes": ["Sethna (2006)", "Peyré &amp; Cuturi (2019)", "Murphy, Thibeault, Allard &amp; Desrosiers (2024)", "Spielman (2025)"], "rereads": [{"key": "villegas2023_lrg", "cite": "Villegas, Gili, Mulder, Caldarelli &amp; Bianconi (2023), <em>Laplacian renormalization group for heterogeneous networks.<\/em> Nature Physics.", "short": "Villegas, Gili, Mulder, Caldarelli &amp; Bianconi (2023)", "note": "Diffusion-based spectral coarse-graining. The key recent paper.", "why": "Go back to it at depth: the stream exercise sets it against a second scheme."}]}, "hours": {"reading": 70, "exercise": 35}, "exercise": "Compare two coarse-graining schemes and one criticality test on the same system using preregistered preserved observables and finite-size controls.", "expected_output": "A preregistration and a results table: two schemes against the preserved observables, finite-size scaling, and a criticality verdict with the alternatives it rules out.", "failure_mode": "Inferring universality or criticality from attractive scaling, power laws, or post hoc selection of the quantity that appears preserved.", "falsification_prompt": "Does the critical or invariant signature survive finite-size scaling, a model-selection test against non-critical heavy-tailed alternatives, and an observable declared in advance?", "watch": "Inferring universality or criticality from attractive scaling, power laws, or post hoc selection of the quantity that appears preserved."}], "streams_meta": {"version": "0.2", "date": "2026-10-09", "status": "side-draft"}, "frontier": [{"id": "semantic_horizons", "title": "Semantic Horizons & Universal Laws", "speculative": false, "why": "NPLab's most distinctive theoretical contribution and the flagship of the within-agent arc. A system encoding stimuli with finite precision Δ and compressing by β faces a <em>semantic horizon<\/em> r<em>(β) = −β log Δ beyond which stimuli become indistinguishable — producing non-monotonic generalization and a 1/n capacity collapse that recovers Miller's Law from first principles. The long-term bet (Keck) is that these are <\/em>universal* laws, the bridge from within-agent limits to across-agent systems (immune repertoires, epidemics, whale codas).", "readings": [{"key": "bos_t3", "cite": "Nurisso, Fernando, Deshpande, …, Cohen &amp; Petri (2025), <em>Bound by Semanticity.<\/em> ICLR 2026.", "short": "Nurisso, Fernando, Deshpande, …, Cohen &amp; Petri (2025)", "note": "The central paper. Pareto frontier, 1/n collapse, Shepard's law derived. Read this first."}, {"key": "savietto_t3", "cite": "Savietto, Campbell, Panisson, Nurisso, Petri, Cohen &amp; Perotti (2026), <em>The geometry of representational failures in vision-language models.<\/em> ICML 2026 (accepted). arXiv:2602.07025.", "short": "Savietto, Campbell, Panisson, Nurisso, Petri, Cohen &amp; Perotti (2026)", "note": "Empirical companion — VLMs fail exactly where the framework predicts."}, {"key": "petri2021_t3", "cite": "Petri, Musslick, Dey, Özcimder, Turner, Ahmed, Willke &amp; Cohen (2021), <em>Topological limits to the parallel processing capability of network architectures.<\/em> Nature Physics.", "short": "Petri, Musslick, Dey, Özcimder, Turner, Ahmed, Willke &amp; Cohen (2021)", "note": "The precursor — the generalization–identification tradeoff in topological form."}, {"key": "rate_distortion_engine", "cite": "Cover &amp; Thomas Ch. 10 (rate-distortion) + Tishby et al. (2000) IB.", "short": "Cover &amp; Thomas Ch. 10 (rate-distortion) + Tishby et al. (2000) IB.)", "note": "The mathematical engine: R(D) and the β-parameterized compression–relevance tradeoff with finite precision."}]}, {"id": "higher_order_information", "title": "Irreducible Multivariate Information", "speculative": false, "why": "How to quantify genuine multivariate dependency — synergy, redundancy, integration — that pairwise measures cannot see, and how to estimate it without fooling yourself. This is the engine under our work on higher-order information in neural, clinical and developmental data.", "readings": [{"key": "rosas2019_oinfo", "cite": "Rosas, Mediano, Gastpar &amp; Jensen (2019), <em>Quantifying high-order interdependencies via multivariate extensions of the mutual information.<\/em> Physical Review E.", "short": "Rosas, Mediano, Gastpar &amp; Jensen (2019)", "note": "Introduced the O-information (signed synergy/redundancy)."}, {"key": "williams_beer2010_pid", "cite": "Williams &amp; Beer (2010), <em>Nonnegative decomposition of multivariate information.<\/em> arXiv:1004.2515.", "short": "Williams &amp; Beer (2010)", "note": "Foundational Partial Information Decomposition (PID)."}, {"key": "timme_lapish2018", "cite": "Timme &amp; Lapish (2018), <em>A tutorial for information theory in neuroscience.<\/em> eNeuro.", "short": "Timme &amp; Lapish (2018)", "note": "Practical guide to applying IT measures to neural data."}, {"key": "varley_sporns2022", "cite": "Varley &amp; Sporns (2022), <em>Multivariate information theory.<\/em> (tutorial/review).", "short": "Varley &amp; Sporns (2022)", "note": "Review of multivariate IT measures."}, {"key": "robiglio2024", "cite": "Robiglio, Neri, Iacopini, Petri &amp; Barrat (2024), <em>Synergistic signatures of group mechanisms in higher-order systems.<\/em>", "short": "Robiglio, Neri, Iacopini, Petri &amp; Barrat (2024)", "note": "Connects O-information to structural higher-order properties."}, {"key": "combrisson2025", "cite": "Combrisson, Allegra, Basanisi, Ince, Giordano, Bastin, Petri &amp; Brovelli (2025), <em>Higher-order and distributed synergistic functional interactions encode information gain in goal-directed learning.<\/em> Nature Communications.", "short": "Combrisson, Allegra, Basanisi, Ince, Giordano, Bastin, Petri &amp; Brovelli (2025)", "note": "Synergy encodes information gain in learning."}, {"key": "kolchinsky2022_pid", "cite": "Kolchinsky (2022), <em>A novel approach to the partial information decomposition.<\/em> Entropy.", "short": "Kolchinsky (2022)", "note": "Connects PID to the Information Bottleneck; clarifies axioms."}, {"key": "mediano2021_taxonomy", "cite": "Mediano, Rosas, Luppi, Carhart-Harris, Bor, Seth &amp; Barrett (2021), <em>Towards an extended taxonomy of information dynamics via Integrated Information Decomposition.<\/em> arXiv:2109.13186", "short": "Mediano, Rosas, Luppi, Carhart-Harris, Bor, Seth &amp; Barrett (2021)", "note": "Unifies integrated information and synergy under one framework (ΦID)."}, {"key": "stramaglia2024_te", "cite": "Stramaglia, Faes, Cortes &amp; Marinazzo (2024), <em>Disentangling high-order effects in the transfer entropy.<\/em> Physical Review Research 6:L032007", "short": "Stramaglia, Faes, Cortes &amp; Marinazzo (2024)", "note": "Decomposes transfer entropy into unique/redundant/synergistic atoms (directed HOI)."}, {"key": "oizumi2014_iit3", "cite": "Oizumi, Albantakis &amp; Tononi (2014), <em>From the phenomenology to the mechanisms of consciousness: IIT 3.0.<\/em> PLoS Computational Biology.", "short": "Oizumi, Albantakis &amp; Tononi (2014)", "note": "Integrated information theory, practical formalism."}, {"key": "albantakis2023_iit4", "cite": "Albantakis et al. (2023), <em>Integrated Information Theory (IIT) 4.0.<\/em> PLoS Computational Biology.", "short": "Albantakis et al. (2023)", "note": "Latest IIT formulation; intrinsic information."}]}, {"id": "renormalization", "title": "Renormalization on Networks", "speculative": false, "why": "Coarse-graining networks and higher-order structures across scales while preserving what matters — dynamics, information, predictability. The across-agent analogue of the RG that organizes statistical mechanics.", "readings": [{"key": "villegas2023_lrg", "cite": "Villegas, Gili, Mulder, Caldarelli &amp; Bianconi (2023), <em>Laplacian renormalization group for heterogeneous networks.<\/em> Nature Physics.", "short": "Villegas, Gili, Mulder, Caldarelli &amp; Bianconi (2023)", "note": "Diffusion-based spectral coarse-graining. The key recent paper."}, {"key": "garciaperez2018_geomrg", "cite": "García-Pérez, Boguñá &amp; Serrano (2018), <em>Multiscale unfolding of real networks by geometric renormalization.<\/em> Nature Physics.", "short": "García-Pérez, Boguñá &amp; Serrano (2018)", "note": "Geometric (hidden-metric) approach to network RG."}, {"key": "serrano2008_selfsim", "cite": "Serrano, Krioukov &amp; Boguñá (2008), <em>Self-similarity of complex networks and hidden metric spaces.<\/em> Physical Review Letters 100, 078701", "short": "Serrano, Krioukov &amp; Boguñá (2008)", "note": "Hidden hyperbolic geometry underpinning geometric RG."}, {"key": "kochjanusz_ringel2018", "cite": "Koch-Janusz &amp; Ringel (2018), <em>Mutual information, neural networks and the renormalization group.<\/em> Nature Physics.", "short": "Koch-Janusz &amp; Ringel (2018)", "note": "Information-theoretic / ML-driven RG."}, {"key": "nurisso2025_holrg", "cite": "Nurisso, Morandini, Lucas, Vaccarino, Gili &amp; Petri (2025), <em>Higher-order Laplacian renormalization.<\/em> Nature Physics.", "short": "Nurisso, Morandini, Lucas, Vaccarino, Gili &amp; Petri (2025)", "note": "Cross-order Laplacians; order-specific scale invariance."}, {"key": "reitz_bianconi2020", "cite": "Reitz &amp; Bianconi (2020), <em>The higher-order spectrum of simplicial complexes: a renormalization group approach.<\/em> J. Phys. A.", "short": "Reitz &amp; Bianconi (2020)", "note": "Higher-order spectral RG."}, {"key": "harmonic_morphisms2026", "cite": "Guadagnuolo, Nurisso, Galluzzi, Allard &amp; Petri (2026), <em>Harmonic morphisms and dynamical invariants in network renormalization.<\/em> arXiv:2604.08386 (under review, PRX).", "short": "Guadagnuolo, Nurisso, Galluzzi, Allard &amp; Petri (2026)", "note": "Discrete harmonic morphisms as the minimal criterion for preserving random-walk dynamics under coarse-graining."}, {"key": "murphy2024_duality", "cite": "Murphy, Thibeault, Allard &amp; Desrosiers (2024), <em>Duality between predictability and reconstructability in complex systems.<\/em> Nature Communications.", "short": "Murphy, Thibeault, Allard &amp; Desrosiers (2024)", "note": "Coarse-graining trades reconstructability for predictability — a causal-emergence signature."}, {"key": "gabrielli2025_review", "cite": "Gabrielli, Garlaschelli, Patil &amp; Serrano (2025), <em>Network renormalization.<\/em> Nature Reviews Physics 7, 203–219", "short": "Gabrielli, Garlaschelli, Patil &amp; Serrano (2025)", "note": "Comprehensive review of geometric, Laplacian and spectral RG on networks."}, {"key": "bradde_bialek2017", "cite": "Bradde &amp; Bialek (2017), <em>PCA meets RG.<\/em> Journal of Statistical Physics.", "short": "Bradde &amp; Bialek (2017)", "note": "PCA and renormalization as the same idea."}]}, {"id": "criticality_and_branching", "title": "Criticality & Branching", "speculative": false, "why": "Self-organized criticality, neuronal avalanches and branching processes as substrate-agnostic organizing principles across agents and scales — and the starting point for a perspective we are writing on branching across organs, fungi, cetaceans and AI.", "readings": [{"key": "bak_tang_wiesenfeld1987", "cite": "Bak, Tang &amp; Wiesenfeld (1987), <em>Self-organized criticality: an explanation of 1/f noise.<\/em> Physical Review Letters.", "short": "Bak, Tang &amp; Wiesenfeld (1987)", "note": "Foundational SOC theory; avalanches and power laws."}, {"key": "beggs_plenz2003", "cite": "Beggs &amp; Plenz (2003), <em>Neuronal avalanches in neocortical circuits.<\/em> Journal of Neuroscience.", "short": "Beggs &amp; Plenz (2003)", "note": "Empirical critical avalanche dynamics in neural tissue."}, {"key": "harris1963_branching", "cite": "Harris (1963), <em>The Theory of Branching Processes.<\/em> Springer.", "short": "Harris (1963)", "note": "Classical theory: Galton–Watson processes, critical/super/subcritical regimes, extinction. Branching processes are the substrate for avalanches and criticality."}, {"key": "muller2025_criticality", "cite": "Müller, Miron, Holtkamp &amp; Meisel (2025), <em>Critical dynamics predicts cognitive performance and provides a common framework for heterogeneous mechanisms impacting cognition.<\/em> PNAS 122:e2417117122", "short": "Müller, Miron, Holtkamp &amp; Meisel (2025)", "note": "Proximity to criticality predicts cognition (intracranial EEG)."}, {"key": "clauset2009_powerlaw", "cite": "Clauset, Shalizi &amp; Newman (2009), <em>Power-law distributions in empirical data.<\/em> SIAM Review 51, 661–703.", "short": "Clauset, Shalizi &amp; Newman (2009)", "note": "How to test a power law instead of eyeballing one: maximum-likelihood fits, goodness of fit, and comparison against heavy-tailed alternatives. The check every criticality claim has to pass."}, {"key": "lucas2026_branching", "cite": "Lucas, Bisot, Petri, Declerck &amp; Carletti (2026), <em>Minimal branching and fusion morphogenesis approaches biological multi-objective optimality.<\/em> arXiv:2601.03877", "short": "Lucas, Bisot, Petri, Declerck &amp; Carletti (2026)", "note": "Substrate-agnostic branching morphospace (fungal/vascular networks). A lab paper — Petri co-author."}]}, {"id": "topology_frontier", "title": "Topology Beyond One Parameter", "speculative": false, "why": "Single-parameter persistence is the Tier 1 working tool. Real data rarely come with one natural filtration: density and scale, time and threshold, signal and noise pull in different directions. Multiparameter persistence is where topology has to go to handle that honestly, and its theory is still unsettled (no complete discrete invariant exists). We keep it here as the frontier our TDA work will meet, not as a method ready for routine use.", "readings": [{"key": "botnan2023_multiparam", "cite": "Botnan &amp; Lesnick (2023), <em>An introduction to multiparameter persistence.<\/em> arXiv:2203.14289", "short": "Botnan &amp; Lesnick (2023)", "note": "NEW: frontier TDA — filtrations along multiple parameters."}]}, {"id": "operator_algebras", "title": "Operator Algebras & Quantum HOI", "speculative": true, "why": "<strong>Speculative reading cluster — not part of the minimum.<\/strong> Highly speculative direction spanning both branches: Fock-space structure of TPR, capacity limits as algebraic invariants, and a quantum analogue of higher-order synergy. HONEST STATUS: there is no mature \"quantum HOI\" literature yet — these are foundations for our exploratory work on quantum higher-order interactions, not an established canon.", "readings": [{"key": "smolensky1990_t3", "cite": "Smolensky (1990), <em>Tensor product variable binding.<\/em> (See Tier 1: Worldview.)", "short": "Smolensky (1990)", "note": "The starting point: TPR and the 1/n collapse."}, {"key": "penrose2004", "cite": "Penrose (2004), <em>The Road to Reality.<\/em> (chapters on Hilbert spaces, operator algebras, Fock spaces).", "short": "Penrose (2004)", "note": "Accessible mathematical background for the speculation."}, {"key": "jansma2023_duals", "cite": "Jansma (2023), <em>Higher-order interactions and their duals reveal synergy and logical dependence beyond Shannon information.<\/em> Entropy 25(4):648. arXiv:2205.04440", "short": "Jansma (2023)", "note": "Möbius-inversion view of synergy; a real bridge toward algebraic HOI."}, {"key": "upmeier1987_jordan", "cite": "Upmeier (1987), <em>Jordan Algebras in Analysis, Operator Theory, and Quantum Mechanics.<\/em> CBMS Regional Conference Series in Mathematics 67, AMS", "short": "Upmeier (1987)", "note": "Non-associative algebra in QM; scaffolding for a quantum-synergy analogue. (Speculative.)"}]}], "acts": {"paths": {"hero": {"src": "art/paths.webp", "pos": "50% 8%", "alt": "Three sepia pixel-art portraits under a parchment frame"}, "dialog": ["You speak the Common Language now. Time to choose what you will say with it.", "Pick one stream and go deep. Read one orientation piece from every other stream, so you can still follow your labmates.", "A path is not a cage. Your project chooses it as much as you do."]}, "frontier": {"hero": {"src": "art/frontier.webp", "pos": "50% 28%", "alt": "Three pixel-art figures in a starfield, one holding a glowing orb"}, "dialog": ["Past this point, the map is ours to draw.", "Nothing here is required. These are the questions the lab is working on, and the readings that brought us here.", "Your final test: take one of our claims, rebuild it from its assumptions, and try to break it."], "boss": "Take one NPLab claim from its assumptions, through the data and the alternatives, to a falsifier or a decisive next test. Then try to kill it in front of the lab. The case can come from brains, social systems, animals or artificial agents; the standard is the same."}}, "stats": [{"id": "LIN", "name": "Linear algebra", "repair": "Strang (2016), <em>Introduction to Linear Algebra<\/em> (5th ed.). Wellesley–Cambridge.", "route": "Chapters 1–4 and 6–7; then Sections 10.1, 10.3, 11.2, and 12.1–12.3"}, {"id": "NUM", "name": "Numerical computation", "repair": "Trefethen &amp; Bau (1997), <em>Numerical Linear Algebra.<\/em> SIAM.", "route": "Lectures 1–5, 11–19, and 24–27"}, {"id": "PRB", "name": "Probability", "repair": "Blitzstein &amp; Hwang (2019), <em>Introduction to Probability<\/em> (2nd ed.). CRC.", "route": "Chapters 1–4, 7, and 9–10"}, {"id": "LRN", "name": "Statistical learning", "repair": "Hastie, Tibshirani &amp; Friedman (2009), <em>The Elements of Statistical Learning<\/em> (2nd ed.). Springer.", "route": "Chapters 2–4, 7, 9, 11, and 14"}, {"id": "RSM", "name": "Resampling and testing", "repair": "Good (2005), <em>Permutation, Parametric, and Bootstrap Tests of Hypotheses<\/em> (3rd ed.). Springer.", "route": "Chapters 2–6: Optimal Procedures; Testing Hypotheses; Distributions; Multiple Tests; Experimental Designs"}], "sprites": {"mimic": {"pal": {"b": "#8A5A2E", "g": "#D9A43A", "w": "#F4EBD8", "d": "#2A1420", "r": "#C2404F", "e": "#F2D54A"}, "lid": [1, 6], "rows": ["................", "..kkkkkkkkkkkk..", ".kbbbbggbbbbbbk.", ".kbebbggbbbebbk.", ".kbbbbggbbbbbbk.", ".kggggggggggggk.", ".kwdwdwdwdwdwdk.", ".kdddddrrdddddk.", ".kddrrrrrrrrddk.", ".kdwdwdwdwdwdwk.", ".kggggggggggggk.", ".kbbbbbggbbbbbk.", ".kbbbbbggbbbbbk.", ".kbbbbbbbbbbbbk.", "..kkkkkkkkkkkk..", "................"]}, "wraith": {"pal": {"s": "#E8F4F2", "m": "#9FC9C6", "e": "#1E9AA6", "d": "#5FE3EE"}, "drip": "d", "rows": ["......kkkk......", "....kksssskk....", "...kssssssssk...", "..kssssssssssk..", "..kseesssseesk..", "..kseesssseesk..", "..kssssssssssk..", "..ksssskkssssk..", "..kssssssssssk..", "..kmssssssssmk..", "..kmmssssssmmk..", "..kmmmmssmmmmk..", "..kmkmmkkmmkmk..", "..k.k..kk..k.k..", "....d......d....", "........d......."]}, "hydra": {"pal": {"g": "#4E8A5A", "l": "#9BCB8E", "e": "#E05A5A"}, "rows": ["................", ".kk....kk....kk.", "kglk..kglk..kglk", "kgek..kgek..kgek", ".kgk..kggk..kgk.", "..kgk.kggk.kgk..", "...kgkkggkkgk...", "....kggggggk....", "...kgglllllggk..", "..kggllllllggk..", "..kgglllllgggk..", "..kggggggggggk..", "...kgkkggkkgk...", "...kk..kk..kk...", "................", "................"]}, "mirage": {"pal": {"p": "#D9667A", "b": "#5B8FD9", "g": "#6BB36B", "e": "#FFFFFF", "a": "#E2B86B"}, "rows": ["................", "..kkk......kkk..", ".kpppk....kbbbk.", ".kpepk....kbebk.", ".kpppk....kbbbk.", "..kkk.kkk..kkk..", "...k.kgggk..k...", "....kkgegkk.....", ".....kgggk......", "......kkk.......", "................", ".aa..aaaa..aa...", "...aaa....aaaa..", "aaaa..aaaa...aaa", "..aaaaa..aaaaa..", "................"]}, "golem": {"pal": {"s": "#9C8F86", "d": "#6E625B", "e": "#F2D54A", "m": "#6BA35E"}, "rows": ["................", "....kkkkkkkk....", "....kssssssk....", "....ksekkesk....", "....kssssssk....", "....ksddddsk....", ".kkkkkkkkkkkkkk.", "ksssmsssssssmssk", "ksdsssssssssdssk", "kssk.ksssssk.ksk", "kssk.ksddssk.ksk", "kkkk.ksssssk.kkk", "....kssk.kssk...", "....kssk.kssk...", "...kkkkk.kkkkk..", "................"]}, "siren": {"pal": {"f": "#C2404F", "w": "#F2A5A0", "y": "#F2D54A", "e": "#FFFFFF", "n": "#1E9AA6"}, "rows": ["...........n....", "...........nn...", "...........n....", ".....kkk..nn....", "....kfffk.n.....", "....kfefkyy.....", "....kfffk.......", ".kkk.kfk.kkk....", "kwwwkkfkkwwwk...", "kwwwwfffffwwwwk.", ".kwwwfffffwwwk..", "..kkkfffffkkk...", ".....kfffk......", "......kfk.......", ".....yk.ky......", "................"]}, "doppel": {"pal": {"l": "#F4EBD8", "d": "#3B2A4A", "e": "#5FE3EE", "r": "#C2404F"}, "rows": ["................", "....kkkkkkkk....", "...kllllddddk...", "..klllllddddddk.", "..klllllddddddk.", "..klekllddekdk..", "..klllllddddddk.", "..klllllddddddk.", "..kllrrrrrrddk..", "...kllrrrrddk...", "...kllllddddk...", "....kllldddk....", ".....kkkkkk.....", ".......kk.......", ".......kk.......", ".......kk......."]}, "slime": {"pal": {"g": "#6BC28A", "h": "#B9F0C8", "p": "#9B6BD9", "e": "#FFFFFF"}, "rows": ["................", "................", "......kkkk......", "....kkhgggkk....", "...khggggpppk...", "..khgggggppppk..", "..kgekggpekppk..", ".kggggggppppppk.", ".kgggkkkkpppppk.", ".kggggggppppppk.", "kggggggpppppppk.", "kggggggpppppppk.", ".kkkkkkkkkkkkkk.", "................", "................", "................"]}, "phantom": {"pal": {"s": "#E8E2F2", "b": "#7A5AA6", "e": "#F2D54A"}, "rows": ["......kkkk......", "....kksssskk....", "...kssssssssk...", "..kseesssseesk..", "..kssssssssssk..", "..kbbbbbbbbbbk..", "..kssssssssssk..", "..kbbbbbbbsssk..", "..kssssssssssk..", "..kbbbbssssssk..", "..kssssssssssk..", "..kbbssssssssk..", "..ksksskssksk...", "..k.k..k..k.k...", "................", "................"]}, "grifter": {"pal": {"h": "#3B2A4A", "b": "#C2404F", "f": "#E9C49A", "e": "#3B1B2A", "m": "#5A3A22", "c": "#4A6FA5", "a": "#F2D54A"}, "rows": ["....kkkkkk......", "....khhhhk......", "....khhhhk......", "...kbbbbbbk.....", "..kkkkkkkkkk....", "....kffffk......", "....kfefek...a..", "....kmmmmk..aaa.", "....kffffk...a..", "...kcccccck..a..", "..kcccccccckka..", "..kcckcckcck.a..", "..kcccccccck.a..", "...kcck.kcck.a..", "...kkkk.kkkk.k..", "................"]}, "poltergeist": {"pal": {"s": "#D9F2EE", "e": "#127F8A", "c": "#9C8F86", "x": "#F2D54A", "y": "#C2404F"}, "rows": ["................", ".....kkkkk......", "....ksssssk.....", "...ksesssesk....", "...ksssssssk....", "...ksskkkssk....", "...ksssssssk....", "....ksksksk.....", "........c.......", ".kkk....c...kkk.", ".kxk.cccccc.kyk.", ".kkk..kkk...kkk.", "......kxk.......", "......kkk.......", "................", "................"]}, "shifter": {"pal": {"o": "#E08A3A", "l": "#F2C08A", "e": "#FFFFFF", "t": "#F2D54A"}, "rows": ["................", "................", ".....kkkk.......", "...kkoolk.......", "..koooollkk.....", ".koeooooook.....", ".kooooeoooookk..", "koooooooooooolk.", "kooookkkooooook.", ".koooooooooookt.", "..koooooooookkt.", "...kkoooookk..t.", ".....kkkkk....t.", "..............t.", "................", "................"]}, "puppet": {"pal": {"w": "#C08A5A", "r": "#C2404F", "e": "#3B1B2A", "s": "#9C8F86"}, "rows": ["..kkkkkkkkkkkk..", "...s...ss...s...", "...s...ss...s...", "...s..kkkk..s...", "...s.kwwwwk.s...", "...s.kewwek.s...", "...s.kwrrwk.s...", "...s..kkkk..s...", "...skkrrrrkks...", "...kwkrrrrkwk...", "....k.krrk.k....", "......krrk......", "......kkkk......", "......k..k......", ".....kw..wk.....", ".....kk..kk....."]}}};
+const KEY = "mintheo-quest-v2", OLD_KEY = "mintheo-quest-c1-v1";
+const STEP_XP = 50, CHECKPOINT_XP = 200, BEAST_XP = 50;
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const COMPS = DATA.competencies, BY = Object.fromEntries(COMPS.map(c => [c.id, c]));
+const TYPE_NAME = { scroll: "Scroll · paper", codex: "Codex · review", tome: "Tome · book" };
+const cap = (s) => s ? s[0].toUpperCase() + s.slice(1) : s;
+
+/* ---------- State (this browser only); v1 progress is carried over ---------- */
+const fresh = () => ({ name: "", stats: { LIN: 3, NUM: 3, PRB: 4, LRN: 3, RSM: 2 }, read: {}, steps: {}, beasts: {}, checkpoint: {}, oracle: {}, celebrated: {}, cls: "" });
+function load() {
+  let s = null;
+  try { s = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) {}
+  if (!s) {
+    try {
+      const o = JSON.parse(localStorage.getItem(OLD_KEY) || "null");
+      if (o) s = { name: o.name || "", stats: o.stats, read: o.read || {}, beasts: o.beasts || {},
+                   steps: { C1: o.steps || [] }, checkpoint: { C1: !!o.checkpoint }, oracle: { C1: o.oracle || "" }, celebrated: { C1: !!o.celebrated } };
+    } catch (e) {}
+  }
+  const st = fresh();
+  if (s && typeof s === "object") {
+    Object.keys(st).forEach(k => { if (s[k] !== undefined) st[k] = (typeof st[k] === "object") ? Object.assign(st[k], s[k]) : s[k]; });
+  }
+  return st;
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+let state = load();
+const stepsOf = (c) => { const a = state.steps[c.id] || []; return c.quest.steps.map((_, i) => !!a[i]); };
+
+/* ---------- XP and mastery ---------- */
+function compXP(c) {
+  let x = 0;
+  c.readings.forEach(r => { if (state.read[r.key]) x += r.xp; });
+  x += stepsOf(c).filter(Boolean).length * STEP_XP;
+  c.monsters.forEach(m => { if (state.beasts[m.id]) x += BEAST_XP; });
+  if (state.checkpoint[c.id]) x += CHECKPOINT_XP;
+  return x;
+}
+const compMax = (c) => c.readings.reduce((a, r) => a + r.xp, 0) + c.quest.steps.length * STEP_XP + c.monsters.length * BEAST_XP + CHECKPOINT_XP;
+const totalXP = () => COMPS.reduce((a, c) => a + compXP(c), 0);
+const TOTAL_MAX = COMPS.reduce((a, c) => a + compMax(c), 0);
+const mastered = (c) => c.readings.filter(r => r.stage === "Foundation").every(r => state.read[r.key]) && stepsOf(c).every(Boolean) && !!state.checkpoint[c.id];
+const synthesisDone = (c) => c.readings.filter(r => r.stage === "Synthesis").every(r => state.read[r.key]);
+const masteredIds = () => COMPS.filter(mastered).map(c => c.id);
+
+let cur = null, view = "comp";
+const ACTS = { comp: "1", paths: "2", frontier: "3" };
+const defaultComp = () => DATA.order.find(id => !mastered(BY[id])) || DATA.order[0];
+function route() {
+  const h = (location.hash || "").replace("#", "").toLowerCase();
+  if (h === "paths" || h === "frontier") return { view: h, comp: cur || defaultComp() };
+  return { view: "comp", comp: BY[h.toUpperCase()] ? h.toUpperCase() : defaultComp() };
+}
+const dialogLines = () => view === "comp" ? BY[cur].dialog : DATA.acts[view].dialog;
+function clsName(id) {
+  if (!id) return "";
+  const [sid, bid] = id.split(":"), st = DATA.streams.find(x => x.id === sid);
+  if (!st) return "";
+  const b = bid && st.branches.find(x => x.id === bid);
+  return b ? `${b.cls} (${st.name}, ${b.title})` : `${st.cls} (${st.name})`;
+}
+
+/* ---------- Renderers ---------- */
+function renderNav() {
+  const seen = horizonSeen(), here = (v, id) => (view === v && (!id || id === cur)) ? ' aria-current="page"' : "";
+  const item = (href, cid, name, st, cur_) => `<li><a href="${href}"${cur_}><span class="cid">${cid}</span><span class="cname">${esc(name)}</span><span class="cstate">${esc(st)}</span></a></li>`;
+  $("compnav").innerHTML = '<li class="actsep">ACT I</li>' + DATA.order.map(id => {
+    const c = BY[id], m = mastered(c);
+    return item(`#${id.toLowerCase()}`, id + (m ? " ✓" : ""), c.short, m ? "Mastered" : (seen.has(id) ? c.weeks : "Beyond the horizon"), here("comp", id));
+  }).join("") + '<li class="actsep">ACT II</li>' + item("#paths", "T2", "Choose your path", state.cls ? "Path chosen" : "From month 4", here("paths"))
+    + '<li class="actsep">ACT III</li>' + item("#frontier", "T3", "The Frontier", "Optional", here("frontier"));
+}
+
+function renderHero(c) {
+  const img = $("hero-img");
+  img.src = c.hero.src; img.alt = c.hero.alt; img.style.objectPosition = c.hero.pos;
+  $("hero-eyebrow").textContent = `Competency ${c.id} · Foundation · ${c.weeks}`;
+  $("hero-title").textContent = c.title;
+  $("weekchip").textContent = `${c.weeks} of 12 · provisional`;
+  $("tierchip").textContent = "Tier 1 · The Common Language";
+  document.title = `Minimum Theoretical Quest Log · ${c.id}`;
+}
+
+function renderSheet() {
+  $("stats").innerHTML = DATA.stats.map(s => `
+    <div class="stat">
+      <abbr title="${esc(s.name)}">${s.id}</abbr>
+      <span class="name">${esc(s.name)}</span>
+      <span class="pips">${[1, 2, 3, 4, 5].map(i =>
+        `<button type="button" class="pip${i <= state.stats[s.id] ? " on" : ""}" data-stat="${s.id}" data-val="${i}" aria-label="${esc(s.name)}: ${i} of 5" aria-pressed="${i <= state.stats[s.id]}"></button>`).join("")}</span>
+    </div>`).join("");
+  const low = DATA.stats.filter(s => state.stats[s.id] <= 2);
+  $("repair").innerHTML = `<span class="label">Repair quests · stats at 2 or below</span>` + (low.length
+    ? `<ul>${low.map(s => `<li><b>${s.id}:</b> ${s.repair} First pass: ${s.route}.</li>`).join("")}</ul>`
+    : `<p style="font-size:15px">None. Your entry stats clear the floor.</p>`);
+  const n = masteredIds().length;
+  $("rank").textContent = n === 0 ? "Novice of the Common Language" : n < 8 ? `Journeyman · ${n} of 8 competencies mastered` : "Speaker of the Common Language";
+  $("classline").textContent = state.cls ? `Class: ${clsName(state.cls)}.` : "Class: unchosen. You pick your path in month 4.";
+}
+
+function renderQuest(c) {
+  const q = c.quest, steps = stepsOf(c);
+  $("quest-h").textContent = `Main quest · ${q.title}`;
+  $("quest-xp").textContent = `${compXP(c)} / ${compMax(c)} XP in ${c.id}`;
+  $("fognote").hidden = horizonSeen().has(c.id);
+  $("comp-title").textContent = `${c.id} · ${c.title}`;
+  $("comp-summary").textContent = c.summary;
+  $("comp-exit").textContent = cap(c.exit);
+  $("quest-task").textContent = q.task;
+  $("steps").innerHTML = q.steps.map((t, i) => `
+    <li><label class="check" for="step-${i}">
+      <input type="checkbox" id="step-${i}" data-step="${i}"${steps[i] ? " checked" : ""}>
+      <span>${esc(t)}</span><span class="xp">+${STEP_XP} XP</span>
+    </label></li>`).join("");
+  $("quest-reward").textContent = q.reward;
+  $("quest-watch").innerHTML = q.watch.map(w => `<li>${esc(w)}</li>`).join("");
+  $("checkpoint").checked = !!state.checkpoint[c.id];
+  $("riddle").textContent = q.oracle;
+  $("oracle").value = state.oracle[c.id] || "";
+}
+
+function renderInventory(c) {
+  const cards = c.readings.map(r => `<article class="item px">
+      <div class="top"><span class="type ${r.type}">${TYPE_NAME[r.type]}</span>
+        <span class="stage">${r.stage}${r.decided ? ` <span class="decided" title="Placed by the ${r.decided} decisions">decided ${r.decided}</span>` : ""}</span></div>
+      <p class="cite">${r.cite}</p>
+      ${r.route ? `<p class="attuned">Attuned chapters: ${r.route}</p>` : ""}
+      ${r.note ? `<p class="muted" style="font-size:15px">${r.note}</p>` : ""}
+      ${r.beats.length ? `<p style="font-size:15px">Defeats <b>${r.beats.map(esc).join("</b> and <b>")}</b>.</p>` : ""}
+      <label class="check" for="read-${r.key}">
+        <input type="checkbox" id="read-${r.key}" data-read="${r.key}"${state.read[r.key] ? " checked" : ""}>
+        <span>Read it</span><span class="xp">+${r.xp} XP</span>
+      </label>
+    </article>`).join("");
+  const locked = c.classItems.map(ci => `<article class="item px locked">
+      <div class="top"><span class="type tome">Class item</span><span class="stage">Locked</span></div>
+      <p class="cite">${ci.cite}</p>
+      <p class="muted" style="font-size:15px">Unlocks with ${esc(ci.track)}.</p>
+    </article>`).join("");
+  $("items").innerHTML = cards + locked;
+  const n = c.readings.length;
+  $("slots").innerHTML = Array.from({ length: 9 }, (_, i) =>
+    `<span class="slot${i < n ? " full" : ""}${i >= 7 ? " ghost" : ""}"></span>`).join("") +
+    `<span class="num" style="font-size:19px">${n} / 7 ± 2</span>`;
+  const lore = $("lore");
+  lore.hidden = !c.lore.length;
+  lore.innerHTML = c.lore.length ? `<div class="panel-head"><h3>Lore · founding myths</h3><span class="label">No XP, just history</span></div>
+    <ul>${c.lore.map(l => `<li>${l.cite} <span class="muted">${l.note}</span></li>`).join("")}</ul>` : "";
+}
+
+function spriteSVG(id) {
+  const s = DATA.sprites[id], pal = Object.assign({ k: "var(--sprite-line)" }, s.pal);
+  let lid = "", body = "";
+  s.rows.forEach((row, y) => [...row].forEach((ch, x) => {
+    if (ch === ".") return;
+    const cls = ch === "e" ? ' class="eye"' : (s.drip && ch === s.drip) ? ' class="drip"' : "";
+    const rect = `<rect x="${x}" y="${y}" width="1" height="1" fill="${pal[ch]}"${cls}/>`;
+    if (s.lid && y >= s.lid[0] && y <= s.lid[1]) lid += rect; else body += rect;
+  }));
+  return `<svg viewBox="0 0 16 16" aria-hidden="true">${body}<g class="lid">${lid}</g></svg>`;
+}
+
+function renderBeasts(c) {
+  $("beasts").innerHTML = c.monsters.map(b => {
+    const slain = !!state.beasts[b.id];
+    return `<article class="beast px${slain ? " slain" : ""}" id="beast-card-${b.id}">
+      <div class="plate">${spriteSVG(b.id)}<span class="stamp"${slain ? "" : " hidden"}>DEFEATED</span></div>
+      <div class="panel-head"><h3>${esc(b.name)}</h3><span class="danger" aria-label="Danger ${b.danger} of 5">${"■".repeat(b.danger)}${"□".repeat(5 - b.danger)}</span></div>
+      <dl>
+        <dt>Habitat</dt><dd>${esc(b.habitat)}</dd>
+        <dt>Lure</dt><dd>${esc(b.lure)}</dd>
+        <dt>Weakness</dt><dd>${esc(b.weakness)}</dd>
+        <dt>Weapon</dt><dd>${b.weapon}</dd>
+      </dl>
+      <label class="check" for="beast-${b.id}">
+        <input type="checkbox" id="beast-${b.id}" data-beast="${b.id}"${slain ? " checked" : ""}>
+        <span>I can spot it and defeat it</span><span class="xp">+${BEAST_XP} XP</span>
+      </label>
+    </article>`;
+  }).join("");
+}
+/* ---------- Acts II and III ---------- */
+function renderAct(act) {
+  const a = DATA.acts[act], t = act === "paths" ? DATA.tiers[2] : DATA.tiers[3];
+  const img = $("hero-img");
+  img.src = a.hero.src; img.alt = a.hero.alt; img.style.objectPosition = a.hero.pos;
+  $("hero-eyebrow").textContent = `${act === "paths" ? "Act II" : "Act III"} · ${t.label} · ${t.when}`;
+  $("hero-title").textContent = act === "paths" ? "Choose your path" : t.title;
+  $("tierchip").textContent = `${t.label} · ${t.title}`;
+  $("weekchip").textContent = t.when;
+  document.title = `Minimum Theoretical Quest Log · ${act === "paths" ? "Paths" : "Frontier"}`;
+}
+function hoursOf(st) {
+  const ex = st.hours.exercise || 0;
+  if (st.hours.reading) return ` · about ${st.hours.reading + ex} h`;
+  const hs = st.branches.map(b => b.hours).filter(Boolean);
+  return hs.length ? ` · about ${Math.min(...hs) + ex}–${Math.max(...hs) + ex} h` : "";
+}
+function renderPaths() {
+  const n = masteredIds().length;
+  $("paths-note").textContent = n === 8 ? "Tier 1 complete. Choose the stream your project lives in."
+    : `You can browse now and choose after Tier 1 (${n} of 8 competencies mastered). These streams are still a draft.`;
+  $("paths").innerHTML = DATA.streams.map(st => {
+    const opts = st.branches.length ? st.branches.map(b => ({ id: `${st.id}:${b.id}`, cls: b.cls, label: b.title })) : [{ id: st.id, cls: st.cls, label: "" }];
+    const groups = [["", st.shared.concat(st.readings)], ...st.branches.map(b => [b.title, b.readings])].filter(g => g[1].length);
+    const all = groups.flatMap(g => g[1]), read = all.filter(r => state.read[r.key]).length;
+    const list = groups.map(([title, rs]) => (title ? `<li class="label">Branch · ${esc(title)}</li>` : "") + rs.map(r => `
+      <li><label class="check" for="sr-${st.id}-${r.key}"><input type="checkbox" id="sr-${st.id}-${r.key}" data-read="${r.key}"${state.read[r.key] ? " checked" : ""}><span>${r.cite}</span><span></span></label></li>`).join("")).join("");
+    const chosen = opts.some(o => o.id === state.cls);
+    return `<article class="pathcard px${chosen ? " chosen" : ""}">
+      <span class="cls">${opts.map(o => esc(o.cls)).join(" · ")}</span>
+      <h3>${esc(st.name)}</h3>
+      <p style="font-size:15px">${esc(st.competency)}</p>
+      <p class="label">Builds on ${st.builds_on.competencies.map(c => `<a href="#${c.toLowerCase()}">${c}</a>`).join(" · ")}${hoursOf(st)}</p>
+      ${st.orientation ? `<p class="muted" style="font-size:14px"><b>For everyone else:</b> ${st.orientation.short}</p>` : ""}
+      <details><summary class="label" style="cursor:pointer">Required readings · ${read} of ${all.length} read</summary><ul>${list}</ul></details>
+      <p style="font-size:15px"><b>Project exercise.</b> ${esc(st.exercise)}</p>
+      ${st.branches.length ? `<details><summary class="label" style="cursor:pointer">Branch quests</summary><ul>${st.branches.map(b => `<li><b>${esc(b.cls)} · ${esc(b.title)}.</b> ${esc(b.exercise)}</li>`).join("")}</ul></details>` : ""}
+      <p style="font-size:15px"><b>Watch for.</b> ${esc(st.watch)}</p>
+      ${st.falsification_prompt ? `<p style="font-size:15px"><b>The Oracle asks.</b> ${esc(st.falsification_prompt)}</p>` : ""}
+      <div class="btnrow">${opts.map(o => `<button class="btn" type="button" data-cls="${o.id}" aria-pressed="${state.cls === o.id}">${state.cls === o.id ? "Chosen: " : "Choose "}${esc(o.cls)}${o.label ? ` · ${esc(o.label)}` : ""}</button>`).join("")}</div>
+    </article>`;
+  }).join("");
+}
+function renderFrontier() {
+  $("boss").textContent = DATA.acts.frontier.boss;
+  $("regions").innerHTML = DATA.frontier.map(f => `<article class="px panel region${f.speculative ? " spec" : ""}">
+    <div class="panel-head"><h3>${esc(f.title)}</h3><span class="label">${f.speculative ? "Speculative · uncharted" : "Uncharted region"}</span></div>
+    <p style="font-size:15px">${f.why}</p>
+    <details><summary class="label" style="cursor:pointer">Readings (${f.readings.length})</summary><ul>${f.readings.map(r => `<li>${r.cite}</li>`).join("")}</ul></details>
+  </article>`).join("");
+}
+document.addEventListener("click", (ev) => {
+  const b = ev.target.closest("[data-cls]");
+  if (!b) return;
+  state.cls = state.cls === b.dataset.cls ? "" : b.dataset.cls;
+  save(); renderPaths(); renderSheet(); renderNav();
+});
+
+/* ---------- Skill tree: simplicial complex, Betti numbers, semantic horizon ---------- */
+const V = { C1: [300, 322], C2: [150, 252], C3: [110, 122], C4: [300, 192], C5: [490, 122], C6: [210, 46], C7: [450, 252], C8: [390, 46] };
+const LABEL_DY = { C6: -24, C8: -24 };
+const EDGES = [["C1","C2"],["C1","C4"],["C1","C7"],["C2","C3"],["C2","C4"],["C3","C4"],["C4","C7"],["C4","C5"],["C5","C7"],["C3","C6"],["C4","C6"],["C4","C8"],["C6","C8"],["C5","C8"]];
+const TRIS = [["C1","C2","C4"],["C1","C4","C7"],["C2","C3","C4"],["C4","C5","C7"],["C3","C4","C6"],["C4","C6","C8"],["C4","C5","C8"]];
+const ek = (a, b) => [a, b].sort().join("|"), tk = (t) => [...t].sort().join("|");
+const DEMO = { v: ["C1", "C2", "C3", "C4"], e: [["C1","C2"],["C1","C4"],["C2","C4"],["C2","C3"],["C3","C4"]], t: [["C1","C2","C4"]] };
+let demo = false, demoFilled = false, curR = null, anim = 0;
+
+function complexNow() {
+  if (demo) {
+    const t = DEMO.t.slice(); if (demoFilled) t.push(["C2", "C3", "C4"]);
+    return { v: new Set(DEMO.v), e: new Set(DEMO.e.map(([a, b]) => ek(a, b))), t: new Set(t.map(tk)) };
+  }
+  const m = new Set(masteredIds());
+  return { v: m, e: new Set(EDGES.filter(([a, b]) => m.has(a) && m.has(b)).map(([a, b]) => ek(a, b))),
+           t: new Set(TRIS.filter(t => t.every(id => m.has(id) && synthesisDone(BY[id]))).map(tk)) };
+}
+function betti(c) {
+  const parent = {}; c.v.forEach(v => parent[v] = v);
+  const find = (x) => parent[x] === x ? x : (parent[x] = find(parent[x]));
+  c.e.forEach(k => { const [a, b] = k.split("|"); parent[find(a)] = find(b); });
+  const b0 = [...c.v].filter(v => find(v) === v).length;
+  return { b0, b1: b0 - c.v.size + c.e.size - c.t.size }; /* no 2-cycles in this complex, so χ = β0 − β1 */
+}
+function horizon() {
+  const x = totalXP(), delta = 0.5 * Math.exp(-x / 400), r = -Math.log(delta);
+  return { delta, r, px: Math.min(210, 64 * r) };
+}
+const anchors = () => demo ? DEMO.v : ["C1", ...masteredIds().filter(id => id !== "C1")];
+function horizonSeen(R) {
+  const rad = R === undefined ? (demo ? 330 : horizon().px) : R, m = new Set(demo ? DEMO.v : masteredIds());
+  return new Set(Object.keys(V).filter(id => m.has(id) ||
+    anchors().some(a => Math.hypot(V[id][0] - V[a][0], V[id][1] - V[a][1]) <= rad + 4)));
+}
+function drawTree(R) {
+  const c = complexNow(), seen = horizonSeen(R), pt = (id) => V[id].join(",");
+  let s = `<defs><filter id="blur"><feGaussianBlur stdDeviation="2"/></filter></defs>`;
+  anchors().forEach(a => { s += `<circle class="horizon" cx="${V[a][0]}" cy="${V[a][1]}" r="${R.toFixed(1)}"/>`; });
+  if (V.C1[1] - R > 18) s += `<text class="hzlabel" x="${V.C1[0] + 8}" y="${(V.C1[1] - R - 6).toFixed(1)}">semantic horizon</text>`;
+  TRIS.forEach(t => { if (c.t.has(tk(t))) s += `<polygon class="tri" points="${t.map(pt).join(" ")}"/>`; });
+  const holes = TRIS.filter(t => !c.t.has(tk(t)) && [[t[0], t[1]], [t[1], t[2]], [t[0], t[2]]].every(([a, b]) => c.e.has(ek(a, b))));
+  holes.forEach(t => {
+    s += `<polygon class="hole" points="${t.map(pt).join(" ")}"/>`;
+    const mx = t.reduce((a, id) => a + V[id][0], 0) / 3, my = t.reduce((a, id) => a + V[id][1], 0) / 3;
+    s += `<text class="holemark" x="${mx}" y="${my + 4}">β₁ hole</text>`;
+  });
+  EDGES.forEach(([a, b]) => {
+    const fog = !(seen.has(a) && seen.has(b));
+    s += `<line class="edge${c.e.has(ek(a, b)) ? " done" : ""}${fog ? " fogged" : ""}" x1="${V[a][0]}" y1="${V[a][1]}" x2="${V[b][0]}" y2="${V[b][1]}"/>`;
+  });
+  Object.keys(V).forEach(id => {
+    const [x, y] = V[id], done = c.v.has(id), fog = !seen.has(id), name = BY[id].short;
+    const vstate = done ? "mastered" : fog ? "beyond the horizon" : "in sight";
+    s += `<g class="vg${fog ? " fogged" : ""}" data-c="${id}" tabindex="0" role="link" aria-label="${id} ${esc(name)}, ${vstate}">`;
+    if (id === cur && !demo && view === "comp") s += `<circle class="cur" cx="${x}" cy="${y}" r="19"/>`;
+    s += `<circle class="v${done ? " done" : ""}" cx="${x}" cy="${y}" r="15"/>`;
+    s += `<text class="vid" x="${x}" y="${y}">${id}</text>`;
+    s += `<text class="vlabel" x="${x}" y="${y + (LABEL_DY[id] || 34)}" style="paint-order:stroke;stroke:var(--paper-2);stroke-width:4px">${fog ? "? ? ?" : esc(name)}</text></g>`;
+  });
+  $("tree").innerHTML = s;
+  const h = horizon(), b = betti(c);
+  $("delta").textContent = demo ? "Δ = 0.020 · r* = 3.91β (month 6 preview)" : `Δ = ${h.delta.toFixed(3)} · r* = ${h.r.toFixed(2)}β · ${seen.size} of 8 in sight`;
+  $("betti").textContent = `β₀ = ${b.b0} · β₁ = ${b.b1}${b.b1 > 0 ? " · your knowledge has a hole" : ""}`;
+  const hint = $("holehint");
+  hint.hidden = demo || !holes.length;
+  if (!hint.hidden) {
+    const need = [...new Set(holes.flat())].filter(id => !synthesisDone(BY[id]));
+    hint.textContent = `To fill it, read the synthesis items of ${need.join(", ")}.`;
+  }
+  $("fill").hidden = !demo;
+  $("fill").textContent = demoFilled ? "Hole filled" : "Fill the hole";
+  $("fill").disabled = demoFilled;
+}
+function renderTree() {
+  const target = demo ? 330 : horizon().px;
+  cancelAnimationFrame(anim);
+  if (curR === null || reduced) { curR = target; drawTree(curR); return; }
+  const from = curR, t0 = performance.now();
+  const step = (now) => {
+    const k = Math.min(1, (now - t0) / 700), e = 1 - Math.pow(1 - k, 3);
+    curR = from + (target - from) * e; drawTree(curR);
+    if (k < 1) anim = requestAnimationFrame(step);
+  };
+  anim = requestAnimationFrame(step);
+}
+
+/* ---------- Progress, level-up ---------- */
+function updateProgress(prevSeen) {
+  const x = totalXP(), n = masteredIds().length, c = BY[cur];
+  $("xpbar").style.width = `${(100 * x / TOTAL_MAX).toFixed(1)}%`;
+  $("xptext").textContent = `${x} / ${TOTAL_MAX} XP`;
+  $("lv").textContent = `LV ${1 + n}`;
+  $("quest-xp").textContent = `${compXP(c)} / ${compMax(c)} XP in ${c.id}`;
+  $("road-progress").textContent = `${n} of 8 competencies mastered. Everyone, every project.`;
+  renderNav(); renderSheet(); renderTree();
+  const newly = COMPS.find(k => mastered(k) && !state.celebrated[k.id]);
+  COMPS.forEach(k => { if (!mastered(k) && state.celebrated[k.id]) delete state.celebrated[k.id]; });
+  if (newly) {
+    state.celebrated[newly.id] = true; save();
+    const lifted = prevSeen ? [...horizonSeen()].filter(id => !prevSeen.has(id)).map(id => BY[id].short) : [];
+    levelUp(`${newly.id} · ${newly.title} mastered.` + (lifted.length ? ` The fog lifts on ${lifted.join(", ")}.` : ""));
+  }
+}
+function levelUp(text) {
+  $("lutext").textContent = text;
+  $("levelup").hidden = false;
+  $("luclose").focus();
+  if (!reduced) burst();
+}
+function closeLevelUp() { $("levelup").hidden = true; $("tree").scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" }); }
+function burst() {
+  const cv = $("fx"), ctx = cv.getContext("2d"), W = cv.width = innerWidth, H = cv.height = innerHeight;
+  const cs = getComputedStyle(document.documentElement);
+  const cols = ["--mana-glow", "--gold", "--accent"].map(v => cs.getPropertyValue(v).trim());
+  const P = Array.from({ length: 140 }, () => {
+    const a = Math.random() * Math.PI * 2, sp = 3 + Math.random() * 7;
+    return { x: W / 2, y: H / 2, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 3, s: 4 + 4 * Math.floor(Math.random() * 2), c: cols[Math.floor(Math.random() * 3)], life: 1 };
+  });
+  const t0 = performance.now();
+  const frame = (now) => {
+    ctx.clearRect(0, 0, W, H);
+    P.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += 0.18; p.life -= 0.012; if (p.life > 0) { ctx.globalAlpha = p.life; ctx.fillStyle = p.c; ctx.fillRect(Math.round(p.x / 4) * 4, Math.round(p.y / 4) * 4, p.s, p.s); } });
+    if (now - t0 < 2200 && !$("levelup").hidden) requestAnimationFrame(frame); else ctx.clearRect(0, 0, W, H);
+  };
+  requestAnimationFrame(frame);
+}
+
+/* ---------- The Archivist ---------- */
+let li = 0, typing = 0;
+function say(i) {
+  clearInterval(typing); typing = 0;
+  const lines = dialogLines(), el = $("line"), text = lines[i];
+  li = i;
+  $("next").firstChild.textContent = i === lines.length - 1 ? "From the top " : "Next ";
+  if (reduced) { el.textContent = text; return; }
+  let n = 0; el.textContent = "";
+  typing = setInterval(() => { n += 1; el.textContent = text.slice(0, n); if (n >= text.length) { clearInterval(typing); typing = 0; } }, 22);
+}
+$("next").addEventListener("click", () => {
+  if (typing) { clearInterval(typing); typing = 0; $("line").textContent = dialogLines()[li]; return; }
+  say((li + 1) % dialogLines().length);
+});
+
+/* ---------- Events ---------- */
+function go(id) { if (BY[id]) location.hash = id.toLowerCase(); }
+$("tree").addEventListener("click", (e) => { const g = e.target.closest(".vg"); if (g) go(g.dataset.c); });
+$("tree").addEventListener("keydown", (e) => {
+  const g = e.target.closest(".vg");
+  if (g && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); go(g.dataset.c); }
+});
+document.addEventListener("click", (ev) => {
+  const pip = ev.target.closest(".pip");
+  if (!pip) return;
+  const { stat, val } = pip.dataset;
+  state.stats[stat] = +val; save(); renderSheet();
+  document.querySelector(`.pip[data-stat="${stat}"][data-val="${val}"]`).focus();
+});
+document.addEventListener("change", (ev) => {
+  const t = ev.target, c = BY[cur], prev = horizonSeen();
+  if (t.dataset.step !== undefined) { const a = stepsOf(c); a[+t.dataset.step] = t.checked; state.steps[c.id] = a; }
+  else if (t.dataset.read) state.read[t.dataset.read] = t.checked;
+  else if (t.dataset.beast) {
+    state.beasts[t.dataset.beast] = t.checked;
+    const card = $(`beast-card-${t.dataset.beast}`);
+    card.classList.toggle("slain", t.checked);
+    card.querySelector(".stamp").hidden = !t.checked;
+  }
+  else if (t.id === "checkpoint") state.checkpoint[c.id] = t.checked;
+  else return;
+  save(); updateProgress(prev);
+  $("fognote").hidden = horizonSeen().has(cur);
+  if (view === "paths") renderPaths();
+});
+$("name").addEventListener("input", (e) => { state.name = e.target.value; save(); });
+$("oracle").addEventListener("input", (e) => { state.oracle[cur] = e.target.value; save(); });
+$("demo").addEventListener("click", () => {
+  demo = !demo; demoFilled = false;
+  $("demo").setAttribute("aria-pressed", String(demo));
+  $("demo").textContent = demo ? "Back to my progress" : "Preview month 6";
+  renderTree();
+});
+$("fill").addEventListener("click", () => { demoFilled = true; renderTree(); });
+$("luclose").addEventListener("click", closeLevelUp);
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("levelup").hidden) closeLevelUp(); });
+let armed = 0;
+$("reset").addEventListener("click", () => {
+  const b = $("reset");
+  if (!armed) { b.textContent = "Click again to erase"; armed = setTimeout(() => { armed = 0; b.textContent = "Reset my progress"; }, 4000); return; }
+  clearTimeout(armed); armed = 0; b.textContent = "Progress erased";
+  state = fresh(); save(); renderAll();
+  setTimeout(() => { b.textContent = "Reset my progress"; }, 2000);
+});
+window.addEventListener("hashchange", () => { renderAll(); window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" }); });
+
+function renderAll() {
+  const r = route(), changed = cur !== r.comp || view !== r.view;
+  view = r.view; cur = r.comp;
+  ["comp", "paths", "frontier"].forEach(v => { $(`view-${v}`).hidden = view !== v; });
+  if (view === "comp") { const c = BY[cur]; renderHero(c); renderQuest(c); renderInventory(c); renderBeasts(c); }
+  else if (view === "paths") { renderAct("paths"); renderPaths(); }
+  else { renderAct("frontier"); renderFrontier(); }
+  document.querySelectorAll(".herebadge").forEach(b => { b.hidden = b.dataset.act !== ACTS[view]; });
+  $("name").value = state.name;
+  $("foot").textContent = `Prototype built ${DATA.built} from the noncanonical v2 draft, with the ${DATA.decided} decisions applied. Readings and tasks will change. Your progress stays in this browser.`;
+  updateProgress(null);
+  if (changed || li === 0) say(0);
+}
+renderAll();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+# NPLab Minimum Theoretical — reference computational environment.
+# (Referenced by README; mirrors tools/computational_tools.md. A starting point,
+#  not a locked manifest — pin versions per project.)
+# Core scientific stack
+numpy
+scipy
+pandas
+matplotlib
+seaborn
+# Network science
+networkx
+python-igraph
+hypernetx
+xgi
+# graph-tool is conda/system only: `conda install -c conda-forge graph-tool`
+# Topological data analysis
+gudhi
+ripser
+giotto-tda
+dionysus
+# Machine learning
+torch
+torch-geometric
+scikit-learn
+jax
+# Information theory
+dit
+idtxl
+POT            # Python Optimal Transport
+# JIDT is a Java toolkit (jpype1 bridge): pip install jpype1
+jpype1
+# Neuroscience
+nilearn
+mne
+brainspace
+nibabel
+# Notebooks / tooling
+jupyter
