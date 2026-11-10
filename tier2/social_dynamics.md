@@ -10,6 +10,7 @@ all of them.
 - **Granovetter (1973)** — *The strength of weak ties.* American Journal of Sociology. Why network structure matters for social dynamics.
 - **Alvarez-Rodriguez, Battiston, de Arruda, Moreno, Perc & Latora (2021)** — *Evolutionary dynamics of higher-order interactions in social dilemmas.* Nature Human Behaviour. Higher-order game theory.
 - **Daley & Kendall (1965)** — *Stochastic rumours.* IMA Journal of Applied Mathematics. The Daley–Kendall rumour model.
+- **Castellano, Fortunato & Loreto (2009)** — *Statistical physics of social dynamics.* Reviews of Modern Physics 81, 591–646. The review of opinion, cultural and language dynamics: voter model, Axelrod, naming game.
 - **Baronchelli, Felici, Loreto, Caglioti & Steels (2006)** — *Sharp transition towards shared vocabularies in multi-agent systems.* J. Stat. Mech. The naming game.
 - **Nowak & May (1992)** — *Evolutionary games and spatial chaos.* Nature. Mandatory for evolutionary game theory on networks.
 - **Santos & Pacheco (2005)** — *Scale-free networks provide a unifying framework for the emergence of cooperation.* PRL. Topology and cooperation.

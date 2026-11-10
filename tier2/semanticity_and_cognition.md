@@ -17,9 +17,10 @@ what are the limits?
 - **Mollica et al. (2021)** — *The forms and meanings of grammatical markers support efficient communication.* PNAS. Extends IB efficiency beyond color to grammar.
 - **Sims (2016)** — *Rate–distortion theory and human perception.* Cognition. Rate-distortion applied to cognitive-limits.
 - **Nurisso, Fernando, Deshpande, …, Cohen & Petri (2025)** — *Bound by Semanticity.* ICLR 2026. The lab's flagship: the generalization–identification tradeoff, a Pareto frontier, a 1/n capacity collapse, and Shepard's law derived from first principles; tested on VLMs and CNNs.
-- **Frankland, Marjieh, Nurisso et al. (2025)** — *Curse of Generalization.* Psychological Review (submitted). Compositional vs semantic compression in cognition.
+- **Frankland, Marjieh, Nurisso et al. (2025)** — *Curse of Generalization.* Psychological Review (accepted, 2026). Compositional vs semantic compression in cognition.
 - **Savietto, Campbell, Panisson, Nurisso, Petri, Cohen & Perotti (2026)** — *The geometry of representational failures in vision-language models.* ICML 2026 (accepted). arXiv:2602.07025. Empirical companion — vision-language models fail exactly where the semanticity framework predicts.
 - **Jakob & Gershman (2023)** — *Rate-distortion theory of neural coding and its implications for working memory.* eLife. Rate-distortion applied to neural coding.
+- **Ferrer i Cancho & Solé (2003)** — *Least effort and the origins of scaling in human language.* PNAS 100, 788–791. Zipf's law from a speaker–listener least-effort trade-off: a compression account of communication to read alongside the semanticity programme.
 
 ## Connection to other topics
 

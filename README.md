@@ -1,7 +1,7 @@
 # NPLab — Minimum Theoretical
 
 > **Start here.** New members follow [the route](curriculum/README.md): Tier 0 diagnostic → Tier 1, the Common Language (8 competencies) → Tier 2 research streams → Tier 3 frontier.
-> Read it on the web, [plain](https://lordgrilo.github.io/minimum-theoretical/) or as a [quest](https://lordgrilo.github.io/minimum-theoretical/quest/). This page is the full reading atlas; ⭐ marks the 46 readings on the route.
+> Read it on the web, [plain](https://lordgrilo.github.io/minimum-theoretical/) or as a [quest](https://lordgrilo.github.io/minimum-theoretical/quest/). This page is the full reading atlas; ⭐ marks the 48 readings on the route.
 
 
 The core theoretical knowledge base for members of NPLab (Network Science Institute,

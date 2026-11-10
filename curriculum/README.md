@@ -69,11 +69,11 @@ _Ongoing._ What the lab is building rather than using. Nothing here is required;
 
 ## The Atlas
 
-The full reading list, organised by topic and tier. Use it as a reference: it is deliberately larger than any route through it. It holds 230 entries across Tiers 0–3: [open the atlas](../README.md).
+The full reading list, organised by topic and tier. Use it as a reference: it is deliberately larger than any route through it. It holds 244 entries across Tiers 0–3: [open the atlas](../README.md).
 
 ## Other ways to read this
 
 - [Plain web version](https://lordgrilo.github.io/minimum-theoretical/)
 - [Quest mode](https://lordgrilo.github.io/minimum-theoretical/quest/), the same route as a role-playing game
 
-_Generated 2026-10-31 from the reading-list YAML. Edit the master, not this file._
+_Generated 2026-11-11 from the reading-list YAML. Edit the master, not this file._

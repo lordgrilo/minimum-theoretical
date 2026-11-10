@@ -22,6 +22,10 @@ _Tier 1 · The Common Language · Week 4 · draft curriculum_
   First dedicated textbook. Algebraic topology, Hodge theory, higher-order dynamics. Essential for higher-order network theory.
 - Bick, Gross, Harrington & Schaub (2023), *What are higher-order networks?* SIAM Review.
   When higher-order representations are justified vs. modelling choices.
+- Kivelä, Arenas, Barthelemy, Gleeson, Moreno & Porter (2014), *Multilayer networks.* Journal of Complex Networks 2, 203–271.
+  The formalism for networks with several kinds of edges or layers: when a multilayer description is needed, and what aggregating the layers throws away.
+- Holme & Saramäki (2012), *Temporal networks.* Physics Reports 519, 97–125.
+  Edges that exist only at certain times: time-respecting paths, burstiness, and why aggregating over time changes what can spread.
 
 ### Synthesis
 

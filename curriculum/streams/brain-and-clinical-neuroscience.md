@@ -8,7 +8,7 @@ _Brain, clinical, and multivariate neuroscience · from month 4 · draft v0.2 (2
 
 **If this is not your stream, read:** Bassett & Sporns (2017), *Network neuroscience.* Nature Neuroscience.
 
-_Estimated load: about 75 hours of reading and 40 for the exercise, over months 4–8._
+_Estimated load: about 82 hours of reading and 40 for the exercise, over months 4–8._
 
 ## Required readings
 
@@ -29,6 +29,8 @@ _Estimated load: about 75 hours of reading and 40 for the exercise, over months 
   Why: The method under our brain higher-order pipelines. Read it against co-fluctuation statistics that reduce to pairwise structure.
 - Petri, Expert, Turkheimer, Carhart-Harris, Nutt, Hellyer & Vaccarino (2014), *Homological scaffolds of brain functional networks.* J. R. Soc. Interface.
   Why: Homological scaffolds, the topology method in several of our brain projects. Read it against the possibility that scaffold edges simply track weighted strength.
+- Luppi, Mediano, Rosas, Holland, Fryer, O'Brien, Rowe, Menon, Bor & Stamatakis (2022), *A synergistic core for human brain evolution and cognition.* Nature Neuroscience 25, 771–782.
+  Why: The whole-brain map of where synergy and redundancy sit. Read it before Luppi 2024, and ask what a matched surrogate would show.
 
 ## Project exercise
 
@@ -52,6 +54,8 @@ Confusing a high-dimensional biomarker, decoding result, or group difference wit
 - Li, Calhoun, Ballem, Iraji, Yu & Malo (2023), *Aberrant high-order dependencies in schizophrenia resting-state fMRI networks.* arXiv:2310.17445 (NeurIPS 2023 workshop)
 - Lord, Expert, Fernandes, Petri et al. (2016), *Insights into brain architectures from the homological scaffolds of functional connectivity networks.* Frontiers in Systems Neuroscience.
 - Billings, Saggar, Keilholz, Petri & Mantzaris (2021), *Simplicial and topological descriptions of human brain dynamics.* Network Neuroscience.
+- Gava, Lefèvre et al. (2024), *Organizing the coactivity structure of the hippocampus from robust to flexible memory.* Science 385, 1120–1127.
+- Sun, Winnubst et al. (2025), *Learning produces an orthogonalized state machine in the hippocampus.* Nature 640, 165–175.
 
 ---
 

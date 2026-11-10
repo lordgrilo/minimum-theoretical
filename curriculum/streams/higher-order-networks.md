@@ -8,7 +8,7 @@ _Higher-order network theory, dynamics, and reconstruction · from month 4 · dr
 
 **If this is not your stream, read:** Battiston et al. (2021), *The physics of higher-order interactions in complex systems.* Nature Physics.
 
-_Estimated load: about 60 hours of reading and 35 for the exercise, over months 4–8._
+_Estimated load: about 67 hours of reading and 35 for the exercise, over months 4–8._
 
 ## Required readings
 
@@ -26,6 +26,8 @@ _Estimated load: about 60 hours of reading and 35 for the exercise, over months 
   Why: Higher-order null models: how to ask whether a group effect is real. Read it against a pairwise null that preserves degree and group-size heterogeneity.
 - Petri & Barrat (2018), *Simplicial activity driven model.* Physical Review Letters.
   Why: The minimal generative model for temporal group interactions; you will use it as a benchmark. Read it against a pairwise activity-driven model with heterogeneous activity.
+- Perra, Gonçalves, Pastor-Satorras & Vespignani (2012), *Activity driven modeling of time varying networks.* Scientific Reports 2, 469.
+  Why: The pairwise activity-driven baseline. Any temporal higher-order effect has to beat it before it counts.
 
 ### Re-read at depth (from Tier 1)
 
@@ -51,6 +53,8 @@ Treating a convenient higher-order encoding, dynamical fit, or reconstruction as
 - Mancastroppa, Iacopini, Petri & Barrat (2023), *Hyper-cores promote localization and efficient seeding in higher-order processes.* Nature Communications.
 - Lucas, Iacopini, Robiglio, Barrat & Petri (2023), *Simplicially driven simple contagion.* Physical Review Research.
 - Nurisso, Vaccarino & Petri (2024), *A unified framework for simplicial Kuramoto models.* Chaos.
+- De Domenico, Nicosia, Arenas & Latora (2015), *Structural reducibility of multilayer networks.* Nature Communications 6, 6864.
+- Valdano, Ferreri, Poletto & Colizza (2015), *Analytical computation of the epidemic threshold on temporal networks.* Physical Review X 5, 021005.
 
 ---
 

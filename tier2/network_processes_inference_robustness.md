@@ -9,7 +9,7 @@ not part of the Tier 1 minimum.
 
 - **Albert & Barabási (2002)** — *Statistical mechanics of complex networks.* Reviews of Modern Physics. Framed network science as a branch of statistical physics.
 - **Fortunato (2010)** — *Community detection in graphs.* Physics Reports. Comprehensive review of community detection.
-- ⭐ **Barrat, Barthélemy & Vespignani (2008)** — *Dynamical Processes on Complex Networks.* Cambridge. Essential companion to Newman. Ch. 7 (synchronization), 9 (epidemics), 10 (social dynamics).
+- ⭐ **Barrat, Barthélemy & Vespignani (2008)** — *Dynamical Processes on Complex Networks.* Cambridge. Essential companion to Newman. First pass: Ch. 4–7 and 9 (phase transitions, resilience and robustness, synchronization, epidemic spreading).
 - ⭐ **Pastor-Satorras & Vespignani (2001)** — *Epidemic spreading in scale-free networks.* PRL. Absence of an epidemic threshold in scale-free networks.
 - **Pastor-Satorras, Castellano, Van Mieghem & Vespignani (2015)** — *Epidemic processes in complex networks.* Reviews of Modern Physics. Definitive review of two decades of epidemic spreading.
 - ⭐ **Newman (2002)** — *Spread of epidemic disease on networks.* Physical Review E. Maps SIR epidemics onto bond percolation.

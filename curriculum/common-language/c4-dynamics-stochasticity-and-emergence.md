@@ -15,7 +15,7 @@ _Tier 1 · The Common Language · Weeks 5–6 · draft curriculum_
   Best introductory text. Ch. 1–8.
 - Barrat, Barthélemy & Vespignani (2008), *Dynamical Processes on Complex Networks.* Cambridge.
   First pass: Chapters 4–7 and 9: dynamical processes, phase transitions, resilience and robustness, synchronization, epidemic spreading; plus the appendix on the generating-functions formalism (pp. 303–305).
-  Essential companion to Newman. Ch. 7 (synchronization), 9 (epidemics), 10 (social dynamics).
+  Essential companion to Newman. First pass: Ch. 4–7 and 9 (phase transitions, resilience and robustness, synchronization, epidemic spreading).
 - Pastor-Satorras & Vespignani (2001), *Epidemic spreading in scale-free networks.* PRL.
   Absence of an epidemic threshold in scale-free networks.
 

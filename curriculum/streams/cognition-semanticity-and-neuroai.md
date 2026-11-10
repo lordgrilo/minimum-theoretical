@@ -54,7 +54,7 @@ Promoting geometric alignment, sparse features, information compression, a scali
 ## Case material (optional)
 
 - Savietto, Campbell, Panisson, Nurisso, Petri, Cohen & Perotti (2026), *The geometry of representational failures in vision-language models.* ICML 2026 (accepted). arXiv:2602.07025.
-- Frankland, Marjieh, Nurisso et al. (2025), *Curse of Generalization.* Psychological Review (submitted).
+- Frankland, Marjieh, Nurisso et al. (2025), *Curse of Generalization.* Psychological Review (accepted, 2026).
 - Petri, Musslick, Dey, Özcimder, Turner, Ahmed, Willke & Cohen (2021), *Topological limits to the parallel processing capability of network architectures.* Nature Physics.
 - Musslick, Dey, Özcimder, Paber, Petri et al. (2016), *Multitasking capability versus learning efficiency in neural network architectures.* CogSci.
 - Petri, Musslick & Cohen (2024), *An information-theoretic approach to reward rate optimization in controlled and automatic processing.* eLife.
@@ -63,6 +63,7 @@ Promoting geometric alignment, sparse features, information compression, a scali
 - Clopath, Büsing, Vasilaki & Gerstner (2010), *Connectivity reflects coding: a model of voltage-based STDP with homeostasis.* Nature Neuroscience.
 - Nakkiran et al. (2021), *Deep double descent.* JMLR / ICLR.
 - Goldstein, Zada, Buchnik, …, Hasson (2022), *Shared computational principles for language processing in humans and deep language models.* Nature Neuroscience 25(3):369–380.
+- Ferrer i Cancho & Solé (2003), *Least effort and the origins of scaling in human language.* PNAS 100, 788–791.
 
 ---
 

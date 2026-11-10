@@ -22,7 +22,7 @@ _Social, collective, and animal communication · from month 4 · draft v0.2 (202
 
 ## Branch: Social coordination
 
-_Estimated reading load: about 45 hours._
+_Estimated reading load: about 57 hours._
 
 - Granovetter (1973), *The strength of weak ties.* American Journal of Sociology.
   Why: Tie strength and structure shape what can spread; this is the starting point for any social contagion claim.
@@ -32,6 +32,8 @@ _Estimated reading load: about 45 hours._
   Why: Group interactions change social dilemmas: the higher-order game theory our coordination claims rest on.
 - Preti, De Francisci Morales, Iacopini & Petri (2024), *Higher-order null models as a lens for social systems.* Physical Review X.
   Why: The higher-order null for social data. Read it against a pairwise null that preserves activity.
+- Castellano, Fortunato & Loreto (2009), *Statistical physics of social dynamics.* Reviews of Modern Physics 81, 591–646.
+  Why: One review for the voter model, Axelrod and the naming game: the statistical physics every coordination claim is measured against.
 
 ### Project exercise
 

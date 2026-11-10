@@ -25,6 +25,12 @@ How to quantify genuine multivariate dependency — synergy, redundancy, integra
   Foundational Partial Information Decomposition (PID).
 - Timme & Lapish (2018), *A tutorial for information theory in neuroscience.* eNeuro.
   Practical guide to applying IT measures to neural data.
+- Rosas, Mediano, Luppi, Boyd, Berta, Jensen, Gastpar & Carroll (2026), *Four faces of information in natural systems.* Nature Reviews Physics 8, 654–666.
+  A current map of what information can mean in natural systems; read it before choosing a decomposition.
+- Dupret, Fusi & Panzeri (2026), *Neural population activity for memory: properties, computations, and codes.* Neuron 114, 390–407.
+  Redundancy and synergy in memory codes. It does not equate redundancy with stability or synergy with flexibility; that mapping is our own extension.
+- Antonacci, Barà, Sparacino, Marinazzo, Faes & Stramaglia (2026), *From statistical to structural synergy: a predictability framework to quantify the effects due to high-order mechanisms.* arXiv:2607.07286.
+  Separates statistical synergy from synergy produced by genuine high-order mechanisms.
 - Varley & Sporns (2022), *Multivariate information theory.* (tutorial/review).
   Review of multivariate IT measures.
 - Robiglio, Neri, Iacopini, Petri & Barrat (2024), *Synergistic signatures of group mechanisms in higher-order systems.*
