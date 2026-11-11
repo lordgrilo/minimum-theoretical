@@ -22,8 +22,8 @@ _Estimated load: about 75 hours of reading and 40 for the exercise, over months 
   Why: Compositional, tensor-product encodings: the main alternative to semantic compression.
 - Elhage, Hume, Olsson et al. (2022), *Toy models of superposition.* Anthropic / Transformer Circuits.
   Why: Superposition explains capacity limits without any semantics. It is the counter-explanation you have to rule out.
-- Belkin, Hsu, Ma & Mandal (2019), *Reconciling modern machine-learning practice and the classical bias–variance trade-off.* PNAS.
-  Why: The generic account of double descent, which a semantic account has to outperform.
+- Ferrer i Cancho & Solé (2003), *Least effort and the origins of scaling in human language.* PNAS 100, 788–791.
+  Why: Zipf's law from a speaker–listener least-effort trade-off: the classic compression account of communication, which a semantic-horizon account has to contain or beat.
 - Schrimpf, Blank, Tuckute, Kauf, Hosseini, Kanwisher, Tenenbaum & Fedorenko (2021), *The neural architecture of language: integrative modeling converges on predictive processing.* PNAS 118(45):e2105646118.
   Why: The evidential bar for claims that a model's representations match the brain's.
 - Miller & Cohen (2001), *An integrative theory of prefrontal cortex function.* Annual Review of Neuroscience.
@@ -62,8 +62,8 @@ Promoting geometric alignment, sparse features, information compression, a scali
 - Greff, van Steenkiste & Schmidhuber (2020), *On the binding problem in artificial neural networks.* arXiv:2012.05208.
 - Clopath, Büsing, Vasilaki & Gerstner (2010), *Connectivity reflects coding: a model of voltage-based STDP with homeostasis.* Nature Neuroscience.
 - Nakkiran et al. (2021), *Deep double descent.* JMLR / ICLR.
+- Belkin, Hsu, Ma & Mandal (2019), *Reconciling modern machine-learning practice and the classical bias–variance trade-off.* PNAS.
 - Goldstein, Zada, Buchnik, …, Hasson (2022), *Shared computational principles for language processing in humans and deep language models.* Nature Neuroscience 25(3):369–380.
-- Ferrer i Cancho & Solé (2003), *Least effort and the origins of scaling in human language.* PNAS 100, 788–791.
 
 ---
 
