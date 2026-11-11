@@ -16,6 +16,7 @@ Tier 2 (Network Processes, Inference & Robustness).
 - **Chung (1997)** — *Spectral Graph Theory.* CBMS / AMS. Foundational Laplacian spectral methods — grounding for Hodge Laplacians and Laplacian renormalization.
 - **Newman (2006)** — *Modularity and community structure in networks.* PNAS. The modularity matrix and spectral community detection.
 - ⭐ **Peixoto (2023)** — *Descriptive vs. inferential community detection in networks.* Cambridge Elements. The principled network-inference position statement.
+- **Delvenne, Yaliraki & Barahona (2010)** — *Stability of graph communities across time scales.* PNAS 107, 12755–12760. Markov stability: a partition read as a time scale of a diffusion process. The bridge from graph operators to coarse-graining, and a check on choosing the preserved quantity after the fact.
 
 ## Connection to other topics
 

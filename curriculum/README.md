@@ -54,7 +54,7 @@ _Months 4–8._ Go deep in one stream and stay literate in the others: one orien
 - [Social, collective and animal communication](streams/social-collective-and-animal-communication.md). Model coordination and communication across agents while respecting the different evidential standards of social experiments, field behaviour, and synthetic agents. Orientation reading for everyone else: Baronchelli, Felici, Loreto, Caglioti & Steels (2006).
 - [Renormalization and criticality](streams/renormalization-and-criticality.md). Choose and test scale transformations, diagnose genuine critical behaviour, and quantify the trade-off between preserved dynamics, prediction, and reconstruction. Orientation reading for everyone else: Gabrielli, Garlaschelli, Patil & Serrano (2025).
 
-_Streams: draft v0.2 (2026-10-09), reconciled with Tier 1 and awaiting review._
+_Streams: draft v0.3 (2026-11-11), reconciled with Tier 1 and awaiting review._
 
 ## Tier 3 · The Frontier
 
@@ -69,7 +69,7 @@ _Ongoing._ What the lab is building rather than using. Nothing here is required;
 
 ## The Atlas
 
-The full reading list, organised by topic and tier. Use it as a reference: it is deliberately larger than any route through it. It holds 244 entries across Tiers 0–3: [open the atlas](../README.md).
+The full reading list, organised by topic and tier. Use it as a reference: it is deliberately larger than any route through it. It holds 242 entries across Tiers 0–3: [open the atlas](../README.md).
 
 ## Other ways to read this
 

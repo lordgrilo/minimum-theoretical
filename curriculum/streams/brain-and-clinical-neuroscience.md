@@ -1,6 +1,6 @@
 # Tier 2 · Brain and clinical neuroscience
 
-_Brain, clinical, and multivariate neuroscience · from month 4 · draft v0.2 (2026-10-09), reconciled with Tier 1 and awaiting review_
+_Brain, clinical, and multivariate neuroscience · from month 4 · draft v0.3 (2026-11-11), reconciled with Tier 1 and awaiting review_
 
 **You will be able to:** Connect neural measurement and preprocessing to network, topological, and multivariate-information claims, with reproducibility and confound checks.
 

@@ -1,6 +1,6 @@
 # Tier 2 · Cognition, semanticity and NeuroAI
 
-_Cognition, semanticity, and NeuroAI · from month 4 · draft v0.2 (2026-10-09), reconciled with Tier 1 and awaiting review_
+_Cognition, semanticity, and NeuroAI · from month 4 · draft v0.3 (2026-11-11), reconciled with Tier 1 and awaiting review_
 
 **You will be able to:** Relate learning objectives, cognitive control, and representational geometry in brains and machines to behavioural generalisation, and say what separates an interpretation from a mechanism.
 
@@ -8,7 +8,7 @@ _Cognition, semanticity, and NeuroAI · from month 4 · draft v0.2 (2026-10-09),
 
 **If this is not your stream, read:** Sims (2016), *Rate–distortion theory and human perception.* Cognition.
 
-_Estimated load: about 75 hours of reading and 40 for the exercise, over months 4–8._
+_Estimated load: about 78 hours of reading and 40 for the exercise, over months 4–8._
 
 ## Required readings
 
@@ -28,8 +28,8 @@ _Estimated load: about 75 hours of reading and 40 for the exercise, over months 
   Why: The evidential bar for claims that a model's representations match the brain's.
 - Miller & Cohen (2001), *An integrative theory of prefrontal cortex function.* Annual Review of Neuroscience.
   Why: Cognitive control as maintained task representation: the theory our parallel-processing and Miller's-law work builds on, and the one our capacity results have to square with.
-- Sadeh & Clopath (2025), *The emergence of NeuroAI: bridging neuroscience and artificial intelligence.* Nature Reviews Neuroscience.
-  Why: A two-page map of NeuroAI as a field. Read it for orientation, not method.
+- Belkin, Hsu, Ma & Mandal (2019), *Reconciling modern machine-learning practice and the classical bias–variance trade-off.* PNAS.
+  Why: The generic account of double descent as a property of over-parameterised fitting. It is the one outside account that needs no semantics, so a semantic account has to outperform it.
 - Nurisso, Fernando, Deshpande, …, Cohen & Petri (2025), *Bound by Semanticity.* ICLR 2026.
   Why: Our central claim. The stream exercise exists to test it, so read it adversarially.
 
@@ -54,7 +54,7 @@ Promoting geometric alignment, sparse features, information compression, a scali
 ## Case material (optional)
 
 - Savietto, Campbell, Panisson, Nurisso, Petri, Cohen & Perotti (2026), *The geometry of representational failures in vision-language models.* ICML 2026 (accepted). arXiv:2602.07025.
-- Frankland, Marjieh, Nurisso et al. (2025), *Curse of Generalization.* Psychological Review (accepted, 2026).
+- Frankland, Marjieh, Nurisso et al. (2025), *Capacity limits in cognitive processing reflect the curse of generalization.* Psychological Review (accepted, 2026).
 - Petri, Musslick, Dey, Özcimder, Turner, Ahmed, Willke & Cohen (2021), *Topological limits to the parallel processing capability of network architectures.* Nature Physics.
 - Musslick, Dey, Özcimder, Paber, Petri et al. (2016), *Multitasking capability versus learning efficiency in neural network architectures.* CogSci.
 - Petri, Musslick & Cohen (2024), *An information-theoretic approach to reward rate optimization in controlled and automatic processing.* eLife.
@@ -62,8 +62,8 @@ Promoting geometric alignment, sparse features, information compression, a scali
 - Greff, van Steenkiste & Schmidhuber (2020), *On the binding problem in artificial neural networks.* arXiv:2012.05208.
 - Clopath, Büsing, Vasilaki & Gerstner (2010), *Connectivity reflects coding: a model of voltage-based STDP with homeostasis.* Nature Neuroscience.
 - Nakkiran et al. (2021), *Deep double descent.* JMLR / ICLR.
-- Belkin, Hsu, Ma & Mandal (2019), *Reconciling modern machine-learning practice and the classical bias–variance trade-off.* PNAS.
 - Goldstein, Zada, Buchnik, …, Hasson (2022), *Shared computational principles for language processing in humans and deep language models.* Nature Neuroscience 25(3):369–380.
+- Sadeh & Clopath (2025), *The emergence of NeuroAI: bridging neuroscience and artificial intelligence.* Nature Reviews Neuroscience.
 
 ---
 

@@ -58,7 +58,6 @@ Present your work at a Thursday lab meeting.
 ## Beyond the common route
 
 - Barlow (1961), *Possible principles underlying the transformation of sensory messages.* In Sensory Communication (MIT Press). Research-stream reading (semanticity/brain).
-- Nurisso, Fernando, Deshpande, …, Cohen & Petri (2025), *Bound by Semanticity.* ICLR 2026. Research-stream reading (capstone case).
 - Dayan & Abbott (2001), *Theoretical Neuroscience.* MIT Press. Research-stream reading (brain track).
 - Nurisso, Morandini, Lucas, Vaccarino, Gili & Petri (2025), *Higher-order Laplacian renormalization.* Nature Physics. Research-stream reading (multiscale track).
 

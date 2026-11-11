@@ -11,10 +11,10 @@ _Tier 1 · The Common Language · Weeks 2–3 · draft curriculum_
 ### Foundation
 
 - Latora, Nicosia & Russo (2017), *Complex Networks: Principles, Methods and Applications.* Cambridge.
-  First pass: Chapter route pending an edition check.
+  First pass: Chapters 1–6 and 10.
   Best modern textbook. Priority: Ch. 1–6, 10.
 - Spielman (2025), *Spectral and Algebraic Graph Theory* (incomplete online draft dated 2 April 2025). https://www.cs.yale.edu/homes/spielman/sagt/
-  First pass: Chapter route pending an edition check.
+  First pass: Chapters 1–3, 10–12, and 20–23.
   Laplacians, effective resistance, spectral clustering — the bridge to networks and renormalization.
 
 ### Deepening

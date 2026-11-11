@@ -1,6 +1,6 @@
 # Tier 2 · Higher-order networks
 
-_Higher-order network theory, dynamics, and reconstruction · from month 4 · draft v0.2 (2026-10-09), reconciled with Tier 1 and awaiting review_
+_Higher-order network theory, dynamics, and reconstruction · from month 4 · draft v0.3 (2026-11-11), reconciled with Tier 1 and awaiting review_
 
 **You will be able to:** Build, analyse, and infer higher-order network models, and show in each case whether a pairwise or latent-variable alternative would suffice.
 
