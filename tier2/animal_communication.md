@@ -17,6 +17,8 @@ sperm-whale codas. Communication as a rate-distortion problem between agents.
 - **Townsend et al. (2018)** — *Compositionality in animals and humans.* PLoS Biology. Comprehensive compositionality review across taxa.
 - **Kershenbaum et al. (2016)** — *Acoustic sequences in non-human animals: a tutorial review and prospectus.* Biological Reviews. The 40+-author framework for sequence analysis.
 - **Sainburg, Thielk & Gentner (2020)** — *Finding, visualizing, and quantifying latent structure across diverse animal vocal repertoires.* PLoS Computational Biology. Latent-space methods for vocal repertoires.
+- **Hersh et al. (2022)** — *Evidence from sperm whale clans of symbolic marking in non-human cultures.* PNAS 119, e2201692119. Identity codas mark clan membership: symbolic marking in a non-human culture.
+- **Arnon, Kirby, Allen, Garrigue, Carroll & Garland (2025)** — *Whale song shows language-like statistical structure.* Science 387, 649–653. Humpback song segments follow Zipf-like frequency statistics, found with segmentation methods borrowed from infant learning.
 
 ## Connection to other topics
 

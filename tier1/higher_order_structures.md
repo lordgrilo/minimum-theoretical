@@ -1,7 +1,7 @@
 # Higher-Order Structures
 
-The mathematical core shared by within- and across-agent work. Tier 1:
-Battiston 2020 (the manifesto), Bianconi 2021 (the textbook). Tier 2: the rest.
+The mathematical core for everything beyond pairwise interactions. Tier 1: Battiston
+2020 (the manifesto), Bianconi 2021 (the textbook). Tier 2: the rest.
 
 ## Reading
 

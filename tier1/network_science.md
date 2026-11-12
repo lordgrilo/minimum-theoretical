@@ -1,9 +1,8 @@
 # Network Science
 
-The substrate of all across-agent work — the minimum vocabulary of graphs,
-scale-free and small-world structure, the configuration model, spectra, and
-community detection as inference. Processes, robustness and epidemics live in
-Tier 2 (Network Processes, Inference & Robustness).
+The minimum vocabulary of graphs, scale-free and small-world structure, the
+configuration model, spectra, and community detection as inference. Processes,
+robustness and epidemics live in Tier 2 (Network Processes, Inference & Robustness).
 
 ## Reading
 

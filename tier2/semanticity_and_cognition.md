@@ -1,11 +1,10 @@
 # Semanticity, Cognition & Representational Limits
 
-Where the lab's deepest within-agent contribution lives: the link between
-rate-distortion theory, cognitive limits (Miller, Shepard) and representational
-capacity, as a claim about universal laws governing how finite agents make sense
-of the world. The central question: how does a system with finite precision,
-memory and computation carve a continuous world into useful categories — and
-what are the limits?
+The link between rate-distortion theory, cognitive limits (Miller, Shepard) and
+representational capacity, as a claim about universal laws governing how finite
+agents make sense of the world. The central question: how does a system with finite
+precision, memory and computation carve a continuous world into useful categories —
+and what are the limits?
 
 ## Reading
 
@@ -16,11 +15,15 @@ what are the limits?
 - **Zaslavsky, Kemp, Tishby & Regier (2019)** — *Color naming reflects both perceptual structure and communicative need.* Topics in Cognitive Science. Efficient-communication account of color naming: perceptual structure plus communicative need.
 - **Mollica et al. (2021)** — *The forms and meanings of grammatical markers support efficient communication.* PNAS. Extends IB efficiency beyond color to grammar.
 - **Sims (2016)** — *Rate–distortion theory and human perception.* Cognition. Rate-distortion applied to cognitive-limits.
-- **Nurisso, Fernando, Deshpande, …, Cohen & Petri (2025)** — *Bound by Semanticity.* ICLR 2026. The lab's flagship: the generalization–identification tradeoff, a Pareto frontier, a 1/n capacity collapse, and Shepard's law derived from first principles; tested on VLMs and CNNs.
+- **Nurisso, Fernando, Deshpande, …, Cohen & Petri (2025)** — *Bound by Semanticity.* ICLR 2026. The generalization–identification tradeoff, a Pareto frontier, a 1/n capacity collapse, and Shepard's law derived from first principles; tested on VLMs and CNNs.
 - **Frankland, Marjieh, Nurisso et al. (2025)** — *Capacity limits in cognitive processing reflect the curse of generalization.* Psychological Review (accepted, 2026). Compositional vs semantic compression in cognition.
 - **Savietto, Campbell, Panisson, Nurisso, Petri, Cohen & Perotti (2026)** — *The geometry of representational failures in vision-language models.* ICML 2026 (accepted). arXiv:2602.07025. Empirical companion — vision-language models fail exactly where the semanticity framework predicts.
 - **Jakob & Gershman (2023)** — *Rate-distortion theory of neural coding and its implications for working memory.* eLife. Rate-distortion applied to neural coding.
-- **Ferrer i Cancho & Solé (2003)** — *Least effort and the origins of scaling in human language.* PNAS 100, 788–791. Zipf's law from a speaker–listener least-effort trade-off: a compression account of communication to read alongside the semanticity programme.
+- **Ferrer i Cancho & Solé (2003)** — *Least effort and the origins of scaling in human language.* PNAS 100, 788–791. Zipf's law from a speaker–listener least-effort trade-off: a compression account of communication to read alongside the semanticity framework.
+- **Ma, Husain & Bays (2014)** — *Changing concepts of working memory.* Nature Neuroscience 17, 347–356. Resource models of working memory: precision is spread across items, with no fixed item limit.
+- **Cowan (2001)** — *The magical number 4 in short-term memory: a reconsideration of mental storage capacity.* Behavioral and Brain Sciences 24, 87–114. The case that short-term memory holds about four chunks: a fixed item limit.
+- **Sims (2018)** — *Efficient coding explains the universal law of generalization in human perception.* Science 360, 652–656. Derives Shepard's universal law of generalization from efficient coding in perception.
+- **Musslick & Cohen (2021)** — *Rationalizing constraints on the capacity for cognitive control.* Trends in Cognitive Sciences 25, 757–775. Limits on cognitive control as a rational response to interference between shared representations.
 
 ## Connection to other topics
 

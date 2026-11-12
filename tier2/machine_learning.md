@@ -1,9 +1,8 @@
 # Machine Learning & Geometric / Topological Deep Learning
 
-Used on both sides of the throughline. The ML bridge for a maths/physics
-audience, geometric and topological deep learning (DL on graphs, simplicial and
-cell complexes), and the scaling/generalization phenomena the semanticity
-framework aims to explain.
+Used throughout the lab. The ML bridge for a maths/physics audience, geometric and
+topological deep learning (DL on graphs, simplicial and cell complexes), and the
+scaling/generalization phenomena the semanticity framework aims to explain.
 
 ## Reading
 

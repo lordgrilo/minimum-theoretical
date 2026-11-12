@@ -8,6 +8,7 @@ Required regardless of stream.
 ## Reading
 
 - **Good (2005)** — *Permutation, Parametric, and Bootstrap Tests of Hypotheses* (3rd ed.). Springer. Resampling inference from first principles.
+- **Ernst (2004)** — *Permutation methods: a basis for exact inference.* Statistical Science 19, 676–685. Ten pages on why a permutation test is exact, and how to build one.
 - ⭐ **Fosdick, Larremore, Nishimura & Ugander (2018)** — *Configuring random graph models with fixed degree sequences.* SIAM Review. How to sample network null models correctly — the reference for graph nulls.
 - **Efron & Tibshirani (1993)** — *An Introduction to the Bootstrap.* Chapman & Hall. The bootstrap reference.
 - **Benjamini & Hochberg (1995)** — *Controlling the false discovery rate.* Journal of the Royal Statistical Society B. Multiple comparisons done right (FDR).

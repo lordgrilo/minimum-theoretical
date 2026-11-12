@@ -16,6 +16,8 @@ _Tier 1 · The Common Language · Weeks 2–3 · draft curriculum_
 - Spielman (2025), *Spectral and Algebraic Graph Theory* (incomplete online draft dated 2 April 2025). https://www.cs.yale.edu/homes/spielman/sagt/
   First pass: Chapters 1–3, 10–12, and 20–23.
   Laplacians, effective resistance, spectral clustering — the bridge to networks and renormalization.
+- Peel, Peixoto & De Domenico (2022), *Statistical inference links data and theory in network science.* Nature Communications 13, 6794.
+  The shift from descriptive to inferential network science.
 
 ### Deepening
 
@@ -41,7 +43,8 @@ Describe one network three ways (descriptive, spectral and generative) and decid
 2. Move between the adjacency, Laplacian and random-walk views, and say which question each one answers.
 3. Compute one Laplacian quantity (spectral gap, Fiedler vector or a diffusion time) and interpret it without overclaiming.
 4. Find a partition descriptively, then fit a generative model and compare the two by description length.
-5. Write down your answer to the falsification question.
+5. In code: on a real network of at least a few thousand nodes, fit a stochastic block model with graph-tool and compare it with modularity. Use sparse matrices, never a dense eigendecomposition.
+6. Write down your answer to the falsification question.
 
 **Deliverable:** A model-comparison report contrasting descriptive, spectral, and generative accounts of one network.
 

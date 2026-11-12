@@ -1,6 +1,6 @@
 # Topological Data Analysis
 
-The lab's signature tool. Tier 1: Carlsson 2009, Ghrist 2008, plus the
+A tool the lab uses throughout. Tier 1: Carlsson 2009, Ghrist 2008, plus the
 foundational guarantees (the stability theorem) and ML-bridge (vectorization,
 Mapper). Tier 2: Edelsbrunner & Harer.
 
@@ -15,6 +15,9 @@ Mapper). Tier 2: Edelsbrunner & Harer.
 - **Adams et al. (2017)** — *Persistence images: a stable vector representation of persistent homology.* JMLR. Stable vectorization of diagrams — the bridge to ML.
 - **Petri, Expert, Turkheimer, Carhart-Harris, Nutt, Hellyer & Vaccarino (2014)** — *Homological scaffolds of brain functional networks.* J. R. Soc. Interface. Introduced homological scaffolds. Foundational NPLab paper.
 - **Petri, Scolamiero, Donato & Vaccarino (2013)** — *Topological strata of weighted complex networks.* PLOS ONE. First persistent-homology on weighted networks.
+- ⭐ **Gardner, Hermansen, Pachitariu, Burak, Baas, Dunn, Moser & Moser (2022)** — *Toroidal topology of population activity in grid cells.* Nature 602, 123–128. Persistent homology on recorded neural population activity recovers the torus that grid-cell theory predicts: topology as a test of a circuit model.
+- **Giusti, Pastalkova, Curto & Itskov (2015)** — *Clique topology reveals intrinsic geometric structure in neural correlations.* PNAS 112, 13455–13460. Order-invariant topology of correlation matrices: whether neural activity is geometrically organised, without trusting the correlation values.
+- **Chaudhuri, Gerçek, Pandey, Peyrache & Fiete (2019)** — *The intrinsic attractor manifold and population dynamics of a canonical cognitive circuit across waking and sleep.* Nature Neuroscience 22, 1512–1520. Recovers a ring manifold from head-direction cell activity without knowing the stimulus, and tracks it across waking and sleep.
 
 ## Connection to other topics
 

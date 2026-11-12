@@ -15,6 +15,10 @@ all of them.
 - **Nowak & May (1992)** — *Evolutionary games and spatial chaos.* Nature. Mandatory for evolutionary game theory on networks.
 - **Santos & Pacheco (2005)** — *Scale-free networks provide a unifying framework for the emergence of cooperation.* PRL. Topology and cooperation.
 - **Szabó & Fáth (2007)** — *Evolutionary games on graphs.* Physics Reports. Comprehensive evolutionary-game review.
+- **Shalizi & Thomas (2011)** — *Homophily and contagion are generically confounded in observational social network studies.* Sociological Methods & Research 40, 211–239. In observational network data, homophily and contagion cannot in general be told apart.
+- **Centola (2010)** — *The spread of behavior in an online social network experiment.* Science 329, 1194–1197. Behaviour spreads further in clustered networks, as complex contagion predicts.
+- **Cencetti, Contreras, Mancastroppa & Barrat (2023)** — *Distinguishing simple and complex contagion processes on networks.* Physical Review Letters 130, 247401. Tells simple from complex contagion from the order in which nodes are infected.
+- **St-Onge, Iacopini, Latora, Barrat, Petri, Allard & Hébert-Dufresne (2022)** — *Influential groups for seeding and sustaining nonlinear contagion in heterogeneous hypergraphs.* Communications Physics 5, 25. Which groups seed and sustain nonlinear contagion on heterogeneous hypergraphs. A lab paper.
 
 ## Connection to other topics
 

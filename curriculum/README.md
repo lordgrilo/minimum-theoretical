@@ -14,20 +14,22 @@ Completion means you can:
 2. use it in a toy or project-relevant setting;
 3. identify its assumptions and common failure modes;
 4. distinguish descriptive structure from inference and mechanism;
-5. connect it to at least one NPLab research programme;
+5. connect it to at least one area of NPLab research;
 6. state what evidence would weaken or falsify the associated claim.
 
 ## Tier 0 · Before you start
 
-_Before week 1._ Rate yourself on five survival skills. If one is rusty, its first-pass route repairs it before the common route begins.
+_Before week 1._ Rate yourself on five survival skills. If one is rusty, read its light repair in the parts shown, each before the competency that needs it; the full route can follow during the year. Every exercise includes code, written with the lab's stack.
 
-| Skill | If it is rusty, read | First pass |
-|---|---|---|
-| Linear algebra | Strang (2016), *Introduction to Linear Algebra* (5th ed.). Wellesley–Cambridge. | Chapters 1–4 and 6–7; then Sections 10.1, 10.3, 11.2, and 12.1–12.3 |
-| Numerical computation | Trefethen & Bau (1997), *Numerical Linear Algebra.* SIAM. | Lectures 1–5, 11–19, and 24–27 |
-| Probability | Blitzstein & Hwang (2019), *Introduction to Probability* (2nd ed.). CRC. | Chapters 1–4, 7, and 9–10 |
-| Statistical learning | Hastie, Tibshirani & Friedman (2009), *The Elements of Statistical Learning* (2nd ed.). Springer. | Chapters 2–4, 7, 9, 11, and 14 |
-| Resampling and testing | Good (2005), *Permutation, Parametric, and Bootstrap Tests of Hypotheses* (3rd ed.). Springer. | Chapters 2–6: Optimal Procedures; Testing Hypotheses; Distributions; Multiple Tests; Experimental Designs |
+| Skill | Needed by | If it is rusty: light repair | Full route, during the year |
+|---|---|---|---|
+| Linear algebra | C2 (weeks 2–3) | Strang (2016), *Introduction to Linear Algebra* (5th ed.). Wellesley–Cambridge. Sections 1.1–1.3, 6.1–6.2 and 6.4 before C2 (weeks 2–3); sections 2.1–2.5, 4.2–4.3 and 7.1–7.3 before C8 (week 12). | Strang (2016), *Introduction to Linear Algebra* (5th ed.). Wellesley–Cambridge. Chapters 1–4 and 6–7; then Sections 10.1, 10.3, 11.2, and 12.1–12.3. |
+| Numerical computation | C8 (week 12) | Trefethen & Bau (1997), *Numerical Linear Algebra.* SIAM. Part I, Fundamentals (Lectures 1–5) before C8 (week 12). | Trefethen & Bau (1997), *Numerical Linear Algebra.* SIAM. Lectures 1–5, 11–19, and 24–27. |
+| Probability | C1 (week 1) | Blitzstein & Hwang (2019), *Introduction to Probability* (2nd ed.). CRC. Chapters 1–2 before C1 (week 1); chapters 3–4 before C5 (weeks 8–9). | Blitzstein & Hwang (2019), *Introduction to Probability* (2nd ed.). CRC. Chapters 1–4, 7, and 9–10. |
+| Statistical learning | C7 (weeks 10–11) | James, Witten, Hastie & Tibshirani (2021), *An Introduction to Statistical Learning* (2nd ed.). Springer. Chapters 2, 3 and 5 before C7 (weeks 10–11). | Hastie, Tibshirani & Friedman (2009), *The Elements of Statistical Learning* (2nd ed.). Springer. Chapters 2–4, 7, 9, 11, and 14. |
+| Resampling and testing | C1 (week 1) | Ernst (2004), *Permutation methods: a basis for exact inference.* Statistical Science 19, 676–685. The whole paper before C1 (week 1). | Good (2005), *Permutation, Parametric, and Bootstrap Tests of Hypotheses* (3rd ed.). Springer. Chapters 2–6: Optimal Procedures; Testing Hypotheses; Distributions; Multiple Tests; Experimental Designs. |
+
+The code in every exercise uses the lab's stack: [the tools page](../tools/computational_tools.md) lists the libraries.
 
 ## Tier 1 · The Common Language
 
@@ -36,7 +38,7 @@ _Weeks 1–12, then deepening in months 4–8._ Eight competencies that every me
 | Weeks | Competency | Foundation readings |
 |---|---|---|
 | Week 1 | [C1 · Models, nulls, and scientific claims](common-language/c1-models-nulls-and-scientific-claims.md) | Fosdick, Larremore, Nishimura & Ugander (2018); Gelman & Loken (2013); Kapoor & Narayanan (2023) |
-| Weeks 2–3 | [C2 · Graph structure, operators, and spectra](common-language/c2-graph-structure-operators-and-spectra.md) | Latora, Nicosia & Russo (2017); Spielman (2025) |
+| Weeks 2–3 | [C2 · Graph structure, operators, and spectra](common-language/c2-graph-structure-operators-and-spectra.md) | Latora, Nicosia & Russo (2017); Spielman (2025); Peel, Peixoto & De Domenico (2022) |
 | Week 4 | [C3 · Higher-order representations](common-language/c3-higher-order-representations.md) | Battiston, Cencetti, Iacopini, Latora, Lucas, Patania, Young & Petri (2020); Torres, Blevins, Bassett & Eliassi-Rad (2021) |
 | Weeks 5–6 | [C4 · Dynamics, stochasticity, and emergence](common-language/c4-dynamics-stochasticity-and-emergence.md) | Strogatz (2015); Barrat, Barthélemy & Vespignani (2008); Pastor-Satorras & Vespignani (2001) |
 | Week 7 | [C6 · Topology and persistent structure](common-language/c6-topology-and-persistent-structure.md) | Carlsson (2009) |
@@ -54,26 +56,28 @@ _Months 4–8._ Go deep in one stream and stay literate in the others: one orien
 - [Social, collective and animal communication](streams/social-collective-and-animal-communication.md). Model coordination and communication across agents while respecting the different evidential standards of social experiments, field behaviour, and synthetic agents. Orientation reading for everyone else: Baronchelli, Felici, Loreto, Caglioti & Steels (2006).
 - [Renormalization and criticality](streams/renormalization-and-criticality.md). Choose and test scale transformations, diagnose genuine critical behaviour, and quantify the trade-off between preserved dynamics, prediction, and reconstruction. Orientation reading for everyone else: Gabrielli, Garlaschelli, Patil & Serrano (2025).
 
-_Streams: draft v0.3 (2026-11-11), reconciled with Tier 1 and awaiting review._
+_Streams: draft v0.4 (2026-11-12), reconciled with Tier 1 and awaiting review._
 
 ## Tier 3 · The Frontier
 
-_Ongoing._ What the lab is building rather than using. Nothing here is required; it is where our open questions live.
+_Months 9–12, with the capstone._ The lab's open questions, each built on one stream: what is unsettled, readings past the stream (including the strongest rival account), and the lab claim your capstone can try to break. Optional, except the one you choose for your capstone.
 
-- [Semantic Horizons & Universal Laws](frontier.md)
-- [Irreducible Multivariate Information](frontier.md)
-- [Renormalization on Networks](frontier.md)
-- [Criticality & Branching](frontier.md)
-- [Topology Beyond One Parameter](frontier.md)
-- [Operator Algebras & Quantum HOI](frontier.md) _(speculative)_
+- [When do data reveal higher-order structure?](frontier.md) Builds on Higher-order networks.
+- [Do higher-order brain signatures add information?](frontier.md) Builds on Brain and clinical neuroscience.
+- [Where do capacity limits come from?](frontier.md) Builds on Cognition, semanticity and NeuroAI.
+- [Does representational geometry predict where models fail?](frontier.md) Builds on Cognition, semanticity and NeuroAI.
+- [What carries information in sperm-whale codas?](frontier.md) Builds on Social, collective and animal communication · Animal communication.
+- [Do real contagions need groups?](frontier.md) Builds on Social, collective and animal communication · Social coordination.
+- [Is there a privileged scale?](frontier.md) Builds on Renormalization and criticality.
+- [Is branching one principle or many?](frontier.md) Builds on Renormalization and criticality.
 
 ## The Atlas
 
-The full reading list, organised by topic and tier. Use it as a reference: it is deliberately larger than any route through it. It holds 242 entries across Tiers 0–3: [open the atlas](../README.md).
+The full reading list, organised by topic and tier. Use it as a reference: it is deliberately larger than any route through it. It holds 275 entries across Tiers 0–3: [open the atlas](../README.md).
 
 ## Other ways to read this
 
 - [Plain web version](https://lordgrilo.github.io/minimum-theoretical/)
 - [Quest mode](https://lordgrilo.github.io/minimum-theoretical/quest/), the same route as a role-playing game
 
-_Generated 2026-11-11 from the reading-list YAML. Edit the master, not this file._
+_Generated 2026-11-12 from the reading-list YAML. Edit the master, not this file._

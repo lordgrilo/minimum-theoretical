@@ -1,6 +1,6 @@
 # Tier 2 · Cognition, semanticity and NeuroAI
 
-_Cognition, semanticity, and NeuroAI · from month 4 · draft v0.3 (2026-11-11), reconciled with Tier 1 and awaiting review_
+_Cognition, semanticity, and NeuroAI · from month 4 · draft v0.4 (2026-11-12), reconciled with Tier 1 and awaiting review_
 
 **You will be able to:** Relate learning objectives, cognitive control, and representational geometry in brains and machines to behavioural generalisation, and say what separates an interpretation from a mechanism.
 

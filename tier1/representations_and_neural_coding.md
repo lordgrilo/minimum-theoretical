@@ -1,12 +1,13 @@
 # Representations & Neural Coding
 
-The semanticity and VLM programmes rest on a theory of how finite systems
-*represent* — efficient coding, the geometry of population codes, and how
-representations are compared. Read these to ground every within-agent stream.
+Work on semanticity and on vision–language models rests on a theory of how finite
+systems *represent* — efficient coding, the geometry of population codes, and how
+representations are compared. Read these before any stream about brains, minds or
+models.
 
 ## Reading
 
-- **Barlow (1961)** — *Possible principles underlying the transformation of sensory messages.* In Sensory Communication (MIT Press). The efficient-coding hypothesis: sensory systems minimise redundancy. Foundational for the whole representational-limits programme.
+- **Barlow (1961)** — *Possible principles underlying the transformation of sensory messages.* In Sensory Communication (MIT Press). The efficient-coding hypothesis: sensory systems minimise redundancy. Foundational for work on representational limits.
 - **Dayan & Abbott (2001)** — *Theoretical Neuroscience.* MIT Press. Gold-standard computational neuroscience text. Ch. 1–4: neural coding, information in spike trains, population codes.
 - **Rieke, Warland, de Ruyter van Steveninck & Bialek (1997)** — *Spikes: Exploring the Neural Code.* MIT Press. Neural coding and information theory applied to spike trains.
 - ⭐ **Kriegeskorte, Mur & Bandettini (2008)** — *Representational similarity analysis.* Frontiers in Systems Neuroscience. The method for comparing representations across brains and models via dissimilarity matrices.

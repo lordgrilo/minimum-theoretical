@@ -1,9 +1,8 @@
 # Network Processes, Inference & Robustness
 
-Dynamical processes on networks and the inferential turn: epidemics and
-percolation, robustness and cascading failure, and the shift from describing
-network structure to inferring it. Working depth for across-agent projects —
-not part of the Tier 1 minimum.
+Dynamical processes on networks and the inferential turn: epidemics and percolation,
+robustness and cascading failure, and the shift from describing network structure to
+inferring it. Working depth for network projects — not part of the Tier 1 minimum.
 
 ## Reading
 
@@ -17,7 +16,9 @@ not part of the Tier 1 minimum.
 - ⭐ **Callaway, Newman, Strogatz & Watts (2000)** — *Network robustness and fragility: percolation on random graphs.* PRL. Robustness as percolation.
 - ⭐ **Albert, Jeong & Barabási (2000)** — *Error and attack tolerance of complex networks.* Nature. Landmark robustness paper.
 - ⭐ **Buldyrev, Parshani, Paul, Stanley & Havlin (2010)** — *Catastrophic cascade of failures in interdependent networks.* Nature. Landmark interdependent-networks paper.
-- **Peel, Peixoto & De Domenico (2022)** — *Statistical inference links data and theory in network science.* Nature Communications. The shift from descriptive to inferential network science.
+- ⭐ **Peel, Peixoto & De Domenico (2022)** — *Statistical inference links data and theory in network science.* Nature Communications 13, 6794. The shift from descriptive to inferential network science.
+- **Prasse & Van Mieghem (2022)** — *Predicting network dynamics without requiring the knowledge of the interaction graph.* PNAS 119, e2205517119. Network dynamics predicted accurately without reconstructing the interaction graph.
+- **Thibeault, Allard & Desrosiers (2024)** — *The low-rank hypothesis of complex systems.* Nature Physics 20, 294–302. Real networks have low effective rank, which justifies low-dimensional descriptions of their dynamics.
 
 ## Connection to other topics
 

@@ -8,7 +8,7 @@ Tier 3: the Information Bottleneck. We also trace the *multivariate* lineage
 
 - ⭐ **Cover & Thomas (2006)** — *Elements of Information Theory.* Wiley. THE textbook. Priority: Ch. 2 (entropy), 4 (MI), 10 (rate-distortion).
 - **MacKay (2003)** — *Information Theory, Inference, and Learning Algorithms.* Cambridge. More intuitive than Cover & Thomas. Freely available online.
-- ⭐ **Tishby, Pereira & Bialek (2000)** — *The Information Bottleneck Method.* Proc. Allerton Conference on Communication, Control and Computing (verify year). arXiv:physics/0004057. Compression–relevance tradeoff. Theoretical ancestor of the semanticity programme.
+- ⭐ **Tishby, Pereira & Bialek (2000)** — *The Information Bottleneck Method.* Proc. Allerton Conference on Communication, Control and Computing (verify year). arXiv:physics/0004057. Compression–relevance tradeoff. Theoretical ancestor of the semanticity framework.
 - ⭐ **Zaslavsky, Kemp, Regier & Tishby (2018)** — *Efficient compression in color naming across languages.* PNAS. IB explains cross-linguistic color-naming universals. Beautiful empirical validation.
 - ⭐ **Watanabe (1960)** — *Information theoretical analysis of multivariate correlation.* IBM Journal of Research and Development. Introduces total correlation (multi-information) — the conceptual root of multivariate dependency measures.
 - **McGill (1954)** — *Multivariate information transmission.* Psychometrika. Interaction information; documents the negativity issue that later motivated PID and O-information.

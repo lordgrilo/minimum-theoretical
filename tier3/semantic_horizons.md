@@ -1,16 +1,13 @@
 # Semantic Horizons & Universal Laws
 
-NPLab's most distinctive theoretical contribution and the flagship of the
-within-agent arc. A system encoding stimuli with finite precision Δ and
-compressing by β faces a *semantic horizon* r*(β) = −β log Δ beyond which
-stimuli become indistinguishable — producing non-monotonic generalization and a
-1/n capacity collapse that recovers Miller's Law from first principles. The
-long-term bet (Keck) is that these are *universal* laws, the bridge from
-within-agent limits to across-agent systems (immune repertoires, epidemics,
-whale codas).
-The papers themselves are listed once, where the curriculum uses them: Bound
-by Semanticity and Savietto et al. (2026) under Semanticity & Cognition, and
-Petri et al. (2021) under Worldview (Tier 1).
+A system encoding stimuli with finite precision Δ and compressing by β faces a
+*semantic horizon* r*(β) = −β log Δ beyond which stimuli become indistinguishable —
+producing non-monotonic generalization and a 1/n capacity collapse that recovers
+Miller's Law from first principles. The open question is whether these are
+*universal* laws that also govern collective systems (immune repertoires, epidemics,
+whale codas). The papers themselves are listed once, where the curriculum uses them:
+Bound by Semanticity and Savietto et al. (2026) under Semanticity & Cognition, and
+Petri et al. (2021) under Foundational Papers (Tier 1).
 
 ## Reading
 
@@ -18,7 +15,7 @@ Petri et al. (2021) under Worldview (Tier 1).
 
 ## Connection to other topics
 
-- → [Worldview](../tier1/worldview.md)
+- → [Foundational Papers](../tier1/worldview.md)
 - → [Information Theory](../tier1/information_theory.md)
 - → [Semanticity & Cognition](../tier2/semanticity_and_cognition.md)
 - → [Machine Learning](../tier2/machine_learning.md)

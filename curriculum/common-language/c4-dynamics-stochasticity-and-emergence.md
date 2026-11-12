@@ -41,7 +41,8 @@ Simulate a bifurcation, a pairwise complex contagion and a higher-order contagio
 2. Simulate a pairwise complex contagion and a simplicial (higher-order) contagion.
 3. For each, name the mechanism, the order parameter and the finite-size effects.
 4. Run the finite-size or heterogeneity test that could make each transition disappear.
-5. Write down your answer to the falsification question.
+5. In code: run the contagions on a real contact or co-membership network (XGI handles the higher-order case), with enough runs and sizes to show the finite-size effect.
+6. Write down your answer to the falsification question.
 
 **Deliverable:** A simulation study comparing three transition mechanisms, including finite-size and alternative-model checks.
 

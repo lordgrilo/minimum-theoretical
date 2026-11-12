@@ -40,7 +40,8 @@ Represent one dataset as a graph, a hypergraph and a simplicial complex, and sep
 2. Encode it as a graph, a hypergraph and a simplicial complex.
 3. Write a claim ledger with three columns: measured, encoded and inferred.
 4. Fit a pairwise or latent-variable model and check whether it reproduces the higher-order signature.
-5. Write down your answer to the falsification question.
+5. In code: build the hypergraph and the simplicial complex with XGI, and compute one quantity that the pairwise projection cannot reproduce.
+6. Write down your answer to the falsification question.
 
 **Deliverable:** Three representations of the same dataset with a claim ledger separating measured, encoded, and inferred structure.
 

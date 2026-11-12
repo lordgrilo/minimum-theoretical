@@ -3,7 +3,7 @@
 ## Languages
 
 - **Python** — Primary language for everything. No exceptions for new lab members unless there's a compelling reason.
-- **Julia** — Acceptable for performance-critical numerical work. Discuss with Giovanni before committing a project to Julia.
+- **Julia** — Acceptable for performance-critical numerical work. Agree it with your supervisor before committing a project to Julia.
 
 ## Core Scientific Stack
 
@@ -71,6 +71,6 @@
 
 ## Compute Resources
 
-- NUL cluster access — ask Giovanni for setup
+- University cluster access — ask your supervisor for setup
 - Personal machines for development
-- Cloud (AWS/GCP) for large-scale jobs — discuss budget with Giovanni before spinning up instances
+- Cloud (AWS/GCP) for large-scale jobs — agree the budget with your supervisor before spinning up instances

@@ -37,7 +37,8 @@ On synthetic data with a hidden confounder, show what extra assumptions or inter
 3. Fit a latent-state model (an HMM or state-space model) and run a surrogate-data test.
 4. Run Granger or transfer-entropy discovery, and show where it points the wrong way.
 5. Name the intervention that would settle the question.
-6. Write down your answer to the falsification question.
+6. In code: run transfer entropy and its surrogate test with IDTxl or JIDT, on your synthetic system and on one real recording.
+7. Write down your answer to the falsification question.
 
 **Deliverable:** A checked probabilistic model plus a causal-claim ledger listing assumptions, identifiable effects, and non-identifiable alternatives.
 

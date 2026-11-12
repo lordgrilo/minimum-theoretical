@@ -1,7 +1,7 @@
 # NPLab — Minimum Theoretical
 
 > **Start here.** New members follow [the route](curriculum/README.md): Tier 0 diagnostic → Tier 1, the Common Language (8 competencies) → Tier 2 research streams → Tier 3 frontier.
-> Read it on the web, [plain](https://lordgrilo.github.io/minimum-theoretical/) or as a [quest](https://lordgrilo.github.io/minimum-theoretical/quest/). This page is the full reading atlas; ⭐ marks the 48 readings on the route.
+> Read it on the web, [plain](https://lordgrilo.github.io/minimum-theoretical/) or as a [quest](https://lordgrilo.github.io/minimum-theoretical/quest/). This page is the full reading atlas; ⭐ marks the 50 readings on the route.
 
 
 The core theoretical knowledge base for members of NPLab (Network Science Institute,
@@ -23,38 +23,38 @@ Want to add a reading? See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## How to read this list
 
-**What makes NPLab NPLab.** We are, first, a network-science lab: the toolkit is
+**What the lab does.** NPLab is, first, a network-science lab: the toolkit is
 network science, higher-order networks, and topology, with information theory as the
 common measure — extended by statistical mechanics, compression / optimal transport,
-and inference. That common language is not decoration; it is the lab's identity, and
-every project is built from it.
+and inference. Every project is built from that shared language.
 
-**The one question.** We point those methods at a single problem: **what are the limits
-of information processing _within_ agents and _across_ agents?**
+**The question.** We point those methods at one problem: **what limits information
+processing, inside single systems and across many interacting ones?**
 
-- *Within agents* — information processing inside one agent, biological or synthetic:
-  neuronal encoding and fMRI, brain topology, cognition (Miller's law, Shepard's law),
-  semantic horizons and the generalization–identification tradeoff, representation
-  geometry in VLMs and the binding problem, clinical and developmental higher-order
-  information.
-- *Across agents* — information processing among many: network science, higher-order
-  networks, social dynamics and contagion, animal communication and CETI, collective AI
-  and multi-agent LLMs, renormalization across scales.
+- *Single systems* — one brain, mind or model, biological or synthetic: neuronal
+  encoding and fMRI, brain topology, cognition (Miller's law, Shepard's law), semantic
+  horizons and the generalization–identification tradeoff, representation geometry in
+  vision–language models and the binding problem, clinical and developmental
+  higher-order information.
+- *Collective systems* — many interacting agents: network science, higher-order
+  networks, social dynamics and contagion, animal communication and Project CETI,
+  collective AI and multi-agent LLMs, renormalization across scales.
 
-The two branches are one lab because they are studied with the same methods.
+Both are studied with the same methods.
 
 **The tiers.**
-- **Tier 1 — The Common Language** (first months). Every member, regardless of project,
-  should be fluent here. If you can't hold a conversation about these at lab meeting,
-  you're not ready to present your own work.
-- **Tier 2 — Your Research Stream** (first year). Go deep on yours; stay literate in the
-  others. Grouped by *within agents* / *across agents* / *cross-cutting*.
-- **Tier 3 — The Frontier** (ongoing). Where NPLab's distinctive contributions live —
-  what we're building, not just using.
+- **Tier 0 — Before you start.** A self-check on five skills, with a short repair
+  reading for each.
+- **Tier 1 — The Common Language** (weeks 1–12, then deepening through the year). Every
+  member, regardless of project, should be fluent here. If you can't hold a
+  conversation about these at lab meeting, you're not ready to present your own work.
+- **Tier 2 — Your Research Stream** (from month 4). Go deep on yours; stay literate in
+  the others.
+- **Tier 3 — The Frontier** (months 9–12, with the capstone). The lab's open
+  questions, each built on one stream.
 
-(We assume a working mathematical background — linear algebra, probability, optimization,
-inference. The lab keeps an internal prerequisites list if you need to shore any of it up;
-ask.)
+(We assume a working mathematical background — linear algebra, probability,
+optimization, inference. Tier 0 gives a repair route for each.)
 
 **What you should be able to explain.** After the first months, every member should be
 able to explain, to a skeptic: why pairwise networks miss collective structure; what a
@@ -77,18 +77,18 @@ deepening or synthesis). Unstarred entries are reference, remedial or stream rea
         THE LIMITS OF INFORMATION PROCESSING IN COMPLEX ADAPTIVE SYSTEMS
                                       |
             +-------------------------+-------------------------+
-       WITHIN AGENTS                                       ACROSS AGENTS
-   (inside one agent --                                (among many agents --
+       SINGLE SYSTEMS                                      COLLECTIVE SYSTEMS
+   (one brain, mind or model --                        (many interacting agents --
     biological & synthetic)                             networks of agents)
     neuronal encoding / fMRI                            network science
     brain topology                                      higher-order networks
     cognition: Miller, Shepard                          social dynamics / contagion
     semantic horizons / generalization                  animal communication / CETI
     representation geometry / VLMs / binding            LLMs-in-networks / collective AI
-    clinical & developmental HOI                        renormalization across scales
+    clinical & developmental higher-order info          renormalization across scales
             +-------------------------+-------------------------+
                                       |
-                  METHODOLOGICAL CORE  (the lab's toolkit -- Tier 1)
+                               SHARED METHODS  (Tier 1)
     network science · higher-order networks · topology / TDA · information theory ·
     statistical mechanics (phase transitions, universality, emergence) ·
     optimal transport / rate-distortion · probability & Bayesian inference
@@ -104,7 +104,7 @@ deepening or synthesis). Unstarred entries are reference, remedial or stream rea
 
 ### Tier 1 — The Common Language
 
-- [The NPLab Worldview](tier1/worldview.md)
+- [Foundational Papers](tier1/worldview.md)
 - [Information Theory](tier1/information_theory.md)
 - [Network Science](tier1/network_science.md)
 - [Higher-Order Structures](tier1/higher_order_structures.md)
@@ -118,14 +118,14 @@ deepening or synthesis). Unstarred entries are reference, remedial or stream rea
 
 ### Tier 2 — Research Streams
 
-**Within agents — information processing inside a single agent**
+**Single systems — information processing inside one brain, mind or model**
 
 - [Network Neuroscience & Brain Topology](tier2/network_neuroscience.md)
 - [Semanticity, Cognition & Representational Limits](tier2/semanticity_and_cognition.md)
 - [Clinical & Developmental Higher-Order Information](tier2/clinical_developmental_hoi.md)
 - [VLM / Representation Geometry & the Binding Problem](tier2/vlm_representation_geometry_binding.md)
 
-**Across agents — information processing among many agents**
+**Collective systems — information processing among many interacting agents**
 
 - [Higher-Order Network Theory](tier2/higher_order_network_theory.md)
 - [Network Processes, Inference & Robustness](tier2/network_processes_inference_robustness.md)
@@ -139,20 +139,20 @@ deepening or synthesis). Unstarred entries are reference, remedial or stream rea
 
 ### Tier 3 — The Frontier
 
-**Within agents — information processing inside a single agent**
+**Single systems — information processing inside one brain, mind or model**
 
 - [Semantic Horizons & Universal Laws](tier3/semantic_horizons.md)
 - [Irreducible Multivariate Information](tier3/higher_order_information.md)
 
-**Across agents — information processing among many agents**
+**Collective systems — information processing among many interacting agents**
 
 - [Renormalization on Networks](tier3/renormalization.md)
 - [Criticality & Branching](tier3/criticality_and_branching.md)
 
-**Spanning / speculative**
+**Spanning both, or speculative**
 
 - [Topology Beyond One Parameter](tier3/topology_frontier.md)
-- [Operator Algebras & Quantum HOI (speculative — not part of the minimum)](tier3/operator_algebras.md)
+- [Operator Algebras & Quantum Higher-Order Interactions (speculative — not part of the minimum)](tier3/operator_algebras.md)
 
 - [Genealogy of NPLab Ideas](nplab_genealogy.md)
 

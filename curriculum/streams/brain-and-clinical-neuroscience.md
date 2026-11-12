@@ -1,6 +1,6 @@
 # Tier 2 · Brain and clinical neuroscience
 
-_Brain, clinical, and multivariate neuroscience · from month 4 · draft v0.3 (2026-11-11), reconciled with Tier 1 and awaiting review_
+_Brain, clinical, and multivariate neuroscience · from month 4 · draft v0.4 (2026-11-12), reconciled with Tier 1 and awaiting review_
 
 **You will be able to:** Connect neural measurement and preprocessing to network, topological, and multivariate-information claims, with reproducibility and confound checks.
 
@@ -26,9 +26,9 @@ _Estimated load: about 82 hours of reading and 40 for the exercise, over months 
 - Luppi, Mediano, Rosas et al. (2024), *A synergistic workspace for human consciousness revealed by Integrated Information Decomposition.* eLife 12:RP88173
   Why: The strongest current claim linking synergy to consciousness. Read it to find where it could fail.
 - Santoro, Battiston, Petri & Amico (2023), *Higher-order organization of multivariate time series.* Nature Physics.
-  Why: The method under our brain higher-order pipelines. Read it against co-fluctuation statistics that reduce to pairwise structure.
+  Why: The method behind higher-order analyses of brain time series. Read it against co-fluctuation statistics that reduce to pairwise structure.
 - Petri, Expert, Turkheimer, Carhart-Harris, Nutt, Hellyer & Vaccarino (2014), *Homological scaffolds of brain functional networks.* J. R. Soc. Interface.
-  Why: Homological scaffolds, the topology method in several of our brain projects. Read it against the possibility that scaffold edges simply track weighted strength.
+  Why: Homological scaffolds, a topology method for brain networks. Read it against the possibility that scaffold edges simply track weighted strength.
 - Luppi, Mediano, Rosas, Holland, Fryer, O'Brien, Rowe, Menon, Bor & Stamatakis (2022), *A synergistic core for human brain evolution and cognition.* Nature Neuroscience 25, 771–782.
   Why: The whole-brain map of where synergy and redundancy sit. Read it before Luppi 2024, and ask what a matched surrogate would show.
 

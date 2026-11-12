@@ -33,7 +33,8 @@ Coarse-grain one network two ways and test whether the quantity you promised to 
 2. Coarse-grain it with two schemes, for example Laplacian renormalization and a spectral or community-based reduction.
 3. Compare how each preserves diffusion, prediction and higher-order structure.
 4. Compare two representations of one system with RSA, and test whether the geometry predicts an independent task limit.
-5. Write down your answer to the falsification question.
+5. In code: run both reductions and the RSA in Python (POT for any transport step), on a network and on the representations of a trained model or a brain.
+6. Write down your answer to the falsification question.
 
 **Deliverable:** A two-scheme coarse-graining comparison with preregistered preservation criteria and a failure analysis.
 

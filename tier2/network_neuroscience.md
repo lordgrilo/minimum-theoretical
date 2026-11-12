@@ -1,8 +1,7 @@
 # Network Neuroscience & Brain Topology
 
-Information processing inside the biological agent. How brain structure and
-topology shape function — and how the lab's topological tools reveal structure
-standard metrics miss. (Neural-coding textbooks are now in Tier 1:
+How brain structure and topology shape function, and what topological tools reveal
+that standard network metrics miss. (Neural-coding textbooks are now in Tier 1:
 Representations & Neural Coding.)
 
 ## Reading
@@ -24,7 +23,11 @@ Representations & Neural Coding.)
 - **Lord, Expert, Fernandes, Petri et al. (2016)** — *Insights into brain architectures from the homological scaffolds of functional connectivity networks.* Frontiers in Systems Neuroscience. Mesoscopic brain organization via scaffolds.
 - **Billings, Saggar, Keilholz, Petri & Mantzaris (2021)** — *Simplicial and topological descriptions of human brain dynamics.* Network Neuroscience. Topological description of brain dynamics.
 - **Clopath, Büsing, Vasilaki & Gerstner (2010)** — *Connectivity reflects coding: a model of voltage-based STDP with homeostasis.* Nature Neuroscience. Voltage-based STDP rule.
-- **Sadeh & Clopath (2025)** — *The emergence of NeuroAI: bridging neuroscience and artificial intelligence.* Nature Reviews Neuroscience. Directly relevant to the lab's NeuroAI stream.
+- **Sadeh & Clopath (2025)** — *The emergence of NeuroAI: bridging neuroscience and artificial intelligence.* Nature Reviews Neuroscience. Directly relevant to the NeuroAI stream.
+- **Schneidman, Berry, Segev & Bialek (2006)** — *Weak pairwise correlations imply strongly correlated network states in a neural population.* Nature 440, 1007–1012. Pairwise maximum-entropy models capture most of the correlated states of small retinal populations: the classic case that pairs suffice.
+- **Ganmor, Segev & Schneidman (2011)** — *Sparse low-order interaction network underlies a highly correlated and learnable neural population code.* PNAS 108, 9679–9684. In larger populations pairwise models fall short; a sparse set of low-order interactions describes the code.
+- **Finn, Shen, Scheinost, Rosenberg, Huang, Chun, Papademetris & Constable (2015)** — *Functional connectome fingerprinting: identifying individuals using patterns of brain connectivity.* Nature Neuroscience 18, 1664–1671. Pairwise functional connectivity identifies individuals across sessions.
+- **Noble, Scheinost & Constable (2019)** — *A decade of test-retest reliability of functional connectivity: a systematic review and meta-analysis.* NeuroImage 203, 116157. How reliable functional-connectivity edges are, and what makes them so.
 
 ## Connection to other topics
 

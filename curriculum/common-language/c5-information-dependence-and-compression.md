@@ -21,7 +21,7 @@ _Tier 1 · The Common Language · Weeks 8–9 · draft curriculum_
 ### Deepening
 
 - Tishby, Pereira & Bialek (2000), *The Information Bottleneck Method.* Proc. Allerton Conference on Communication, Control and Computing (verify year). arXiv:physics/0004057.
-  Compression–relevance tradeoff. Theoretical ancestor of the semanticity programme.
+  Compression–relevance tradeoff. Theoretical ancestor of the semanticity framework.
 - Zaslavsky, Kemp, Regier & Tishby (2018), *Efficient compression in color naming across languages.* PNAS.
   IB explains cross-linguistic color-naming universals. Beautiful empirical validation.
 - Timme & Lapish (2018), *A tutorial for information theory in neuroscience.* eNeuro. _(decided 2026-10-07)_
@@ -38,7 +38,8 @@ Measure compression, redundancy and synergy on systems whose mechanisms you buil
 3. Build XOR, COPY and common-drive systems whose mechanisms you know.
 4. Compute O-information and at least two redundancy measures on each, and mark where they disagree.
 5. Vary sample size and estimator, then write a one-paragraph non-uniqueness statement.
-6. Write down your answer to the falsification question.
+6. In code: compute the toy measures with dit, then estimate O-information on one recorded dataset (spikes, imaging or behaviour) with two estimators, for example in JIDT or IDTxl.
+7. Write down your answer to the falsification question.
 
 **Deliverable:** A synthetic benchmark with known mechanisms, sample-size curves, estimator comparison, and a non-uniqueness statement.
 

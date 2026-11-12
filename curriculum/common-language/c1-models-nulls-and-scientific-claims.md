@@ -35,7 +35,8 @@ Design and defend two competing null models for one lab result, and show which a
 3. Build two null models and list the constraints each one preserves.
 4. Run both, and tabulate which apparent effects each null destroys.
 5. Map leakage and forks: what entered model selection, and how many analysis paths you tried.
-6. Write down your answer to the falsification question.
+6. In code: script both nulls so they rerun from the raw data with a fixed seed, and report how many samples you drew.
+7. Write down your answer to the falsification question.
 
 **Deliverable:** A two-page null-model dossier plus executable comparison of two null ensembles on a live or synthetic result.
 

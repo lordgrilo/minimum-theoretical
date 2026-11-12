@@ -1,9 +1,7 @@
 # VLM / Representation Geometry & the Binding Problem
 
-Information processing inside the *synthetic* agent: how neural
-networks represent compositional structure, why the binding problem recurs in
-deep models, and the geometry of concept representations in LLMs/VLMs. The
-within-agent counterpart of the brain-topology work.
+How neural networks represent compositional structure, why the binding problem
+recurs in deep models, and the geometry of concept representations in LLMs/VLMs.
 
 ## Reading
 
@@ -16,7 +14,10 @@ within-agent counterpart of the brain-topology work.
 - **Templeton, Conerly et al. (2024)** — *Scaling monosemanticity: extracting interpretable features from Claude 3 Sonnet.* Anthropic / Transformer Circuits. Sparse autoencoders decompose representations into monosemantic features.
 - **Huh, Cheung, Wang & Isola (2024)** — *Position: The Platonic representation hypothesis.* ICML 2024. arXiv:2405.07987 Disparate networks converge to a shared statistical representation of reality.
 - **Pach, Bader, Bouniot, Belongie & Akata (2026)** — *The latent color subspace: emergent order in high-dimensional chaos.* arXiv:2603.12261. Emergent low-dimensional color geometry inside generative latent spaces — representational order arising without supervision.
-- **Solé, Seoane, Pla-Mauri, Bennett, Hochberg & Levin (2026)** — *Cognition spaces: natural, artificial, and hybrid.* arXiv:2601.12837. A morphospace of cognition spanning biological, artificial and hybrid agents — the within-agent representational landscape at its broadest.
+- **Solé, Seoane, Pla-Mauri, Bennett, Hochberg & Levin (2026)** — *Cognition spaces: natural, artificial, and hybrid.* arXiv:2601.12837. A morphospace of cognition spanning biological, artificial and hybrid agents — the landscape of representations at its broadest.
+- **Bowers, Malhotra, Dujmović, Llera Montero, Tsvetkov, Biscione, Puebla, Adolfi, Hummel, Heaton, Evans, Mitchell & Blything (2023)** — *Deep problems with neural network models of human vision.* Behavioral and Brain Sciences 46, e385. Argues that benchmark and brain-prediction successes overstate how well deep networks model human vision.
+- **Park, Choe & Veitch (2024)** — *The linear representation hypothesis and the geometry of large language models.* ICML 2024. arXiv:2311.03658 Formalises what it means for a concept to be a direction, and the geometry this induces in language models.
+- **Campbell, Rane, Giallanza, De Sabbata, Ghods, Joshi, Ku, Frankland, Griffiths, Cohen & Webb (2024)** — *Understanding the limits of vision language models through the lens of the binding problem.* NeurIPS 2024. arXiv:2411.00238 Multi-object failures of vision–language models behave like the binding problem in human vision.
 
 ## Connection to other topics
 

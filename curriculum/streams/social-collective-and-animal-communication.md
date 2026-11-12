@@ -1,6 +1,6 @@
 # Tier 2 · Social, collective and animal communication
 
-_Social, collective, and animal communication · from month 4 · draft v0.3 (2026-11-11), reconciled with Tier 1 and awaiting review_
+_Social, collective, and animal communication · from month 4 · draft v0.4 (2026-11-12), reconciled with Tier 1 and awaiting review_
 
 **You will be able to:** Model coordination and communication across agents while respecting the different evidential standards of social experiments, field behaviour, and synthetic agents.
 

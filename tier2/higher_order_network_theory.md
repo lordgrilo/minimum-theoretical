@@ -1,7 +1,7 @@
 # Higher-Order Network Theory
 
-The mathematical core of the lab's programme: describing, modelling, analysing and
-inferring higher-order interactions among agents. The machinery of across-agent structure.
+The mathematical core: describing, modelling, analysing and inferring higher-order
+interactions among agents.
 
 ## Reading
 
@@ -17,11 +17,13 @@ inferring higher-order interactions among agents. The machinery of across-agent 
 - **Mancastroppa, Iacopini, Petri & Barrat (2023)** — *Hyper-cores promote localization and efficient seeding in higher-order processes.* Nature Communications. Core decomposition for higher-order spreading.
 - **Skardal & Arenas (2019)** — *Abrupt desynchronization and extensive multistability in globally coupled oscillator simplexes.* PRL. Higher-order coupling creates explosive synchronization.
 - **Millán, Torres & Bianconi (2020)** — *Explosive higher-order Kuramoto dynamics on simplicial complexes.* PRL. Synchronization with discontinuous transitions.
-- **Nurisso, Vaccarino & Petri (2024)** — *A unified framework for simplicial Kuramoto models.* Chaos. NPLab unification of simplicial Kuramoto.
+- **Nurisso, Vaccarino & Petri (2024)** — *A unified framework for simplicial Kuramoto models.* Chaos. A unified framework for simplicial Kuramoto models (lab paper).
 - **Kuramoto (1984)** — *Chemical Oscillations, Waves, and Turbulence.* Springer. The synchronization reference.
 - ⭐ **Arenas, Díaz-Guilera, Kurths, Moreno & Zhou (2008)** — *Synchronization in complex networks.* Physics Reports. Comprehensive synchronization review.
 - ⭐ **Young, Petri & Peixoto (2021)** — *Hypergraph reconstruction from network data.* Communications Physics. Bayesian framework for inferring higher-order structure.
 - **Preti, De Francisci Morales, Iacopini & Petri (2024)** — *Higher-order null models as a lens for social systems.* Physical Review X. Higher-order null models; US Congress cosponsorship as primary case.
+- **Rosas, Mediano, Luppi, Varley, Lizier, Stramaglia, Jensen & Marinazzo (2022)** — *Disentangling high-order mechanisms and high-order behaviours in complex systems.* Nature Physics 18, 476–477. Higher-order statistics do not imply higher-order mechanisms, nor the reverse: the distinction every higher-order claim has to respect.
+- **Malizia, Corso, Gambuzza, Russo, Latora & Frasca (2024)** — *Reconstructing higher-order interactions in coupled dynamical systems.* Nature Communications 15, 5184. Infers pairwise and higher-order interactions from the time series of coupled dynamical systems.
 
 ## Connection to other topics
 

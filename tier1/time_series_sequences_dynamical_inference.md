@@ -1,10 +1,9 @@
 # Time Series, Sequences & Dynamical Inference
 
-Much NPLab data are sequences — fMRI, EEG, whale codas, social dynamics, and
-neural nets during training. This is the shared toolkit for analysing them:
-stationarity, state-space and hidden-Markov models, changepoints, directed
-information, and surrogate-data null tests — the common language between the
-CETI and neural-HOI work.
+Much NPLab data are sequences — fMRI, EEG, whale codas, social dynamics, and neural
+nets during training. This is the shared toolkit for analysing them: stationarity,
+state-space and hidden-Markov models, changepoints, directed information, and
+surrogate-data null tests.
 
 ## Reading
 

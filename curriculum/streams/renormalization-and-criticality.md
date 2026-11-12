@@ -1,6 +1,6 @@
 # Tier 2 · Renormalization and criticality
 
-_Renormalization, criticality, and multiscale systems · from month 4 · draft v0.3 (2026-11-11), reconciled with Tier 1 and awaiting review_
+_Renormalization, criticality, and multiscale systems · from month 4 · draft v0.4 (2026-11-12), reconciled with Tier 1 and awaiting review_
 
 **You will be able to:** Choose and test scale transformations, diagnose genuine critical behaviour, and quantify the trade-off between preserved dynamics, prediction, and reconstruction.
 

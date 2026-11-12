@@ -1,8 +1,8 @@
 # Renormalization on Networks
 
-Coarse-graining networks and higher-order structures across scales while
-preserving what matters — dynamics, information, predictability. The
-across-agent analogue of the RG that organizes statistical mechanics.
+Coarse-graining networks and higher-order structures across scales while preserving
+what matters — dynamics, information, predictability. The network analogue of the
+renormalization group that organizes statistical mechanics.
 
 ## Reading
 
@@ -16,6 +16,9 @@ across-agent analogue of the RG that organizes statistical mechanics.
 - ⭐ **Murphy, Thibeault, Allard & Desrosiers (2024)** — *Duality between predictability and reconstructability in complex systems.* Nature Communications. Coarse-graining trades reconstructability for predictability — a causal-emergence signature.
 - **Gabrielli, Garlaschelli, Patil & Serrano (2025)** — *Network renormalization.* Nature Reviews Physics 7, 203–219 Comprehensive review of geometric, Laplacian and spectral RG on networks.
 - **Bradde & Bialek (2017)** — *PCA meets RG.* Journal of Statistical Physics. PCA and renormalization as the same idea.
+- **Rosas, Mediano, Jensen, Seth, Barrett, Carhart-Harris & Bor (2020)** — *Reconciling emergences: an information-theoretic approach to identify causal emergence in multivariate data.* PLOS Computational Biology 16, e1008289. An information-theoretic criterion for causal emergence that can be applied to data.
+- **Gfeller & De Los Rios (2007)** — *Spectral coarse graining of complex networks.* Physical Review Letters 99, 038701. Coarse-graining a network while preserving its random-walk spectrum.
+- **Eberhardt & Lee (2022)** — *Causal emergence: when distortions in a map obscure the territory.* Philosophies 7, 30. Argues that causal-emergence measures can reward a map that distorts the system.
 
 ## Connection to other topics
 

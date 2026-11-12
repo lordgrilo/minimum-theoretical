@@ -21,6 +21,11 @@ _Tier 1 · The Common Language · Week 7 · draft curriculum_
   First pass: Chapters 1–4 and 7.
   The textbook. Ch. 1–4 (simplicial complexes) and Ch. 7 (persistence).
 
+### Synthesis
+
+- Gardner, Hermansen, Pachitariu, Burak, Baas, Dunn, Moser & Moser (2022), *Toroidal topology of population activity in grid cells.* Nature 602, 123–128.
+  Persistent homology on recorded neural population activity recovers the torus that grid-cell theory predicts: topology as a test of a circuit model.
+
 ## Exercise
 
 Compute persistence under controlled perturbations, and separate stability from significance and from domain meaning.
@@ -29,7 +34,8 @@ Compute persistence under controlled perturbations, and separate stability from 
 2. Perturb the metric, the filtration and the sampling, and tabulate what changes.
 3. Build a surrogate or null model, and compute its diagram.
 4. Decide which features beat the surrogate, and write a one-page limits statement.
-5. Write down your answer to the falsification question.
+5. In code: compute the diagrams with GUDHI or Ripser, then repeat the surrogate test on recorded neural population activity, as Gardner et al. 2022 do for grid cells.
+6. Write down your answer to the falsification question.
 
 **Deliverable:** A persistence analysis under metric, filtration, sampling, and null-model perturbations, with a one-page limits statement.
 
