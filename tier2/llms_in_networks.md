@@ -7,12 +7,12 @@ to be probed with the lab's network and information-theoretic tools.
 
 ## Reading
 
-- **Galton (1907)** — *Vox populi.* Nature. The historical anchor for the wisdom of crowds — aggregated estimates beat individuals.
-- **Lorenz, Rauhut, Schweitzer & Helbing (2011)** — *How social influence can undermine the wisdom of crowd effect.* PNAS 108, 9020–9025. Social influence erodes the diversity that crowd wisdom needs: the independence assumption that ensembles of LLM agents break.
-- **Du, Li, Torralba, Tenenbaum & Mordatch (2023)** — *Improving factuality and reasoning in language models through multiagent debate.* arXiv:2305.14325 (ICML 2024). Multiple LLM agents debate to converge on better answers — collective reasoning across synthetic agents.
-- **Park, O'Brien, Cai, Morris, Liang & Bernstein (2023)** — *Generative agents: interactive simulacra of human behavior.* UIST '23. arXiv:2304.03442. Societies of LLM agents reproduce emergent social behaviour — a testbed for collective behaviour.
-- **Schrimpf, Blank, Tuckute, Kauf, Hosseini, Kanwisher, Tenenbaum & Fedorenko (2021)** — *The neural architecture of language: integrative modeling converges on predictive processing.* PNAS 118(45):e2105646118. LLM representations predict human language-network activity — the standard reference for brain–LLM alignment.
-- **Goldstein, Zada, Buchnik, …, Hasson (2022)** — *Shared computational principles for language processing in humans and deep language models.* Nature Neuroscience 25(3):369–380. Next-word prediction and contextual embeddings shared by brains and LLMs.
+- **Galton (1907)** — *Vox populi.* Nature. The historical anchor for the wisdom of crowds — aggregated estimates beat individuals. [doi:10.1038/075450a0](https://doi.org/10.1038/075450a0)
+- **Lorenz, Rauhut, Schweitzer & Helbing (2011)** — *How social influence can undermine the wisdom of crowd effect.* PNAS 108, 9020–9025. Social influence erodes the diversity that crowd wisdom needs: the independence assumption that ensembles of LLM agents break. [doi:10.1073/pnas.1008636108](https://doi.org/10.1073/pnas.1008636108)
+- **Du, Li, Torralba, Tenenbaum & Mordatch (2023)** — *Improving factuality and reasoning in language models through multiagent debate.* arXiv:2305.14325 (ICML 2024). Multiple LLM agents debate to converge on better answers — collective reasoning across synthetic agents. [doi:10.48550/arXiv.2305.14325](https://doi.org/10.48550/arXiv.2305.14325) [arXiv](https://arxiv.org/abs/2305.14325)
+- **Park, O'Brien, Cai, Morris, Liang & Bernstein (2023)** — *Generative agents: interactive simulacra of human behavior.* UIST '23. arXiv:2304.03442. Societies of LLM agents reproduce emergent social behaviour — a testbed for collective behaviour. [doi:10.48550/arXiv.2304.03442](https://doi.org/10.48550/arXiv.2304.03442) [arXiv](https://arxiv.org/abs/2304.03442)
+- **Schrimpf, Blank, Tuckute, Kauf, Hosseini, Kanwisher, Tenenbaum & Fedorenko (2021)** — *The neural architecture of language: integrative modeling converges on predictive processing.* PNAS 118(45):e2105646118. LLM representations predict human language-network activity — the standard reference for brain–LLM alignment. [doi:10.1073/pnas.2105646118](https://doi.org/10.1073/pnas.2105646118)
+- **Goldstein, Zada, Buchnik, …, Hasson (2022)** — *Shared computational principles for language processing in humans and deep language models.* Nature Neuroscience 25(3):369–380. Next-word prediction and contextual embeddings shared by brains and LLMs. [doi:10.1038/s41593-022-01026-4](https://doi.org/10.1038/s41593-022-01026-4)
 
 ## Connection to other topics
 

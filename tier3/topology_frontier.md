@@ -9,5 +9,5 @@ routine use.
 
 ## Reading
 
-- **Botnan & Lesnick (2023)** — *An introduction to multiparameter persistence.* arXiv:2203.14289 NEW: frontier TDA — filtrations along multiple parameters.
+- **Botnan & Lesnick (2023)** — *An introduction to multiparameter persistence.* arXiv:2203.14289 NEW: frontier TDA — filtrations along multiple parameters. [doi:10.48550/arXiv.2203.14289](https://doi.org/10.48550/arXiv.2203.14289) [arXiv](https://arxiv.org/abs/2203.14289)
 

@@ -11,7 +11,7 @@ Petri et al. (2021) under Foundational Papers (Tier 1).
 
 ## Reading
 
-- **Cover & Thomas Ch. 10 (rate-distortion) + Tishby et al. (2000) IB.** The mathematical engine: R(D) and the β-parameterized compression–relevance tradeoff with finite precision.
+- **Cover & Thomas Ch. 10 (rate-distortion) + Tishby et al. (1999) IB.** The mathematical engine: R(D) and the β-parameterized compression–relevance tradeoff with finite precision.
 
 ## Connection to other topics
 

@@ -10,29 +10,29 @@ _Tier 1 · The Common Language · Weeks 2–3 · draft curriculum_
 
 ### Foundation
 
-- Latora, Nicosia & Russo (2017), *Complex Networks: Principles, Methods and Applications.* Cambridge.
+- Latora, Nicosia & Russo (2017), *Complex Networks: Principles, Methods and Applications.* Cambridge. [doi:10.1017/9781316216002](https://doi.org/10.1017/9781316216002)
   First pass: Chapters 1–6 and 10.
   Best modern textbook. Priority: Ch. 1–6, 10.
-- Spielman (2025), *Spectral and Algebraic Graph Theory* (incomplete online draft dated 2 April 2025). https://www.cs.yale.edu/homes/spielman/sagt/
+- Spielman (2025), *Spectral and Algebraic Graph Theory* (incomplete online draft dated 2 April 2025). https://www.cs.yale.edu/homes/spielman/sagt/ [link](https://www.cs.yale.edu/homes/spielman/sagt/)
   First pass: Chapters 1–3, 10–12, and 20–23.
   Laplacians, effective resistance, spectral clustering — the bridge to networks and renormalization.
-- Peel, Peixoto & De Domenico (2022), *Statistical inference links data and theory in network science.* Nature Communications 13, 6794.
+- Peel, Peixoto & De Domenico (2022), *Statistical inference links data and theory in network science.* Nature Communications 13, 6794. [doi:10.1038/s41467-022-34267-9](https://doi.org/10.1038/s41467-022-34267-9)
   The shift from descriptive to inferential network science.
 
 ### Deepening
 
-- Peixoto (2023), *Descriptive vs. inferential community detection in networks.* Cambridge Elements.
+- Peixoto (2023), *Descriptive vs. inferential community detection in networks.* Cambridge Elements. [doi:10.1017/9781009118897](https://doi.org/10.1017/9781009118897)
   The principled network-inference position statement.
-- Molloy & Reed (1995), *A critical point for random graphs with a given degree sequence.* Random Structures & Algorithms.
+- Molloy & Reed (1995), *A critical point for random graphs with a given degree sequence.* Random Structures & Algorithms. [doi:10.1002/rsa.3240060204](https://doi.org/10.1002/rsa.3240060204)
   The Molloy–Reed criterion for the giant component.
-- Callaway, Newman, Strogatz & Watts (2000), *Network robustness and fragility: percolation on random graphs.* PRL.
+- Callaway, Newman, Strogatz & Watts (2000), *Network robustness and fragility: percolation on random graphs.* PRL. [doi:10.1103/physrevlett.85.5468](https://doi.org/10.1103/physrevlett.85.5468)
   Robustness as percolation.
-- Albert, Jeong & Barabási (2000), *Error and attack tolerance of complex networks.* Nature.
+- Albert, Jeong & Barabási (2000), *Error and attack tolerance of complex networks.* Nature. [doi:10.1038/35019019](https://doi.org/10.1038/35019019)
   Landmark robustness paper.
 
 ### Synthesis
 
-- Buldyrev, Parshani, Paul, Stanley & Havlin (2010), *Catastrophic cascade of failures in interdependent networks.* Nature.
+- Buldyrev, Parshani, Paul, Stanley & Havlin (2010), *Catastrophic cascade of failures in interdependent networks.* Nature. [doi:10.1038/nature08932](https://doi.org/10.1038/nature08932)
   Landmark interdependent-networks paper.
 
 ## Exercise
@@ -66,9 +66,9 @@ Present your work at a Thursday lab meeting.
 
 ## Beyond the common route
 
-- Barabási & Albert (1999), *Emergence of scaling in random networks.* Science. Background: Preferential attachment and scale-free networks.
-- Newman (2003), *The structure and function of complex networks.* SIAM Review. Background: The survey that defined the field.
-- Watts & Strogatz (1998), *Collective dynamics of 'small-world' networks.* Nature. Background: The small-world model. Short and elegant.
+- Barabási & Albert (1999), *Emergence of scaling in random networks.* Science. [doi:10.1126/science.286.5439.509](https://doi.org/10.1126/science.286.5439.509) Background: Preferential attachment and scale-free networks.
+- Newman (2003), *The structure and function of complex networks.* SIAM Review. [doi:10.1137/s003614450342480](https://doi.org/10.1137/s003614450342480) Background: The survey that defined the field.
+- Watts & Strogatz (1998), *Collective dynamics of 'small-world' networks.* Nature. [doi:10.1038/30918](https://doi.org/10.1038/30918) Background: The small-world model. Short and elegant.
 
 ---
 

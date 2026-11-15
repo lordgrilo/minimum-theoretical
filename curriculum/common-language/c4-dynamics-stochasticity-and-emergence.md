@@ -10,27 +10,27 @@ _Tier 1 · The Common Language · Weeks 5–6 · draft curriculum_
 
 ### Foundation
 
-- Strogatz (2015), *Nonlinear Dynamics and Chaos* (2nd ed.). Westview Press (verify publisher of record).
+- Strogatz (2015), *Nonlinear Dynamics and Chaos* (2nd ed.). Westview Press; reissued by CRC Press, 2018. [doi:10.1201/9780429492563](https://doi.org/10.1201/9780429492563)
   First pass: Chapters 1–8.
   Best introductory text. Ch. 1–8.
-- Barrat, Barthélemy & Vespignani (2008), *Dynamical Processes on Complex Networks.* Cambridge.
+- Barrat, Barthélemy & Vespignani (2008), *Dynamical Processes on Complex Networks.* Cambridge. [doi:10.1017/cbo9780511791383](https://doi.org/10.1017/cbo9780511791383)
   First pass: Chapters 4–7 and 9: dynamical processes, phase transitions, resilience and robustness, synchronization, epidemic spreading; plus the appendix on the generating-functions formalism (pp. 303–305).
   Essential companion to Newman. First pass: Ch. 4–7 and 9 (phase transitions, resilience and robustness, synchronization, epidemic spreading).
-- Pastor-Satorras & Vespignani (2001), *Epidemic spreading in scale-free networks.* PRL.
+- Pastor-Satorras & Vespignani (2001), *Epidemic spreading in scale-free networks.* PRL. [doi:10.1103/physrevlett.86.3200](https://doi.org/10.1103/physrevlett.86.3200)
   Absence of an epidemic threshold in scale-free networks.
 
 ### Deepening
 
-- Sethna (2006), *Statistical Mechanics: Entropy, Order Parameters, and Complexity.* Oxford.
+- Sethna (2006), *Statistical Mechanics: Entropy, Order Parameters, and Complexity.* Oxford. [link](https://sethna.lassp.cornell.edu/StatMech/)
   First pass: Chapters 2, 7, 8, and 12.
   Best modern stat-mech for complex systems. Freely available. Ch. 2, 7, 8, 12.
-- Centola & Macy (2007), *Complex contagion and the weakness of long ties.* American Journal of Sociology.
+- Centola & Macy (2007), *Complex contagions and the weakness of long ties.* American Journal of Sociology. [doi:10.1086/521848](https://doi.org/10.1086/521848)
   Simple vs complex contagion.
-- Iacopini, Petri, Barrat & Latora (2019), *Simplicial models of social contagion.* Nature Communications.
+- Iacopini, Petri, Barrat & Latora (2019), *Simplicial models of social contagion.* Nature Communications. [doi:10.1038/s41467-019-10431-6](https://doi.org/10.1038/s41467-019-10431-6)
   Group interactions create bistability and discontinuous transitions. Founding paper.
-- Newman (2002), *Spread of epidemic disease on networks.* Physical Review E.
+- Newman (2002), *Spread of epidemic disease on networks.* Physical Review E. [doi:10.1103/physreve.66.016128](https://doi.org/10.1103/physreve.66.016128)
   Maps SIR epidemics onto bond percolation.
-- Arenas, Díaz-Guilera, Kurths, Moreno & Zhou (2008), *Synchronization in complex networks.* Physics Reports.
+- Arenas, Díaz-Guilera, Kurths, Moreno & Zhou (2008), *Synchronization in complex networks.* Physics Reports. [doi:10.1016/j.physrep.2008.09.002](https://doi.org/10.1016/j.physrep.2008.09.002)
   Comprehensive synchronization review.
 
 ## Exercise
@@ -64,7 +64,7 @@ Present your work at a Thursday lab meeting.
 
 ## Beyond the common route
 
-- Kuramoto (1984), *Chemical Oscillations, Waves, and Turbulence.* Springer. Background: The synchronization reference.
+- Kuramoto (1984), *Chemical Oscillations, Waves, and Turbulence.* Springer. [doi:10.1007/978-3-642-69689-3](https://doi.org/10.1007/978-3-642-69689-3) Background: The synchronization reference.
 
 ---
 

@@ -10,22 +10,22 @@ _Tier 1 · The Common Language · Weeks 10–11 · draft curriculum_
 
 ### Foundation
 
-- Shumway & Stoffer (2017), *Time Series Analysis and Its Applications* (4th ed.). Springer.
+- Shumway & Stoffer (2017), *Time Series Analysis and Its Applications* (4th ed.). Springer. [doi:10.1007/978-3-319-52452-8](https://doi.org/10.1007/978-3-319-52452-8)
   First pass: Chapters 1–4 and 6.
   AR / state-space models and spectral analysis. The standard.
-- Pearl, Glymour & Jewell (2016), *Causal Inference in Statistics: A Primer.* Wiley. _(decided 2026-10-07)_
+- Pearl, Glymour & Jewell (2016), *Causal Inference in Statistics: A Primer.* Wiley. [link](http://bayes.cs.ucla.edu/PRIMER/) _(decided 2026-10-07)_
   The accessible entry point.
 
 ### Deepening
 
-- Pearl (2009), *Causality: Models, Reasoning, and Inference* (2nd ed.). Cambridge.
+- Pearl (2009), *Causality: Models, Reasoning, and Inference* (2nd ed.). Cambridge. [doi:10.1017/cbo9780511803161](https://doi.org/10.1017/cbo9780511803161)
   First pass: Chapters 1 and 3, Sections 6.1–6.2, and Chapter 7.
   Causal graphs and do-calculus; the reference.
-- Schreiber & Schmitz (2000), *Surrogate time series.* Physica D.
+- Schreiber & Schmitz (2000), *Surrogate time series.* Physica D. [doi:10.1016/s0167-2789(00)00043-9](https://doi.org/10.1016/s0167-2789%2800%2900043-9)
   Surrogate-data null tests for nonlinearity and coupling.
-- Barnett, Barrett & Seth (2009), *Granger causality and transfer entropy are equivalent for Gaussian variables.* Physical Review Letters.
+- Barnett, Barrett & Seth (2009), *Granger causality and transfer entropy are equivalent for Gaussian variables.* Physical Review Letters. [doi:10.1103/physrevlett.103.238701](https://doi.org/10.1103/physrevlett.103.238701)
   The caveat to keep in mind when reading directed-information results.
-- Runge et al. (2019), *Detecting and quantifying causal associations in large nonlinear time series datasets.* Science Advances.
+- Runge et al. (2019), *Detecting and quantifying causal associations in large nonlinear time series datasets.* Science Advances. [doi:10.1126/sciadv.aau4996](https://doi.org/10.1126/sciadv.aau4996)
   Causal discovery in time series (PCMCI) — relevant to fMRI and codas.
 
 ## Exercise
@@ -62,7 +62,7 @@ Present your work at a Thursday lab meeting.
 
 ## Beyond the common route
 
-- Rabiner (1989), *A tutorial on hidden Markov models and selected applications in speech recognition.* Proceedings of the IEEE. Research-stream reading (CETI/sequence work).
+- Rabiner (1989), *A tutorial on hidden Markov models and selected applications in speech recognition.* Proceedings of the IEEE. [doi:10.1109/5.18626](https://doi.org/10.1109/5.18626) Research-stream reading (CETI/sequence work).
 
 ---
 

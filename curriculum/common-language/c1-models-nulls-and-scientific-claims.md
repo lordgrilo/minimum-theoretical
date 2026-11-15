@@ -10,19 +10,19 @@ _Tier 1 · The Common Language · Week 1 · draft curriculum_
 
 ### Foundation
 
-- Fosdick, Larremore, Nishimura & Ugander (2018), *Configuring random graph models with fixed degree sequences.* SIAM Review.
+- Fosdick, Larremore, Nishimura & Ugander (2018), *Configuring random graph models with fixed degree sequences.* SIAM Review. [doi:10.1137/16m1087175](https://doi.org/10.1137/16m1087175)
   How to sample network null models correctly — the reference for graph nulls.
-- Gelman & Loken (2013), *The garden of forking paths.* (working paper / American Scientist).
+- Gelman & Loken (2013), *The garden of forking paths: why multiple comparisons can be a problem, even when there is no “fishing expedition” or “p-hacking” and the research hypothesis was posited ahead of time.* Unpublished manuscript (related article: *The statistical crisis in science*, American Scientist, 2014). [link](https://sites.stat.columbia.edu/gelman/research/unpublished/forking.pdf)
   Researcher degrees of freedom and the multiple-comparisons trap in exploratory work.
-- Kapoor & Narayanan (2023), *Leakage and the reproducibility crisis in machine-learning-based science.* Patterns.
+- Kapoor & Narayanan (2023), *Leakage and the reproducibility crisis in machine-learning-based science.* Patterns. [doi:10.1016/j.patter.2023.100804](https://doi.org/10.1016/j.patter.2023.100804)
   Data leakage — the dominant failure mode in ML-for-science.
 
 ### Deepening
 
-- Gelman, Carlin, Stern, Dunson, Vehtari & Rubin (2013), *Bayesian Data Analysis* (3rd ed.). CRC.
+- Gelman, Carlin, Stern, Dunson, Vehtari & Rubin (2013), *Bayesian Data Analysis* (3rd ed.). CRC. [doi:10.1201/b16018](https://doi.org/10.1201/b16018)
   First pass: Chapters 1, 5–7, and 10–11.
   The practical reference. Hierarchical models, MCMC, model checking.
-- Jaynes (2003), *Probability Theory: The Logic of Science.* Cambridge.
+- Jaynes (2003), *Probability Theory: The Logic of Science.* Cambridge. [doi:10.1017/cbo9780511790423](https://doi.org/10.1017/cbo9780511790423)
   First pass: Chapters 1–4 and 11.
   Philosophical foundation for Bayesian reasoning. Ch. 1–4, 11.
 
@@ -60,7 +60,7 @@ Present your work at a Thursday lab meeting.
 
 ## Beyond the common route
 
-- Marek et al. (2022), *Reproducible brain-wide association studies require thousands of individuals.* Nature. Research-stream reading (brain track).
+- Marek et al. (2022), *Reproducible brain-wide association studies require thousands of individuals.* Nature. [doi:10.1038/s41586-022-04492-9](https://doi.org/10.1038/s41586-022-04492-9) Research-stream reading (brain track).
 
 ---
 

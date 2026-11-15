@@ -10,26 +10,26 @@ _Tier 1 · The Common Language · Week 4 · draft curriculum_
 
 ### Foundation
 
-- Battiston, Cencetti, Iacopini, Latora, Lucas, Patania, Young & Petri (2020), *Networks beyond pairwise interactions: structure and dynamics.* Physics Reports.
+- Battiston, Cencetti, Iacopini, Latora, Lucas, Patania, Young & Petri (2020), *Networks beyond pairwise interactions: structure and dynamics.* Physics Reports. [doi:10.1016/j.physrep.2020.05.004](https://doi.org/10.1016/j.physrep.2020.05.004)
   The manifesto. Defines the field.
-- Torres, Blevins, Bassett & Eliassi-Rad (2021), *The why, how, and when of representations for complex systems.* SIAM Review.
+- Torres, Blevins, Bassett & Eliassi-Rad (2021), *The why, how, and when of representations for complex systems.* SIAM Review. [doi:10.1137/20m1355896](https://doi.org/10.1137/20m1355896)
   When and why different representations are appropriate.
 
 ### Deepening
 
-- Bianconi (2021), *Higher-Order Networks: An Introduction to Simplicial Complexes.* Cambridge.
+- Bianconi (2021), *Higher-Order Networks: An Introduction to Simplicial Complexes.* Cambridge. [doi:10.1017/9781108770996](https://doi.org/10.1017/9781108770996)
   First pass: Chapters 1–3 and 6–8, plus Appendix B (Hodge decomposition).
   First dedicated textbook. Algebraic topology, Hodge theory, higher-order dynamics. Essential for higher-order network theory.
-- Bick, Gross, Harrington & Schaub (2023), *What are higher-order networks?* SIAM Review.
+- Bick, Gross, Harrington & Schaub (2023), *What are higher-order networks?* SIAM Review. [doi:10.1137/21m1414024](https://doi.org/10.1137/21m1414024)
   When higher-order representations are justified vs. modelling choices.
-- Kivelä, Arenas, Barthelemy, Gleeson, Moreno & Porter (2014), *Multilayer networks.* Journal of Complex Networks 2, 203–271.
+- Kivelä, Arenas, Barthelemy, Gleeson, Moreno & Porter (2014), *Multilayer networks.* Journal of Complex Networks 2, 203–271. [doi:10.1093/comnet/cnu016](https://doi.org/10.1093/comnet/cnu016)
   The formalism for networks with several kinds of edges or layers: when a multilayer description is needed, and what aggregating the layers throws away.
-- Holme & Saramäki (2012), *Temporal networks.* Physics Reports 519, 97–125.
+- Holme & Saramäki (2012), *Temporal networks.* Physics Reports 519, 97–125. [doi:10.1016/j.physrep.2012.03.001](https://doi.org/10.1016/j.physrep.2012.03.001)
   Edges that exist only at certain times: time-respecting paths, burstiness, and why aggregating over time changes what can spread.
 
 ### Synthesis
 
-- Young, Petri & Peixoto (2021), *Hypergraph reconstruction from network data.* Communications Physics.
+- Young, Petri & Peixoto (2021), *Hypergraph reconstruction from network data.* Communications Physics. [doi:10.1038/s42005-021-00637-w](https://doi.org/10.1038/s42005-021-00637-w)
   Bayesian framework for inferring higher-order structure.
 
 ## Exercise

@@ -10,19 +10,19 @@ _Tier 1 · The Common Language · Week 12 · draft curriculum_
 
 ### Foundation
 
-- Villegas, Gili, Mulder, Caldarelli & Bianconi (2023), *Laplacian renormalization group for heterogeneous networks.* Nature Physics.
+- Villegas, Gili, Caldarelli & Gabrielli (2023), *Laplacian renormalization group for heterogeneous networks.* Nature Physics. [doi:10.1038/s41567-022-01866-8](https://doi.org/10.1038/s41567-022-01866-8)
   Diffusion-based spectral coarse-graining. The key recent paper.
-- Wilson (1975), *The renormalization group: critical phenomena and the Kondo problem.* Reviews of Modern Physics.
+- Wilson (1975), *The renormalization group: critical phenomena and the Kondo problem.* Reviews of Modern Physics. [doi:10.1103/revmodphys.47.773](https://doi.org/10.1103/revmodphys.47.773)
   The foundational RG paper. (Also Tier 3: Renormalization.)
 
 ### Deepening
 
-- Kriegeskorte, Mur & Bandettini (2008), *Representational similarity analysis.* Frontiers in Systems Neuroscience.
+- Kriegeskorte, Mur & Bandettini (2008), *Representational similarity analysis.* Frontiers in Systems Neuroscience. [doi:10.3389/neuro.06.004.2008](https://doi.org/10.3389/neuro.06.004.2008)
   The method for comparing representations across brains and models via dissimilarity matrices.
-- Peyré & Cuturi (2019), *Computational Optimal Transport.* Foundations and Trends in ML.
+- Peyré & Cuturi (2019), *Computational Optimal Transport.* Foundations and Trends in ML. [doi:10.1561/9781680835519](https://doi.org/10.1561/9781680835519)
   First pass: Chapters 1–4, 8, and Sections 10.2 and 10.6.
   The practical OT reference: algorithms, Sinkhorn, applications. Start here.
-- Murphy, Thibeault, Allard & Desrosiers (2024), *Duality between predictability and reconstructability in complex systems.* Nature Communications.
+- Murphy, Thibeault, Allard & Desrosiers (2024), *Duality between predictability and reconstructability in complex systems.* Nature Communications. [doi:10.1038/s41467-024-48020-x](https://doi.org/10.1038/s41467-024-48020-x)
   Coarse-graining trades reconstructability for predictability — a causal-emergence signature.
 
 ## Exercise
@@ -45,7 +45,7 @@ Coarse-grain one network two ways and test whether the quantity you promised to 
 
 How to guard against them:
 
-- Preregister the preserved quantity, then report the observables that fail under the transformation. (see Villegas, Gili, Mulder, Caldarelli & Bianconi (2023))
+- Preregister the preserved quantity, then report the observables that fail under the transformation. (see Villegas, Gili, Caldarelli & Gabrielli (2023))
 - Pair every decoding result with an intervention or an independent behavioural limit, and set a competing explanation against it. (see Kriegeskorte, Mur & Bandettini (2008))
 
 ## The question to ask
@@ -58,9 +58,9 @@ Present your work at a Thursday lab meeting.
 
 ## Beyond the common route
 
-- Barlow (1961), *Possible principles underlying the transformation of sensory messages.* In Sensory Communication (MIT Press). Research-stream reading (semanticity/brain).
-- Dayan & Abbott (2001), *Theoretical Neuroscience.* MIT Press. Research-stream reading (brain track).
-- Nurisso, Morandini, Lucas, Vaccarino, Gili & Petri (2025), *Higher-order Laplacian renormalization.* Nature Physics. Research-stream reading (multiscale track).
+- Barlow (1961), *Possible principles underlying the transformations of sensory messages.* In Sensory Communication (MIT Press). [doi:10.7551/mitpress/9780262518420.003.0013](https://doi.org/10.7551/mitpress/9780262518420.003.0013) Research-stream reading (semanticity/brain).
+- Dayan & Abbott (2001), *Theoretical Neuroscience.* MIT Press. [link](https://mitpress.mit.edu/9780262541855/theoretical-neuroscience/) Research-stream reading (brain track).
+- Nurisso, Morandini, Lucas, Vaccarino, Gili & Petri (2025), *Higher-order Laplacian renormalization.* Nature Physics. [doi:10.1038/s41567-025-02784-1](https://doi.org/10.1038/s41567-025-02784-1) Research-stream reading (multiscale track).
 
 ---
 

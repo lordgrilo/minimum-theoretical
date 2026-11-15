@@ -10,20 +10,20 @@ _Tier 1 · The Common Language · Week 7 · draft curriculum_
 
 ### Foundation
 
-- Carlsson (2009), *Topology and Data.* Bulletin of the AMS.
+- Carlsson (2009), *Topology and Data.* Bulletin of the AMS. [doi:10.1090/s0273-0979-09-01249-x](https://doi.org/10.1090/s0273-0979-09-01249-x)
   Launched TDA as a field. Start here for intuition.
 
 ### Deepening
 
-- Cohen-Steiner, Edelsbrunner & Harer (2007), *Stability of persistence diagrams.* Discrete & Computational Geometry.
+- Cohen-Steiner, Edelsbrunner & Harer (2007), *Stability of persistence diagrams.* Discrete & Computational Geometry. [doi:10.1007/s00454-006-1276-5](https://doi.org/10.1007/s00454-006-1276-5)
   Persistence diagrams are stable under perturbation (bottleneck distance). The theorem that makes TDA trustworthy.
-- Edelsbrunner & Harer (2010), *Computational Topology: An Introduction.* AMS.
+- Edelsbrunner & Harer (2010), *Computational Topology: An Introduction.* AMS. [doi:10.1090/mbk/069](https://doi.org/10.1090/mbk/069)
   First pass: Chapters 1–4 and 7.
   The textbook. Ch. 1–4 (simplicial complexes) and Ch. 7 (persistence).
 
 ### Synthesis
 
-- Gardner, Hermansen, Pachitariu, Burak, Baas, Dunn, Moser & Moser (2022), *Toroidal topology of population activity in grid cells.* Nature 602, 123–128.
+- Gardner, Hermansen, Pachitariu, Burak, Baas, Dunn, Moser & Moser (2022), *Toroidal topology of population activity in grid cells.* Nature 602, 123–128. [doi:10.1038/s41586-021-04268-7](https://doi.org/10.1038/s41586-021-04268-7)
   Persistent homology on recorded neural population activity recovers the torus that grid-cell theory predicts: topology as a test of a circuit model.
 
 ## Exercise
@@ -57,7 +57,7 @@ Present your work at a Thursday lab meeting.
 
 ## Beyond the common route
 
-- Petri, Expert, Turkheimer, Carhart-Harris, Nutt, Hellyer & Vaccarino (2014), *Homological scaffolds of brain functional networks.* J. R. Soc. Interface. Research-stream reading (capstone case).
+- Petri, Expert, Turkheimer, Carhart-Harris, Nutt, Hellyer & Vaccarino (2014), *Homological scaffolds of brain functional networks.* J. R. Soc. Interface. [doi:10.1098/rsif.2014.0873](https://doi.org/10.1098/rsif.2014.0873) Research-stream reading (capstone case).
 
 ---
 

@@ -10,23 +10,23 @@ _Tier 1 · The Common Language · Weeks 8–9 · draft curriculum_
 
 ### Foundation
 
-- Cover & Thomas (2006), *Elements of Information Theory.* Wiley.
+- Cover & Thomas (2006), *Elements of Information Theory.* Wiley. [doi:10.1002/047174882x](https://doi.org/10.1002/047174882x)
   First pass: Chapters 2, 4, and 10.
   THE textbook. Priority: Ch. 2 (entropy), 4 (MI), 10 (rate-distortion).
-- Watanabe (1960), *Information theoretical analysis of multivariate correlation.* IBM Journal of Research and Development.
+- Watanabe (1960), *Information theoretical analysis of multivariate correlation.* IBM Journal of Research and Development. [doi:10.1147/rd.41.0066](https://doi.org/10.1147/rd.41.0066)
   Introduces total correlation (multi-information) — the conceptual root of multivariate dependency measures.
-- Rosas, Mediano, Gastpar & Jensen (2019), *Quantifying high-order interdependencies via multivariate extensions of the mutual information.* Physical Review E. _(decided 2026-10-07)_
+- Rosas, Mediano, Gastpar & Jensen (2019), *Quantifying high-order interdependencies via multivariate extensions of the mutual information.* Physical Review E. [doi:10.1103/physreve.100.032305](https://doi.org/10.1103/physreve.100.032305) _(decided 2026-10-07)_
   Introduced the O-information (signed synergy/redundancy).
 
 ### Deepening
 
-- Tishby, Pereira & Bialek (2000), *The Information Bottleneck Method.* Proc. Allerton Conference on Communication, Control and Computing (verify year). arXiv:physics/0004057.
+- Tishby, Pereira & Bialek (1999), *The Information Bottleneck Method.* Proc. 37th Allerton Conference on Communication, Control and Computing, 368–377. arXiv:physics/0004057. [doi:10.48550/arXiv.physics/0004057](https://doi.org/10.48550/arXiv.physics/0004057) [arXiv](https://arxiv.org/abs/physics/0004057)
   Compression–relevance tradeoff. Theoretical ancestor of the semanticity framework.
-- Zaslavsky, Kemp, Regier & Tishby (2018), *Efficient compression in color naming across languages.* PNAS.
+- Zaslavsky, Kemp, Regier & Tishby (2018), *Efficient compression in color naming and its evolution.* PNAS. [doi:10.1073/pnas.1800521115](https://doi.org/10.1073/pnas.1800521115)
   IB explains cross-linguistic color-naming universals. Beautiful empirical validation.
-- Timme & Lapish (2018), *A tutorial for information theory in neuroscience.* eNeuro. _(decided 2026-10-07)_
+- Timme & Lapish (2018), *A tutorial for information theory in neuroscience.* eNeuro. [doi:10.1523/eneuro.0052-18.2018](https://doi.org/10.1523/eneuro.0052-18.2018) _(decided 2026-10-07)_
   Practical guide to applying IT measures to neural data.
-- Williams & Beer (2010), *Nonnegative decomposition of multivariate information.* arXiv:1004.2515. _(decided 2026-10-07)_
+- Williams & Beer (2010), *Nonnegative decomposition of multivariate information.* arXiv:1004.2515. [doi:10.48550/arXiv.1004.2515](https://doi.org/10.48550/arXiv.1004.2515) [arXiv](https://arxiv.org/abs/1004.2515) _(decided 2026-10-07)_
   Foundational Partial Information Decomposition (PID).
 
 ## Exercise
@@ -50,7 +50,7 @@ Measure compression, redundancy and synergy on systems whose mechanisms you buil
 
 How to guard against them:
 
-- Swap the distortion or the relevance variable and check whether the conclusion survives the swap. (see Tishby, Pereira & Bialek (2000))
+- Swap the distortion or the relevance variable and check whether the conclusion survives the swap. (see Tishby, Pereira & Bialek (1999))
 - Benchmark on systems with a known mechanism, compare two or more redundancy measures, and report sample-size curves. (see Rosas, Mediano, Gastpar & Jensen (2019))
 
 ## The question to ask

@@ -23,11 +23,11 @@ _Before week 1._ Rate yourself on five survival skills. If one is rusty, read it
 
 | Skill | Needed by | If it is rusty: light repair | Full route, during the year |
 |---|---|---|---|
-| Linear algebra | C2 (weeks 2–3) | Strang (2016), *Introduction to Linear Algebra* (5th ed.). Wellesley–Cambridge. Sections 1.1–1.3, 6.1–6.2 and 6.4 before C2 (weeks 2–3); sections 2.1–2.5, 4.2–4.3 and 7.1–7.3 before C8 (week 12). | Strang (2016), *Introduction to Linear Algebra* (5th ed.). Wellesley–Cambridge. Chapters 1–4 and 6–7; then Sections 10.1, 10.3, 11.2, and 12.1–12.3. |
-| Numerical computation | C8 (week 12) | Trefethen & Bau (1997), *Numerical Linear Algebra.* SIAM. Part I, Fundamentals (Lectures 1–5) before C8 (week 12). | Trefethen & Bau (1997), *Numerical Linear Algebra.* SIAM. Lectures 1–5, 11–19, and 24–27. |
-| Probability | C1 (week 1) | Blitzstein & Hwang (2019), *Introduction to Probability* (2nd ed.). CRC. Chapters 1–2 before C1 (week 1); chapters 3–4 before C5 (weeks 8–9). | Blitzstein & Hwang (2019), *Introduction to Probability* (2nd ed.). CRC. Chapters 1–4, 7, and 9–10. |
-| Statistical learning | C7 (weeks 10–11) | James, Witten, Hastie & Tibshirani (2021), *An Introduction to Statistical Learning* (2nd ed.). Springer. Chapters 2, 3 and 5 before C7 (weeks 10–11). | Hastie, Tibshirani & Friedman (2009), *The Elements of Statistical Learning* (2nd ed.). Springer. Chapters 2–4, 7, 9, 11, and 14. |
-| Resampling and testing | C1 (week 1) | Ernst (2004), *Permutation methods: a basis for exact inference.* Statistical Science 19, 676–685. The whole paper before C1 (week 1). | Good (2005), *Permutation, Parametric, and Bootstrap Tests of Hypotheses* (3rd ed.). Springer. Chapters 2–6: Optimal Procedures; Testing Hypotheses; Distributions; Multiple Tests; Experimental Designs. |
+| Linear algebra | C2 (weeks 2–3) | Strang (2016), *Introduction to Linear Algebra* (5th ed.). Wellesley–Cambridge. [link](https://math.mit.edu/~gs/linearalgebra/) Sections 1.1–1.3, 6.1–6.2 and 6.4 before C2 (weeks 2–3); sections 2.1–2.5, 4.2–4.3 and 7.1–7.3 before C8 (week 12). | Strang (2016), *Introduction to Linear Algebra* (5th ed.). Wellesley–Cambridge. [link](https://math.mit.edu/~gs/linearalgebra/) Chapters 1–4 and 6–7; then Sections 10.1, 10.3, 11.2, and 12.1–12.3. |
+| Numerical computation | C8 (week 12) | Trefethen & Bau (1997), *Numerical Linear Algebra.* SIAM. [doi:10.1137/1.9780898719574](https://doi.org/10.1137/1.9780898719574) Part I, Fundamentals (Lectures 1–5) before C8 (week 12). | Trefethen & Bau (1997), *Numerical Linear Algebra.* SIAM. [doi:10.1137/1.9780898719574](https://doi.org/10.1137/1.9780898719574) Lectures 1–5, 11–19, and 24–27. |
+| Probability | C1 (week 1) | Blitzstein & Hwang (2019), *Introduction to Probability* (2nd ed.). CRC. [doi:10.1201/9780429428357](https://doi.org/10.1201/9780429428357) Chapters 1–2 before C1 (week 1); chapters 3–4 before C5 (weeks 8–9). | Blitzstein & Hwang (2019), *Introduction to Probability* (2nd ed.). CRC. [doi:10.1201/9780429428357](https://doi.org/10.1201/9780429428357) Chapters 1–4, 7, and 9–10. |
+| Statistical learning | C7 (weeks 10–11) | James, Witten, Hastie & Tibshirani (2021), *An Introduction to Statistical Learning* (2nd ed.). Springer. [doi:10.1007/978-1-0716-1418-1](https://doi.org/10.1007/978-1-0716-1418-1) Chapters 2, 3 and 5 before C7 (weeks 10–11). | Hastie, Tibshirani & Friedman (2009), *The Elements of Statistical Learning* (2nd ed.). Springer. [doi:10.1007/978-0-387-84858-7](https://doi.org/10.1007/978-0-387-84858-7) Chapters 2–4, 7, 9, 11, and 14. |
+| Resampling and testing | C1 (week 1) | Ernst (2004), *Permutation methods: a basis for exact inference.* Statistical Science 19, 676–685. [doi:10.1214/088342304000000396](https://doi.org/10.1214/088342304000000396) The whole paper before C1 (week 1). | Good (2005), *Permutation, Parametric, and Bootstrap Tests of Hypotheses* (3rd ed.). Springer. [doi:10.1007/b138696](https://doi.org/10.1007/b138696) Chapters 2–6: Optimal Procedures; Testing Hypotheses; Distributions; Multiple Tests; Experimental Designs. |
 
 The code in every exercise uses the lab's stack: [the tools page](../tools/computational_tools.md) lists the libraries.
 
@@ -44,7 +44,7 @@ _Weeks 1–12, then deepening in months 4–8._ Eight competencies that every me
 | Week 7 | [C6 · Topology and persistent structure](common-language/c6-topology-and-persistent-structure.md) | Carlsson (2009) |
 | Weeks 8–9 | [C5 · Information, dependence, and compression](common-language/c5-information-dependence-and-compression.md) | Cover & Thomas (2006); Watanabe (1960); Rosas, Mediano, Gastpar & Jensen (2019) |
 | Weeks 10–11 | [C7 · Temporal and observational inference](common-language/c7-temporal-and-observational-inference.md) | Shumway & Stoffer (2017); Pearl, Glymour & Jewell (2016) |
-| Week 12 | [C8 · Representation, coarse-graining, and preserved quantities](common-language/c8-representation-coarse-graining-and-preserved-quant.md) | Villegas, Gili, Mulder, Caldarelli & Bianconi (2023); Wilson (1975) |
+| Week 12 | [C8 · Representation, coarse-graining, and preserved quantities](common-language/c8-representation-coarse-graining-and-preserved-quant.md) | Villegas, Gili, Caldarelli & Gabrielli (2023); Wilson (1975) |
 
 ## Tier 2 · Research Streams
 
@@ -80,4 +80,4 @@ The full reading list, organised by topic and tier. Use it as a reference: it is
 - [Plain web version](https://lordgrilo.github.io/minimum-theoretical/)
 - [Quest mode](https://lordgrilo.github.io/minimum-theoretical/quest/), the same route as a role-playing game
 
-_Generated 2026-11-12 from the reading-list YAML. Edit the master, not this file._
+_Generated 2026-11-15 from the reading-list YAML. Edit the master, not this file._

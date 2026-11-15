@@ -6,30 +6,30 @@ _Higher-order network theory, dynamics, and reconstruction · from month 4 · dr
 
 **Builds on:** [C2](../common-language/c2-graph-structure-operators-and-spectra.md), [C3](../common-language/c3-higher-order-representations.md), [C4](../common-language/c4-dynamics-stochasticity-and-emergence.md), [C1](../common-language/c1-models-nulls-and-scientific-claims.md), [C7](../common-language/c7-temporal-and-observational-inference.md). Assumes from Tier 1: Bianconi (2021); Bick, Gross, Harrington & Schaub (2023); Peel, Peixoto & De Domenico (2022); Peixoto (2023); Sethna (2006); Centola & Macy (2007); Iacopini, Petri, Barrat & Latora (2019); Newman (2002); Arenas, Díaz-Guilera, Kurths, Moreno & Zhou (2008).
 
-**If this is not your stream, read:** Battiston et al. (2021), *The physics of higher-order interactions in complex systems.* Nature Physics.
+**If this is not your stream, read:** Battiston et al. (2021), *The physics of higher-order interactions in complex systems.* Nature Physics. [doi:10.1038/s41567-021-01371-4](https://doi.org/10.1038/s41567-021-01371-4)
 
 _Estimated load: about 60 hours of reading and 35 for the exercise, over months 4–8._
 
 ## Required readings
 
-- Lim (2020), *Hodge Laplacians on graphs.* SIAM Review.
+- Lim (2020), *Hodge Laplacians on graphs.* SIAM Review. [doi:10.1137/18m1223101](https://doi.org/10.1137/18m1223101)
   Why: Hodge Laplacians are the operators under every argument we make about flows and dynamics on complexes. Learn them here, properly, once.
-- Schaub, Benson, Horn, Lippner & Jadbabaie (2020), *Random walks on simplicial complexes and the normalized Hodge 1-Laplacian.* SIAM Review.
+- Schaub, Benson, Horn, Lippner & Jadbabaie (2020), *Random walks on simplicial complexes and the normalized Hodge 1-Laplacian.* SIAM Review. [doi:10.1137/18m1201019](https://doi.org/10.1137/18m1201019)
   Why: Diffusion on complexes is the baseline that any claim about higher-order spreading or renormalisation departs from.
-- Pastor-Satorras, Castellano, Van Mieghem & Vespignani (2015), *Epidemic processes in complex networks.* Reviews of Modern Physics.
+- Pastor-Satorras, Castellano, Van Mieghem & Vespignani (2015), *Epidemic processes in complex networks.* Reviews of Modern Physics. [doi:10.1103/revmodphys.87.925](https://doi.org/10.1103/revmodphys.87.925)
   Why: The full review behind the Tier 1 epidemic-threshold readings. A higher-order contagion transition only means something against this pairwise theory.
-- Skardal & Arenas (2019), *Abrupt desynchronization and extensive multistability in globally coupled oscillator simplexes.* PRL.
+- Skardal & Arenas (2019), *Abrupt desynchronization and extensive multistability in globally coupled oscillator simplexes.* PRL. [doi:10.1103/physrevlett.122.248301](https://doi.org/10.1103/physrevlett.122.248301)
   Why: Coupling order alone produces abrupt synchronisation. Read it beside Iacopini et al. 2019 and Arenas et al. 2008 from Tier 1.
-- Preti, De Francisci Morales, Iacopini & Petri (2024), *Higher-order null models as a lens for social systems.* Physical Review X.
+- Preti, Fazzone, Petri & De Francisci Morales (2024), *Higher-order null models as a lens for social systems.* Physical Review X. [doi:10.1103/PhysRevX.14.031032](https://doi.org/10.1103/PhysRevX.14.031032)
   Why: Higher-order null models: how to ask whether a group effect is real. Read it against a pairwise null that preserves degree and group-size heterogeneity.
-- Petri & Barrat (2018), *Simplicial activity driven model.* Physical Review Letters.
+- Petri & Barrat (2018), *Simplicial activity driven model.* Physical Review Letters. [doi:10.1103/physrevlett.121.228301](https://doi.org/10.1103/physrevlett.121.228301)
   Why: The minimal generative model for temporal group interactions; you will use it as a benchmark. Read it against a pairwise activity-driven model with heterogeneous activity.
-- Perra, Gonçalves, Pastor-Satorras & Vespignani (2012), *Activity driven modeling of time varying networks.* Scientific Reports 2, 469.
+- Perra, Gonçalves, Pastor-Satorras & Vespignani (2012), *Activity driven modeling of time varying networks.* Scientific Reports 2, 469. [doi:10.1038/srep00469](https://doi.org/10.1038/srep00469)
   Why: The pairwise activity-driven baseline. Any temporal higher-order effect has to beat it before it counts.
 
 ### Re-read at depth (from Tier 1)
 
-- Young, Petri & Peixoto (2021), *Hypergraph reconstruction from network data.* Communications Physics.  
+- Young, Petri & Peixoto (2021), *Hypergraph reconstruction from network data.* Communications Physics. [doi:10.1038/s42005-021-00637-w](https://doi.org/10.1038/s42005-021-00637-w)  
   Go back to it at depth: the stream exercise starts from its reconstruction framework.
 
 ## Project exercise
@@ -48,11 +48,11 @@ Treating a convenient higher-order encoding, dynamical fit, or reconstruction as
 
 ## Case material (optional)
 
-- Mancastroppa, Iacopini, Petri & Barrat (2023), *Hyper-cores promote localization and efficient seeding in higher-order processes.* Nature Communications.
-- Lucas, Iacopini, Robiglio, Barrat & Petri (2023), *Simplicially driven simple contagion.* Physical Review Research.
-- Nurisso, Vaccarino & Petri (2024), *A unified framework for simplicial Kuramoto models.* Chaos.
-- De Domenico, Nicosia, Arenas & Latora (2015), *Structural reducibility of multilayer networks.* Nature Communications 6, 6864.
-- Valdano, Ferreri, Poletto & Colizza (2015), *Analytical computation of the epidemic threshold on temporal networks.* Physical Review X 5, 021005.
+- Mancastroppa, Iacopini, Petri & Barrat (2023), *Hyper-cores promote localization and efficient seeding in higher-order processes.* Nature Communications. [doi:10.1038/s41467-023-41887-2](https://doi.org/10.1038/s41467-023-41887-2)
+- Lucas, Iacopini, Robiglio, Barrat & Petri (2023), *Simplicially driven simple contagion.* Physical Review Research. [doi:10.1103/physrevresearch.5.013201](https://doi.org/10.1103/physrevresearch.5.013201)
+- Nurisso, Arnaudon, Lucas, Peach, Expert, Vaccarino & Petri (2024), *A unified framework for simplicial Kuramoto models.* Chaos. [doi:10.1063/5.0169388](https://doi.org/10.1063/5.0169388)
+- De Domenico, Nicosia, Arenas & Latora (2015), *Structural reducibility of multilayer networks.* Nature Communications 6, 6864. [doi:10.1038/ncomms7864](https://doi.org/10.1038/ncomms7864)
+- Valdano, Ferreri, Poletto & Colizza (2015), *Analytical computation of the epidemic threshold on temporal networks.* Physical Review X 5, 021005. [doi:10.1103/physrevx.5.021005](https://doi.org/10.1103/physrevx.5.021005)
 
 ---
 

@@ -7,12 +7,12 @@ causal emergence, and identifiability.
 
 ## Reading
 
-- ⭐ **Pearl (2009)** — *Causality: Models, Reasoning, and Inference* (2nd ed.). Cambridge. Causal graphs and do-calculus; the reference.
-- **Peters, Janzing & Schölkopf (2017)** — *Elements of Causal Inference.* MIT Press. Modern, ML-oriented: structural causal models, invariance. Freely available.
-- ⭐ **Pearl, Glymour & Jewell (2016)** — *Causal Inference in Statistics: A Primer.* Wiley. The accessible entry point.
-- ⭐ **Runge et al. (2019)** — *Detecting and quantifying causal associations in large nonlinear time series datasets.* Science Advances. Causal discovery in time series (PCMCI) — relevant to fMRI and codas.
-- ⭐ **Barnett, Barrett & Seth (2009)** — *Granger causality and transfer entropy are equivalent for Gaussian variables.* Physical Review Letters. The caveat to keep in mind when reading directed-information results.
-- **Hoel, Albantakis & Tononi (2013)** — *Quantifying causal emergence shows that macro can beat micro.* PNAS. Causal emergence and coarse-graining — connects to renormalization.
+- ⭐ **Pearl (2009)** — *Causality: Models, Reasoning, and Inference* (2nd ed.). Cambridge. Causal graphs and do-calculus; the reference. [doi:10.1017/cbo9780511803161](https://doi.org/10.1017/cbo9780511803161)
+- **Peters, Janzing & Schölkopf (2017)** — *Elements of Causal Inference.* MIT Press. Modern, ML-oriented: structural causal models, invariance. Freely available. [link](https://mitpress.mit.edu/9780262037310/elements-of-causal-inference/)
+- ⭐ **Pearl, Glymour & Jewell (2016)** — *Causal Inference in Statistics: A Primer.* Wiley. The accessible entry point. [link](http://bayes.cs.ucla.edu/PRIMER/)
+- ⭐ **Runge et al. (2019)** — *Detecting and quantifying causal associations in large nonlinear time series datasets.* Science Advances. Causal discovery in time series (PCMCI) — relevant to fMRI and codas. [doi:10.1126/sciadv.aau4996](https://doi.org/10.1126/sciadv.aau4996)
+- ⭐ **Barnett, Barrett & Seth (2009)** — *Granger causality and transfer entropy are equivalent for Gaussian variables.* Physical Review Letters. The caveat to keep in mind when reading directed-information results. [doi:10.1103/physrevlett.103.238701](https://doi.org/10.1103/physrevlett.103.238701)
+- **Hoel, Albantakis & Tononi (2013)** — *Quantifying causal emergence shows that macro can beat micro.* PNAS. Causal emergence and coarse-graining — connects to renormalization. [doi:10.1073/pnas.1314922110](https://doi.org/10.1073/pnas.1314922110)
 
 ## Connection to other topics
 
