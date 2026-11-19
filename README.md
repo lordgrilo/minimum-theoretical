@@ -1,3 +1,5 @@
+> **This project has moved.** Minimum Theoretical now lives in the NPLab organization on GitHub: [website](https://nplresearch.github.io/minimum-theoretical/) · [source](https://github.com/nplresearch/minimum-theoretical). This repository only keeps the old address working and is no longer updated.
+
 # NPLab — Minimum Theoretical
 
 > **Start here.** New members follow [the route](curriculum/README.md): Tier 0 diagnostic → Tier 1, the Common Language (8 competencies) → Tier 2 research streams → Tier 3 frontier.
